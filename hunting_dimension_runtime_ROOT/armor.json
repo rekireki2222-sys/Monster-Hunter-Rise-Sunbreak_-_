@@ -1,0 +1,4828 @@
+{
+  "armor": [
+    {
+      "id": "armor001",
+      "name": "カムラノ装・継",
+      "set": "カムラノ装・継",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor002",
+      "name": "カムラノ装・継",
+      "set": "カムラノ装・継",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor003",
+      "name": "カムラノ装・継",
+      "set": "カムラノ装・継",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor004",
+      "name": "カムラノ装・継",
+      "set": "カムラノ装・継",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor005",
+      "name": "カムラノ装・継",
+      "set": "カムラノ装・継",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor006",
+      "name": "ハンターX",
+      "set": "ハンターX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor007",
+      "name": "ハンターX",
+      "set": "ハンターX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor008",
+      "name": "ハンターX",
+      "set": "ハンターX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor009",
+      "name": "ハンターX",
+      "set": "ハンターX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor010",
+      "name": "ハンターX",
+      "set": "ハンターX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor011",
+      "name": "レザーX",
+      "set": "レザーX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor012",
+      "name": "レザーX",
+      "set": "レザーX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor013",
+      "name": "レザーX",
+      "set": "レザーX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor014",
+      "name": "レザーX",
+      "set": "レザーX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor015",
+      "name": "レザーX",
+      "set": "レザーX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor016",
+      "name": "チェーンX",
+      "set": "チェーンX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor017",
+      "name": "チェーンX",
+      "set": "チェーンX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor018",
+      "name": "チェーンX",
+      "set": "チェーンX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor019",
+      "name": "チェーンX",
+      "set": "チェーンX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor020",
+      "name": "チェーンX",
+      "set": "チェーンX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor021",
+      "name": "アロイX",
+      "set": "アロイX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor022",
+      "name": "アロイX",
+      "set": "アロイX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor023",
+      "name": "アロイX",
+      "set": "アロイX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor024",
+      "name": "アロイX",
+      "set": "アロイX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor025",
+      "name": "アロイX",
+      "set": "アロイX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor026",
+      "name": "ボーンX",
+      "set": "ボーンX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor027",
+      "name": "ボーンX",
+      "set": "ボーンX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor028",
+      "name": "ボーンX",
+      "set": "ボーンX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor029",
+      "name": "ボーンX",
+      "set": "ボーンX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor030",
+      "name": "ボーンX",
+      "set": "ボーンX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor031",
+      "name": "ガーグァXフェイク",
+      "set": "ガーグァXフェイク",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor032",
+      "name": "リノプロX",
+      "set": "リノプロX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor033",
+      "name": "リノプロX",
+      "set": "リノプロX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor034",
+      "name": "リノプロX",
+      "set": "リノプロX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor035",
+      "name": "リノプロX",
+      "set": "リノプロX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor036",
+      "name": "リノプロX",
+      "set": "リノプロX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor037",
+      "name": "ファンゴXフェイク",
+      "set": "ファンゴXフェイク",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor038",
+      "name": "ドロスX",
+      "set": "ドロスX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor039",
+      "name": "ドロスX",
+      "set": "ドロスX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor040",
+      "name": "ドロスX",
+      "set": "ドロスX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor041",
+      "name": "ブナハX",
+      "set": "ブナハX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor042",
+      "name": "ブナハX",
+      "set": "ブナハX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor043",
+      "name": "ブナハX",
+      "set": "ブナハX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor044",
+      "name": "ブナハX",
+      "set": "ブナハX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor045",
+      "name": "ブナハX",
+      "set": "ブナハX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor046",
+      "name": "タロス",
+      "set": "タロス",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor047",
+      "name": "タロス",
+      "set": "タロス",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor048",
+      "name": "タロス",
+      "set": "タロス",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor049",
+      "name": "タロス",
+      "set": "タロス",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor050",
+      "name": "タロス",
+      "set": "タロス",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor051",
+      "name": "ランゴ",
+      "set": "ランゴ",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor052",
+      "name": "ランゴ",
+      "set": "ランゴ",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor053",
+      "name": "ランゴ",
+      "set": "ランゴ",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor054",
+      "name": "ランゴ",
+      "set": "ランゴ",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor055",
+      "name": "ランゴ",
+      "set": "ランゴ",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor056",
+      "name": "拘竜の革X",
+      "set": "拘竜の革X",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor057",
+      "name": "拘竜の革X",
+      "set": "拘竜の革X",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor058",
+      "name": "ジャギィXフェイク",
+      "set": "ジャギィXフェイク",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor059",
+      "name": "ランポス",
+      "set": "ランポス",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor060",
+      "name": "ランポス",
+      "set": "ランポス",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor061",
+      "name": "ランポス",
+      "set": "ランポス",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor062",
+      "name": "ランポス",
+      "set": "ランポス",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor063",
+      "name": "ランポス",
+      "set": "ランポス",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor064",
+      "name": "イズチX",
+      "set": "イズチX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor065",
+      "name": "イズチX",
+      "set": "イズチX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor066",
+      "name": "イズチX",
+      "set": "イズチX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor067",
+      "name": "イズチX",
+      "set": "イズチX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor068",
+      "name": "イズチX",
+      "set": "イズチX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor069",
+      "name": "バギィX",
+      "set": "バギィX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor070",
+      "name": "バギィX",
+      "set": "バギィX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor071",
+      "name": "バギィX",
+      "set": "バギィX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor072",
+      "name": "バギィX",
+      "set": "バギィX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor073",
+      "name": "バギィX",
+      "set": "バギィX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor074",
+      "name": "クルルX",
+      "set": "クルルX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor075",
+      "name": "クルルX",
+      "set": "クルルX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor076",
+      "name": "クルルX",
+      "set": "クルルX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor077",
+      "name": "クルルX",
+      "set": "クルルX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor078",
+      "name": "クルルX",
+      "set": "クルルX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor079",
+      "name": "フロギィX",
+      "set": "フロギィX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor080",
+      "name": "フロギィX",
+      "set": "フロギィX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor081",
+      "name": "フロギィX",
+      "set": "フロギィX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor082",
+      "name": "フロギィX",
+      "set": "フロギィX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor083",
+      "name": "フロギィX",
+      "set": "フロギィX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor084",
+      "name": "アシラX",
+      "set": "アシラX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor085",
+      "name": "アシラX",
+      "set": "アシラX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor086",
+      "name": "アシラX",
+      "set": "アシラX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor087",
+      "name": "アシラX",
+      "set": "アシラX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor088",
+      "name": "アシラX",
+      "set": "アシラX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor089",
+      "name": "ウルクX",
+      "set": "ウルクX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor090",
+      "name": "ウルクX",
+      "set": "ウルクX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor091",
+      "name": "ウルクX",
+      "set": "ウルクX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor092",
+      "name": "ウルクX",
+      "set": "ウルクX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor093",
+      "name": "ウルクX",
+      "set": "ウルクX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor094",
+      "name": "ラングロX",
+      "set": "ラングロX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor095",
+      "name": "ラングロX",
+      "set": "ラングロX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor096",
+      "name": "ラングロX",
+      "set": "ラングロX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor097",
+      "name": "ラングロX",
+      "set": "ラングロX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor098",
+      "name": "ラングロX",
+      "set": "ラングロX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor099",
+      "name": "アケノX",
+      "set": "アケノX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor100",
+      "name": "アケノX",
+      "set": "アケノX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor101",
+      "name": "アケノX",
+      "set": "アケノX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor102",
+      "name": "アケノX",
+      "set": "アケノX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor103",
+      "name": "アケノX",
+      "set": "アケノX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor104",
+      "name": "ルドロスX",
+      "set": "ルドロスX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor105",
+      "name": "ルドロスX",
+      "set": "ルドロスX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor106",
+      "name": "ルドロスX",
+      "set": "ルドロスX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor107",
+      "name": "ルドロスX",
+      "set": "ルドロスX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor108",
+      "name": "ルドロスX",
+      "set": "ルドロスX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor109",
+      "name": "ボロスX",
+      "set": "ボロスX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor110",
+      "name": "ボロスX",
+      "set": "ボロスX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor111",
+      "name": "ボロスX",
+      "set": "ボロスX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor112",
+      "name": "ボロスX",
+      "set": "ボロスX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor113",
+      "name": "ボロスX",
+      "set": "ボロスX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor114",
+      "name": "ザザミ",
+      "set": "ザザミ",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor115",
+      "name": "ザザミ",
+      "set": "ザザミ",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor116",
+      "name": "ザザミ",
+      "set": "ザザミ",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor117",
+      "name": "ザザミ",
+      "set": "ザザミ",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor118",
+      "name": "ザザミ",
+      "set": "ザザミ",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor119",
+      "name": "ヨツミX",
+      "set": "ヨツミX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor120",
+      "name": "ヨツミX",
+      "set": "ヨツミX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor121",
+      "name": "ヨツミX",
+      "set": "ヨツミX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor122",
+      "name": "ヨツミX",
+      "set": "ヨツミX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor123",
+      "name": "ヨツミX",
+      "set": "ヨツミX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor124",
+      "name": "インゴットX",
+      "set": "インゴットX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor125",
+      "name": "インゴットX",
+      "set": "インゴットX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor126",
+      "name": "インゴットX",
+      "set": "インゴットX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor127",
+      "name": "インゴットX",
+      "set": "インゴットX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor128",
+      "name": "インゴットX",
+      "set": "インゴットX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor129",
+      "name": "スカルダX/スパイオX",
+      "set": "スカルダX/スパイオX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor130",
+      "name": "スカルダX/スパイオX",
+      "set": "スカルダX/スパイオX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor131",
+      "name": "スカルダX/スパイオX",
+      "set": "スカルダX/スパイオX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor132",
+      "name": "スカルダX/スパイオX",
+      "set": "スカルダX/スパイオX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor133",
+      "name": "スカルダX/スパイオX",
+      "set": "スカルダX/スパイオX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor134",
+      "name": "混沌・真",
+      "set": "混沌・真",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor135",
+      "name": "混沌・真",
+      "set": "混沌・真",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor136",
+      "name": "エーテルX",
+      "set": "エーテルX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor137",
+      "name": "エーテルX",
+      "set": "エーテルX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor138",
+      "name": "エーテルX",
+      "set": "エーテルX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor139",
+      "name": "エーテルX",
+      "set": "エーテルX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor140",
+      "name": "エーテルX",
+      "set": "エーテルX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor141",
+      "name": "アルブーロX",
+      "set": "アルブーロX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor142",
+      "name": "アルブーロX",
+      "set": "アルブーロX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor143",
+      "name": "アルブーロX",
+      "set": "アルブーロX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor144",
+      "name": "アルブーロX",
+      "set": "アルブーロX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor145",
+      "name": "アルブーロX",
+      "set": "アルブーロX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor146",
+      "name": "メルホアX",
+      "set": "メルホアX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor147",
+      "name": "メルホアX",
+      "set": "メルホアX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor148",
+      "name": "メルホアX",
+      "set": "メルホアX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor149",
+      "name": "メルホアX",
+      "set": "メルホアX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor150",
+      "name": "メルホアX",
+      "set": "メルホアX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor151",
+      "name": "ゴキョウ",
+      "set": "ゴキョウ",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor152",
+      "name": "ゴキョウ",
+      "set": "ゴキョウ",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor153",
+      "name": "ゴキョウ",
+      "set": "ゴキョウ",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor154",
+      "name": "ゴキョウ",
+      "set": "ゴキョウ",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor155",
+      "name": "ゴキョウ",
+      "set": "ゴキョウ",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor156",
+      "name": "王国軽装騎士",
+      "set": "王国軽装騎士",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor157",
+      "name": "王国軽装騎士",
+      "set": "王国軽装騎士",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor158",
+      "name": "王国軽装騎士",
+      "set": "王国軽装騎士",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor159",
+      "name": "王国軽装騎士",
+      "set": "王国軽装騎士",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor160",
+      "name": "王国軽装騎士",
+      "set": "王国軽装騎士",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor161",
+      "name": "ユクモノ",
+      "set": "ユクモノ",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor162",
+      "name": "ユクモノ",
+      "set": "ユクモノ",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor163",
+      "name": "ユクモノ",
+      "set": "ユクモノ",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor164",
+      "name": "ユクモノ",
+      "set": "ユクモノ",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor165",
+      "name": "ユクモノ",
+      "set": "ユクモノ",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor166",
+      "name": "ズワロX",
+      "set": "ズワロX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor167",
+      "name": "ズワロX",
+      "set": "ズワロX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor168",
+      "name": "フルフルX",
+      "set": "フルフルX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor169",
+      "name": "フルフルX",
+      "set": "フルフルX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor170",
+      "name": "フルフルX",
+      "set": "フルフルX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor171",
+      "name": "フルフルX",
+      "set": "フルフルX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor172",
+      "name": "フルフルX",
+      "set": "フルフルX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor173",
+      "name": "テンゴX",
+      "set": "テンゴX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor174",
+      "name": "テンゴX",
+      "set": "テンゴX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor175",
+      "name": "テンゴX",
+      "set": "テンゴX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor176",
+      "name": "テンゴX",
+      "set": "テンゴX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor177",
+      "name": "テンゴX",
+      "set": "テンゴX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor178",
+      "name": "テンゴZ",
+      "set": "テンゴZ",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor179",
+      "name": "テンゴZ",
+      "set": "テンゴZ",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor180",
+      "name": "テンゴZ",
+      "set": "テンゴZ",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor181",
+      "name": "テンゴZ",
+      "set": "テンゴZ",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor182",
+      "name": "テンゴZ",
+      "set": "テンゴZ",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor183",
+      "name": "プケプケX",
+      "set": "プケプケX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor184",
+      "name": "プケプケX",
+      "set": "プケプケX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor185",
+      "name": "プケプケX",
+      "set": "プケプケX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor186",
+      "name": "プケプケX",
+      "set": "プケプケX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor187",
+      "name": "プケプケX",
+      "set": "プケプケX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor188",
+      "name": "ジュラX",
+      "set": "ジュラX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor189",
+      "name": "ジュラX",
+      "set": "ジュラX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor190",
+      "name": "ジュラX",
+      "set": "ジュラX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor191",
+      "name": "ジュラX",
+      "set": "ジュラX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor192",
+      "name": "ジュラX",
+      "set": "ジュラX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor193",
+      "name": "バサルX",
+      "set": "バサルX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor194",
+      "name": "バサルX",
+      "set": "バサルX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor195",
+      "name": "バサルX",
+      "set": "バサルX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor196",
+      "name": "バサルX",
+      "set": "バサルX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor197",
+      "name": "バサルX",
+      "set": "バサルX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor198",
+      "name": "イソネX",
+      "set": "イソネX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor199",
+      "name": "イソネX",
+      "set": "イソネX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor200",
+      "name": "イソネX",
+      "set": "イソネX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor201",
+      "name": "イソネX",
+      "set": "イソネX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor202",
+      "name": "イソネX",
+      "set": "イソネX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor203",
+      "name": "イソネZ",
+      "set": "イソネZ",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor204",
+      "name": "イソネZ",
+      "set": "イソネZ",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor205",
+      "name": "イソネZ",
+      "set": "イソネZ",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor206",
+      "name": "イソネZ",
+      "set": "イソネZ",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor207",
+      "name": "イソネZ",
+      "set": "イソネZ",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor208",
+      "name": "レイアX",
+      "set": "レイアX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor209",
+      "name": "レイアX",
+      "set": "レイアX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor210",
+      "name": "レイアX",
+      "set": "レイアX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor211",
+      "name": "レイアX",
+      "set": "レイアX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor212",
+      "name": "レイアX",
+      "set": "レイアX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor213",
+      "name": "カガチX",
+      "set": "カガチX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor214",
+      "name": "カガチX",
+      "set": "カガチX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor215",
+      "name": "カガチX",
+      "set": "カガチX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor216",
+      "name": "カガチX",
+      "set": "カガチX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor217",
+      "name": "カガチX",
+      "set": "カガチX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor218",
+      "name": "ジャナフX",
+      "set": "ジャナフX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor219",
+      "name": "ジャナフX",
+      "set": "ジャナフX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor220",
+      "name": "ジャナフX",
+      "set": "ジャナフX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor221",
+      "name": "ジャナフX",
+      "set": "ジャナフX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor222",
+      "name": "ジャナフX",
+      "set": "ジャナフX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor223",
+      "name": "スカルX",
+      "set": "スカルX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor224",
+      "name": "ドーベルX",
+      "set": "ドーベルX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor225",
+      "name": "ドーベルX",
+      "set": "ドーベルX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor226",
+      "name": "ドーベルX",
+      "set": "ドーベルX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor227",
+      "name": "ドーベルX",
+      "set": "ドーベルX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor228",
+      "name": "ドーベルX",
+      "set": "ドーベルX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor229",
+      "name": "ヴァイクX",
+      "set": "ヴァイクX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor230",
+      "name": "ヴァイクX",
+      "set": "ヴァイクX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor231",
+      "name": "ヴァイクX",
+      "set": "ヴァイクX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor232",
+      "name": "ヴァイクX",
+      "set": "ヴァイクX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor233",
+      "name": "ヴァイクX",
+      "set": "ヴァイクX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor234",
+      "name": "マギュルX",
+      "set": "マギュルX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor235",
+      "name": "マギュルX",
+      "set": "マギュルX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor236",
+      "name": "マギュルX",
+      "set": "マギュルX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor237",
+      "name": "マギュルX",
+      "set": "マギュルX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor238",
+      "name": "マギュルX",
+      "set": "マギュルX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor239",
+      "name": "デスギアX",
+      "set": "デスギアX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor240",
+      "name": "デスギアX",
+      "set": "デスギアX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor241",
+      "name": "デスギアX",
+      "set": "デスギアX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor242",
+      "name": "デスギアX",
+      "set": "デスギアX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor243",
+      "name": "デスギアX",
+      "set": "デスギアX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor244",
+      "name": "マカルバX",
+      "set": "マカルバX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor245",
+      "name": "マカルバX",
+      "set": "マカルバX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor246",
+      "name": "マカルバX",
+      "set": "マカルバX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor247",
+      "name": "マカルバX",
+      "set": "マカルバX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor248",
+      "name": "マカルバX",
+      "set": "マカルバX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor249",
+      "name": "ロワーガX／ファルメルX",
+      "set": "ロワーガX／ファルメルX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor250",
+      "name": "ロワーガX／ファルメルX",
+      "set": "ロワーガX／ファルメルX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor251",
+      "name": "ロワーガX／ファルメルX",
+      "set": "ロワーガX／ファルメルX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor252",
+      "name": "ロワーガX／ファルメルX",
+      "set": "ロワーガX／ファルメルX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor253",
+      "name": "ロワーガX／ファルメルX",
+      "set": "ロワーガX／ファルメルX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor254",
+      "name": "王国砲術隊",
+      "set": "王国砲術隊",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor255",
+      "name": "王国砲術隊",
+      "set": "王国砲術隊",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor256",
+      "name": "王国砲術隊",
+      "set": "王国砲術隊",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor257",
+      "name": "王国砲術隊",
+      "set": "王国砲術隊",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor258",
+      "name": "王国砲術隊",
+      "set": "王国砲術隊",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor259",
+      "name": "ギルドバード/スカラー",
+      "set": "ギルドバード/スカラー",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor260",
+      "name": "ギルドバード/スカラー",
+      "set": "ギルドバード/スカラー",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor261",
+      "name": "ギルドバード/スカラー",
+      "set": "ギルドバード/スカラー",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor262",
+      "name": "ギルドバード/スカラー",
+      "set": "ギルドバード/スカラー",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor263",
+      "name": "ギルドバード/スカラー",
+      "set": "ギルドバード/スカラー",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor264",
+      "name": "ガーディアン",
+      "set": "ガーディアン",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor265",
+      "name": "ガーディアン",
+      "set": "ガーディアン",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor266",
+      "name": "ガーディアン",
+      "set": "ガーディアン",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor267",
+      "name": "ガーディアン",
+      "set": "ガーディアン",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor268",
+      "name": "ガーディアン",
+      "set": "ガーディアン",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor269",
+      "name": "ブリゲイドX",
+      "set": "ブリゲイドX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor270",
+      "name": "ブリゲイドX",
+      "set": "ブリゲイドX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor271",
+      "name": "ブリゲイドX",
+      "set": "ブリゲイドX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor272",
+      "name": "ブリゲイドX",
+      "set": "ブリゲイドX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor273",
+      "name": "ブリゲイドX",
+      "set": "ブリゲイドX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor274",
+      "name": "ベリオX",
+      "set": "ベリオX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor275",
+      "name": "ベリオX",
+      "set": "ベリオX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor276",
+      "name": "ベリオX",
+      "set": "ベリオX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor277",
+      "name": "ベリオX",
+      "set": "ベリオX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor278",
+      "name": "ベリオX",
+      "set": "ベリオX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor279",
+      "name": "禍鎧・真",
+      "set": "禍鎧・真",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor280",
+      "name": "禍鎧・真",
+      "set": "禍鎧・真",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor281",
+      "name": "禍鎧・真",
+      "set": "禍鎧・真",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor282",
+      "name": "禍鎧・真",
+      "set": "禍鎧・真",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor283",
+      "name": "禍鎧・真",
+      "set": "禍鎧・真",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor284",
+      "name": "ナルガX",
+      "set": "ナルガX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor285",
+      "name": "ナルガX",
+      "set": "ナルガX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor286",
+      "name": "ナルガX",
+      "set": "ナルガX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor287",
+      "name": "ナルガX",
+      "set": "ナルガX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor288",
+      "name": "ナルガX",
+      "set": "ナルガX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor289",
+      "name": "ゴシャX",
+      "set": "ゴシャX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor290",
+      "name": "ゴシャX",
+      "set": "ゴシャX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor291",
+      "name": "ゴシャX",
+      "set": "ゴシャX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor292",
+      "name": "ゴシャX",
+      "set": "ゴシャX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor293",
+      "name": "ゴシャX",
+      "set": "ゴシャX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor294",
+      "name": "ゴルム",
+      "set": "ゴルム",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor295",
+      "name": "ゴルム",
+      "set": "ゴルム",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor296",
+      "name": "ゴルム",
+      "set": "ゴルム",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor297",
+      "name": "ゴルム",
+      "set": "ゴルム",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor298",
+      "name": "ゴルム",
+      "set": "ゴルム",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor299",
+      "name": "ギザミ",
+      "set": "ギザミ",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor300",
+      "name": "ギザミ",
+      "set": "ギザミ",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor301",
+      "name": "ギザミ",
+      "set": "ギザミ",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor302",
+      "name": "ギザミ",
+      "set": "ギザミ",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor303",
+      "name": "ギザミ",
+      "set": "ギザミ",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor304",
+      "name": "オロミドX",
+      "set": "オロミドX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor305",
+      "name": "オロミドX",
+      "set": "オロミドX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor306",
+      "name": "オロミドX",
+      "set": "オロミドX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor307",
+      "name": "オロミドX",
+      "set": "オロミドX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor308",
+      "name": "オロミドX",
+      "set": "オロミドX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor309",
+      "name": "ヤツカダX",
+      "set": "ヤツカダX",
+      "part": "head",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor310",
+      "name": "ヤツカダX",
+      "set": "ヤツカダX",
+      "part": "chest",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor311",
+      "name": "ヤツカダX",
+      "set": "ヤツカダX",
+      "part": "arms",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor312",
+      "name": "ヤツカダX",
+      "set": "ヤツカダX",
+      "part": "waist",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor313",
+      "name": "ヤツカダX",
+      "set": "ヤツカダX",
+      "part": "legs",
+      "rarity": "RARE8",
+      "gacha": true
+    },
+    {
+      "id": "armor314",
+      "name": "オロミドZ",
+      "set": "オロミドZ",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor315",
+      "name": "オロミドZ",
+      "set": "オロミドZ",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor316",
+      "name": "オロミドZ",
+      "set": "オロミドZ",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor317",
+      "name": "オロミドZ",
+      "set": "オロミドZ",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor318",
+      "name": "オロミドZ",
+      "set": "オロミドZ",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor319",
+      "name": "ヤツカダZ",
+      "set": "ヤツカダZ",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor320",
+      "name": "ヤツカダZ",
+      "set": "ヤツカダZ",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor321",
+      "name": "ヤツカダZ",
+      "set": "ヤツカダZ",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor322",
+      "name": "ヤツカダZ",
+      "set": "ヤツカダZ",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor323",
+      "name": "ヤツカダZ",
+      "set": "ヤツカダZ",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor324",
+      "name": "クロムメタルX",
+      "set": "クロムメタルX",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor325",
+      "name": "クロムメタルX",
+      "set": "クロムメタルX",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor326",
+      "name": "グローシア",
+      "set": "グローシア",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor327",
+      "name": "グローシア",
+      "set": "グローシア",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor328",
+      "name": "グローシア",
+      "set": "グローシア",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor329",
+      "name": "グローシア",
+      "set": "グローシア",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor330",
+      "name": "グローシア",
+      "set": "グローシア",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor331",
+      "name": "バルバニア",
+      "set": "バルバニア",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor332",
+      "name": "バルバニア",
+      "set": "バルバニア",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor333",
+      "name": "バルバニア",
+      "set": "バルバニア",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor334",
+      "name": "バルバニア",
+      "set": "バルバニア",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor335",
+      "name": "バルバニア",
+      "set": "バルバニア",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor336",
+      "name": "ウツシ表・真/依巫・燿",
+      "set": "ウツシ表・真/依巫・燿",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor337",
+      "name": "ウツシ表・真/依巫・燿",
+      "set": "ウツシ表・真/依巫・燿",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor338",
+      "name": "ウツシ表・真/依巫・燿",
+      "set": "ウツシ表・真/依巫・燿",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor339",
+      "name": "ウツシ表・真/依巫・燿",
+      "set": "ウツシ表・真/依巫・燿",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor340",
+      "name": "ウツシ表・真/依巫・燿",
+      "set": "ウツシ表・真/依巫・燿",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor341",
+      "name": "ウツシ裏・真/神凪・洸",
+      "set": "ウツシ裏・真/神凪・洸",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor342",
+      "name": "ウツシ裏・真/神凪・洸",
+      "set": "ウツシ裏・真/神凪・洸",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor343",
+      "name": "ウツシ裏・真/神凪・洸",
+      "set": "ウツシ裏・真/神凪・洸",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor344",
+      "name": "ウツシ裏・真/神凪・洸",
+      "set": "ウツシ裏・真/神凪・洸",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor345",
+      "name": "ウツシ裏・真/神凪・洸",
+      "set": "ウツシ裏・真/神凪・洸",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor346",
+      "name": "王国重装騎士",
+      "set": "王国重装騎士",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor347",
+      "name": "王国重装騎士",
+      "set": "王国重装騎士",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor348",
+      "name": "王国重装騎士",
+      "set": "王国重装騎士",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor349",
+      "name": "王国重装騎士",
+      "set": "王国重装騎士",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor350",
+      "name": "王国重装騎士",
+      "set": "王国重装騎士",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor351",
+      "name": "ホーク／エコール",
+      "set": "ホーク／エコール",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor352",
+      "name": "ホーク／エコール",
+      "set": "ホーク／エコール",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor353",
+      "name": "ホーク／エコール",
+      "set": "ホーク／エコール",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor354",
+      "name": "ホーク／エコール",
+      "set": "ホーク／エコール",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor355",
+      "name": "ホーク／エコール",
+      "set": "ホーク／エコール",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor356",
+      "name": "ディグニ",
+      "set": "ディグニ",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor357",
+      "name": "ディグニ",
+      "set": "ディグニ",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor358",
+      "name": "ディグニ",
+      "set": "ディグニ",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor359",
+      "name": "ディグニ",
+      "set": "ディグニ",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor360",
+      "name": "ディグニ",
+      "set": "ディグニ",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor361",
+      "name": "コトルX",
+      "set": "コトルX",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor362",
+      "name": "コトルX",
+      "set": "コトルX",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor363",
+      "name": "ガブラスX",
+      "set": "ガブラスX",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor364",
+      "name": "ガブラスX",
+      "set": "ガブラスX",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor365",
+      "name": "ガブラスX",
+      "set": "ガブラスX",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor366",
+      "name": "ガブラスX",
+      "set": "ガブラスX",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor367",
+      "name": "ガブラスX",
+      "set": "ガブラスX",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor368",
+      "name": "ミツネX",
+      "set": "ミツネX",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor369",
+      "name": "ミツネX",
+      "set": "ミツネX",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor370",
+      "name": "ミツネX",
+      "set": "ミツネX",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor371",
+      "name": "ミツネX",
+      "set": "ミツネX",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor372",
+      "name": "ミツネX",
+      "set": "ミツネX",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor373",
+      "name": "レウスX",
+      "set": "レウスX",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor374",
+      "name": "レウスX",
+      "set": "レウスX",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor375",
+      "name": "レウスX",
+      "set": "レウスX",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor376",
+      "name": "レウスX",
+      "set": "レウスX",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor377",
+      "name": "レウスX",
+      "set": "レウスX",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor378",
+      "name": "ジンオウX",
+      "set": "ジンオウX",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor379",
+      "name": "ジンオウX",
+      "set": "ジンオウX",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor380",
+      "name": "ジンオウX",
+      "set": "ジンオウX",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor381",
+      "name": "ジンオウX",
+      "set": "ジンオウX",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor382",
+      "name": "ジンオウX",
+      "set": "ジンオウX",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor383",
+      "name": "ルナガロ",
+      "set": "ルナガロ",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor384",
+      "name": "ルナガロ",
+      "set": "ルナガロ",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor385",
+      "name": "ルナガロ",
+      "set": "ルナガロ",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor386",
+      "name": "ルナガロ",
+      "set": "ルナガロ",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor387",
+      "name": "ルナガロ",
+      "set": "ルナガロ",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor388",
+      "name": "ゼクス",
+      "set": "ゼクス",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor389",
+      "name": "ゼクス",
+      "set": "ゼクス",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor390",
+      "name": "ゼクス",
+      "set": "ゼクス",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor391",
+      "name": "ゼクス",
+      "set": "ゼクス",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor392",
+      "name": "ゼクス",
+      "set": "ゼクス",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor393",
+      "name": "エスピナ",
+      "set": "エスピナ",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor394",
+      "name": "エスピナ",
+      "set": "エスピナ",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor395",
+      "name": "エスピナ",
+      "set": "エスピナ",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor396",
+      "name": "エスピナ",
+      "set": "エスピナ",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor397",
+      "name": "エスピナ",
+      "set": "エスピナ",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor398",
+      "name": "ゴア",
+      "set": "ゴア",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor399",
+      "name": "ゴア",
+      "set": "ゴア",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor400",
+      "name": "ゴア",
+      "set": "ゴア",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor401",
+      "name": "ゴア",
+      "set": "ゴア",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor402",
+      "name": "ゴア",
+      "set": "ゴア",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor403",
+      "name": "レギオス",
+      "set": "レギオス",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor404",
+      "name": "レギオス",
+      "set": "レギオス",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor405",
+      "name": "レギオス",
+      "set": "レギオス",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor406",
+      "name": "レギオス",
+      "set": "レギオス",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor407",
+      "name": "レギオス",
+      "set": "レギオス",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor408",
+      "name": "レックスX",
+      "set": "レックスX",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor409",
+      "name": "レックスX",
+      "set": "レックスX",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor410",
+      "name": "レックスX",
+      "set": "レックスX",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor411",
+      "name": "レックスX",
+      "set": "レックスX",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor412",
+      "name": "レックスX",
+      "set": "レックスX",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor413",
+      "name": "ディアブロX",
+      "set": "ディアブロX",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor414",
+      "name": "ディアブロX",
+      "set": "ディアブロX",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor415",
+      "name": "ディアブロX",
+      "set": "ディアブロX",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor416",
+      "name": "ディアブロX",
+      "set": "ディアブロX",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor417",
+      "name": "ディアブロX",
+      "set": "ディアブロX",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor418",
+      "name": "ダマスクX",
+      "set": "ダマスクX",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor419",
+      "name": "ダマスクX",
+      "set": "ダマスクX",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor420",
+      "name": "ダマスクX",
+      "set": "ダマスクX",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor421",
+      "name": "ダマスクX",
+      "set": "ダマスクX",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor422",
+      "name": "ダマスクX",
+      "set": "ダマスクX",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor423",
+      "name": "メデュレトX",
+      "set": "メデュレトX",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor424",
+      "name": "メデュレトX",
+      "set": "メデュレトX",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor425",
+      "name": "メデュレトX",
+      "set": "メデュレトX",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor426",
+      "name": "メデュレトX",
+      "set": "メデュレトX",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor427",
+      "name": "メデュレトX",
+      "set": "メデュレトX",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor428",
+      "name": "プロフ/シャリテ",
+      "set": "プロフ/シャリテ",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor429",
+      "name": "プロフ/シャリテ",
+      "set": "プロフ/シャリテ",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor430",
+      "name": "プロフ/シャリテ",
+      "set": "プロフ/シャリテ",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor431",
+      "name": "プロフ/シャリテ",
+      "set": "プロフ/シャリテ",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor432",
+      "name": "プロフ/シャリテ",
+      "set": "プロフ/シャリテ",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor433",
+      "name": "サージュ",
+      "set": "サージュ",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor434",
+      "name": "サージュ",
+      "set": "サージュ",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor435",
+      "name": "サージュ",
+      "set": "サージュ",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor436",
+      "name": "サージュ",
+      "set": "サージュ",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor437",
+      "name": "サージュ",
+      "set": "サージュ",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor438",
+      "name": "シーカー",
+      "set": "シーカー",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor439",
+      "name": "シーカー",
+      "set": "シーカー",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor440",
+      "name": "シーカー",
+      "set": "シーカー",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor441",
+      "name": "シーカー",
+      "set": "シーカー",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor442",
+      "name": "シーカー",
+      "set": "シーカー",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor443",
+      "name": "セイラー",
+      "set": "セイラー",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor444",
+      "name": "セイラー",
+      "set": "セイラー",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor445",
+      "name": "セイラー",
+      "set": "セイラー",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor446",
+      "name": "セイラー",
+      "set": "セイラー",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor447",
+      "name": "セイラー",
+      "set": "セイラー",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor448",
+      "name": "ギルドパレス",
+      "set": "ギルドパレス",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor449",
+      "name": "ギルドパレス",
+      "set": "ギルドパレス",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor450",
+      "name": "ギルドパレス",
+      "set": "ギルドパレス",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor451",
+      "name": "ギルドパレス",
+      "set": "ギルドパレス",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor452",
+      "name": "ギルドパレス",
+      "set": "ギルドパレス",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor453",
+      "name": "クシャナX",
+      "set": "クシャナX",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor454",
+      "name": "クシャナX",
+      "set": "クシャナX",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor455",
+      "name": "クシャナX",
+      "set": "クシャナX",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor456",
+      "name": "クシャナX",
+      "set": "クシャナX",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor457",
+      "name": "クシャナX",
+      "set": "クシャナX",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor458",
+      "name": "ミヅハ真",
+      "set": "ミヅハ真",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor459",
+      "name": "ミヅハ真",
+      "set": "ミヅハ真",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor460",
+      "name": "ミヅハ真",
+      "set": "ミヅハ真",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor461",
+      "name": "ミヅハ真",
+      "set": "ミヅハ真",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor462",
+      "name": "ミヅハ真",
+      "set": "ミヅハ真",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor463",
+      "name": "カイザーX",
+      "set": "カイザーX",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor464",
+      "name": "カイザーX",
+      "set": "カイザーX",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor465",
+      "name": "カイザーX",
+      "set": "カイザーX",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor466",
+      "name": "カイザーX",
+      "set": "カイザーX",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor467",
+      "name": "カイザーX",
+      "set": "カイザーX",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor468",
+      "name": "メルゼ",
+      "set": "メルゼ",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor469",
+      "name": "メルゼ",
+      "set": "メルゼ",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor470",
+      "name": "メルゼ",
+      "set": "メルゼ",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor471",
+      "name": "メルゼ",
+      "set": "メルゼ",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor472",
+      "name": "メルゼ",
+      "set": "メルゼ",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor473",
+      "name": "アーク/フィリア",
+      "set": "アーク/フィリア",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor474",
+      "name": "アーク/フィリア",
+      "set": "アーク/フィリア",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor475",
+      "name": "アーク/フィリア",
+      "set": "アーク/フィリア",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor476",
+      "name": "アーク/フィリア",
+      "set": "アーク/フィリア",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor477",
+      "name": "アーク/フィリア",
+      "set": "アーク/フィリア",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor478",
+      "name": "斎天・真",
+      "set": "斎天・真",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor479",
+      "name": "斎天・真",
+      "set": "斎天・真",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor480",
+      "name": "斎天・真",
+      "set": "斎天・真",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor481",
+      "name": "斎天・真",
+      "set": "斎天・真",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor482",
+      "name": "斎天・真",
+      "set": "斎天・真",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor483",
+      "name": "バゼルX",
+      "set": "バゼルX",
+      "part": "head",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor484",
+      "name": "バゼルX",
+      "set": "バゼルX",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor485",
+      "name": "バゼルX",
+      "set": "バゼルX",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor486",
+      "name": "バゼルX",
+      "set": "バゼルX",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor487",
+      "name": "バゼルX",
+      "set": "バゼルX",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor488",
+      "name": "マッスル",
+      "set": "マッスル",
+      "part": "chest",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor489",
+      "name": "マッスル",
+      "set": "マッスル",
+      "part": "arms",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor490",
+      "name": "マッスル",
+      "set": "マッスル",
+      "part": "waist",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor491",
+      "name": "マッスル",
+      "set": "マッスル",
+      "part": "legs",
+      "rarity": "RARE9",
+      "gacha": true
+    },
+    {
+      "id": "armor492",
+      "name": "王国拠点司令",
+      "set": "王国拠点司令",
+      "part": "head",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor493",
+      "name": "王国拠点司令",
+      "set": "王国拠点司令",
+      "part": "chest",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor494",
+      "name": "王国拠点司令",
+      "set": "王国拠点司令",
+      "part": "arms",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor495",
+      "name": "王国拠点司令",
+      "set": "王国拠点司令",
+      "part": "waist",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor496",
+      "name": "王国拠点司令",
+      "set": "王国拠点司令",
+      "part": "legs",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor497",
+      "name": "冥淵纏鎧",
+      "set": "冥淵纏鎧",
+      "part": "head",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor498",
+      "name": "冥淵纏鎧",
+      "set": "冥淵纏鎧",
+      "part": "chest",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor499",
+      "name": "冥淵纏鎧",
+      "set": "冥淵纏鎧",
+      "part": "arms",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor500",
+      "name": "冥淵纏鎧",
+      "set": "冥淵纏鎧",
+      "part": "waist",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor501",
+      "name": "冥淵纏鎧",
+      "set": "冥淵纏鎧",
+      "part": "legs",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor502",
+      "name": "しまき・真",
+      "set": "しまき・真",
+      "part": "head",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor503",
+      "name": "しまき・真",
+      "set": "しまき・真",
+      "part": "chest",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor504",
+      "name": "しまき・真",
+      "set": "しまき・真",
+      "part": "arms",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor505",
+      "name": "しまき・真",
+      "set": "しまき・真",
+      "part": "waist",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor506",
+      "name": "しまき・真",
+      "set": "しまき・真",
+      "part": "legs",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor507",
+      "name": "なるかみ・真",
+      "set": "なるかみ・真",
+      "part": "head",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor508",
+      "name": "なるかみ・真",
+      "set": "なるかみ・真",
+      "part": "chest",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor509",
+      "name": "なるかみ・真",
+      "set": "なるかみ・真",
+      "part": "arms",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor510",
+      "name": "なるかみ・真",
+      "set": "なるかみ・真",
+      "part": "waist",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor511",
+      "name": "なるかみ・真",
+      "set": "なるかみ・真",
+      "part": "legs",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor512",
+      "name": "怒天",
+      "set": "怒天",
+      "part": "head",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor513",
+      "name": "怒天",
+      "set": "怒天",
+      "part": "chest",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor514",
+      "name": "怒天",
+      "set": "怒天",
+      "part": "arms",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor515",
+      "name": "怒天",
+      "set": "怒天",
+      "part": "waist",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor516",
+      "name": "怒天",
+      "set": "怒天",
+      "part": "legs",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor517",
+      "name": "赫濯・真",
+      "set": "赫濯・真",
+      "part": "head",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor518",
+      "name": "赫濯・真",
+      "set": "赫濯・真",
+      "part": "chest",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor519",
+      "name": "赫濯・真",
+      "set": "赫濯・真",
+      "part": "arms",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor520",
+      "name": "赫濯・真",
+      "set": "赫濯・真",
+      "part": "waist",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor521",
+      "name": "赫濯・真",
+      "set": "赫濯・真",
+      "part": "legs",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor522",
+      "name": "禍鎧・怨",
+      "set": "禍鎧・怨",
+      "part": "head",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor523",
+      "name": "禍鎧・怨",
+      "set": "禍鎧・怨",
+      "part": "chest",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor524",
+      "name": "禍鎧・怨",
+      "set": "禍鎧・怨",
+      "part": "arms",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor525",
+      "name": "禍鎧・怨",
+      "set": "禍鎧・怨",
+      "part": "waist",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor526",
+      "name": "禍鎧・怨",
+      "set": "禍鎧・怨",
+      "part": "legs",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor527",
+      "name": "祝福の羽飾り",
+      "set": "祝福の羽飾り",
+      "part": "head",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor528",
+      "name": "翔駆の羽飾り",
+      "set": "翔駆の羽飾り",
+      "part": "head",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor529",
+      "name": "プライド",
+      "set": "プライド",
+      "part": "head",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor530",
+      "name": "プライド",
+      "set": "プライド",
+      "part": "chest",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor531",
+      "name": "プライド",
+      "set": "プライド",
+      "part": "arms",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor532",
+      "name": "プライド",
+      "set": "プライド",
+      "part": "waist",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor533",
+      "name": "プライド",
+      "set": "プライド",
+      "part": "legs",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor534",
+      "name": "ゴールドルナ",
+      "set": "ゴールドルナ",
+      "part": "head",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor535",
+      "name": "ゴールドルナ",
+      "set": "ゴールドルナ",
+      "part": "chest",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor536",
+      "name": "ゴールドルナ",
+      "set": "ゴールドルナ",
+      "part": "arms",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor537",
+      "name": "ゴールドルナ",
+      "set": "ゴールドルナ",
+      "part": "waist",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor538",
+      "name": "ゴールドルナ",
+      "set": "ゴールドルナ",
+      "part": "legs",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor539",
+      "name": "シルバーソル",
+      "set": "シルバーソル",
+      "part": "head",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor540",
+      "name": "シルバーソル",
+      "set": "シルバーソル",
+      "part": "chest",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor541",
+      "name": "シルバーソル",
+      "set": "シルバーソル",
+      "part": "arms",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor542",
+      "name": "シルバーソル",
+      "set": "シルバーソル",
+      "part": "waist",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor543",
+      "name": "シルバーソル",
+      "set": "シルバーソル",
+      "part": "legs",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor544",
+      "name": "月光",
+      "set": "月光",
+      "part": "head",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor545",
+      "name": "月光",
+      "set": "月光",
+      "part": "chest",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor546",
+      "name": "月光",
+      "set": "月光",
+      "part": "arms",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor547",
+      "name": "月光",
+      "set": "月光",
+      "part": "waist",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor548",
+      "name": "月光",
+      "set": "月光",
+      "part": "legs",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor549",
+      "name": "エスピナZ",
+      "set": "エスピナZ",
+      "part": "head",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor550",
+      "name": "エスピナZ",
+      "set": "エスピナZ",
+      "part": "chest",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor551",
+      "name": "エスピナZ",
+      "set": "エスピナZ",
+      "part": "arms",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor552",
+      "name": "エスピナZ",
+      "set": "エスピナZ",
+      "part": "waist",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor553",
+      "name": "エスピナZ",
+      "set": "エスピナZ",
+      "part": "legs",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor554",
+      "name": "陰陽ノ者",
+      "set": "陰陽ノ者",
+      "part": "head",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor555",
+      "name": "陰陽ノ者",
+      "set": "陰陽ノ者",
+      "part": "chest",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor556",
+      "name": "陰陽ノ者",
+      "set": "陰陽ノ者",
+      "part": "arms",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor557",
+      "name": "陰陽ノ者",
+      "set": "陰陽ノ者",
+      "part": "waist",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor558",
+      "name": "陰陽ノ者",
+      "set": "陰陽ノ者",
+      "part": "legs",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor559",
+      "name": "ケイオス/ネフィリム",
+      "set": "ケイオス/ネフィリム",
+      "part": "head",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor560",
+      "name": "ケイオス/ネフィリム",
+      "set": "ケイオス/ネフィリム",
+      "part": "chest",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor561",
+      "name": "ケイオス/ネフィリム",
+      "set": "ケイオス/ネフィリム",
+      "part": "arms",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor562",
+      "name": "ケイオス/ネフィリム",
+      "set": "ケイオス/ネフィリム",
+      "part": "waist",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor563",
+      "name": "ケイオス/ネフィリム",
+      "set": "ケイオス/ネフィリム",
+      "part": "legs",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor564",
+      "name": "荒天",
+      "set": "荒天",
+      "part": "head",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor565",
+      "name": "荒天",
+      "set": "荒天",
+      "part": "chest",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor566",
+      "name": "荒天",
+      "set": "荒天",
+      "part": "arms",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor567",
+      "name": "荒天",
+      "set": "荒天",
+      "part": "waist",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor568",
+      "name": "荒天",
+      "set": "荒天",
+      "part": "legs",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor569",
+      "name": "プライマル",
+      "set": "プライマル",
+      "part": "head",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor570",
+      "name": "プライマル",
+      "set": "プライマル",
+      "part": "chest",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor571",
+      "name": "プライマル",
+      "set": "プライマル",
+      "part": "arms",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor572",
+      "name": "プライマル",
+      "set": "プライマル",
+      "part": "waist",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor573",
+      "name": "プライマル",
+      "set": "プライマル",
+      "part": "legs",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor574",
+      "name": "ミヅハ醒",
+      "set": "ミヅハ醒",
+      "part": "head",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor575",
+      "name": "ミヅハ醒",
+      "set": "ミヅハ醒",
+      "part": "chest",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor576",
+      "name": "ミヅハ醒",
+      "set": "ミヅハ醒",
+      "part": "arms",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor577",
+      "name": "ミヅハ醒",
+      "set": "ミヅハ醒",
+      "part": "waist",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor578",
+      "name": "ミヅハ醒",
+      "set": "ミヅハ醒",
+      "part": "legs",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor579",
+      "name": "リバルクシャナ",
+      "set": "リバルクシャナ",
+      "part": "head",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor580",
+      "name": "リバルクシャナ",
+      "set": "リバルクシャナ",
+      "part": "chest",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor581",
+      "name": "リバルクシャナ",
+      "set": "リバルクシャナ",
+      "part": "arms",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor582",
+      "name": "リバルクシャナ",
+      "set": "リバルクシャナ",
+      "part": "waist",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor583",
+      "name": "リバルクシャナ",
+      "set": "リバルクシャナ",
+      "part": "legs",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor584",
+      "name": "リバルカイザー",
+      "set": "リバルカイザー",
+      "part": "head",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor585",
+      "name": "リバルカイザー",
+      "set": "リバルカイザー",
+      "part": "chest",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor586",
+      "name": "リバルカイザー",
+      "set": "リバルカイザー",
+      "part": "arms",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor587",
+      "name": "リバルカイザー",
+      "set": "リバルカイザー",
+      "part": "waist",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor588",
+      "name": "リバルカイザー",
+      "set": "リバルカイザー",
+      "part": "legs",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor589",
+      "name": "ラヴィーナ",
+      "set": "ラヴィーナ",
+      "part": "head",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor590",
+      "name": "ラヴィーナ",
+      "set": "ラヴィーナ",
+      "part": "chest",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor591",
+      "name": "ラヴィーナ",
+      "set": "ラヴィーナ",
+      "part": "arms",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor592",
+      "name": "ラヴィーナ",
+      "set": "ラヴィーナ",
+      "part": "waist",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor593",
+      "name": "ラヴィーナ",
+      "set": "ラヴィーナ",
+      "part": "legs",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor594",
+      "name": "赫濯・暦",
+      "set": "赫濯・暦",
+      "part": "head",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor595",
+      "name": "赫濯・暦",
+      "set": "赫濯・暦",
+      "part": "chest",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor596",
+      "name": "赫濯・暦",
+      "set": "赫濯・暦",
+      "part": "arms",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor597",
+      "name": "赫濯・暦",
+      "set": "赫濯・暦",
+      "part": "waist",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor598",
+      "name": "赫濯・暦",
+      "set": "赫濯・暦",
+      "part": "legs",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor599",
+      "name": "ヴァチス/プラグマ",
+      "set": "ヴァチス/プラグマ",
+      "part": "head",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor600",
+      "name": "ヴァチス/プラグマ",
+      "set": "ヴァチス/プラグマ",
+      "part": "chest",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor601",
+      "name": "ヴァチス/プラグマ",
+      "set": "ヴァチス/プラグマ",
+      "part": "arms",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor602",
+      "name": "ヴァチス/プラグマ",
+      "set": "ヴァチス/プラグマ",
+      "part": "waist",
+      "rarity": "RARE10",
+      "gacha": true
+    },
+    {
+      "id": "armor603",
+      "name": "ヴァチス/プラグマ",
+      "set": "ヴァチス/プラグマ",
+      "part": "legs",
+      "rarity": "RARE10",
+      "gacha": true
+    }
+  ]
+}

@@ -1,0 +1,424 @@
+{
+  "monsters": [
+    {
+      "id": "monster001",
+      "name": "オサイズチ",
+      "star": 1,
+      "dimension": 1
+    },
+    {
+      "id": "monster002",
+      "name": "ドスバギィ",
+      "star": 1,
+      "dimension": 1
+    },
+    {
+      "id": "monster003",
+      "name": "ドスフロギィ",
+      "star": 1,
+      "dimension": 1
+    },
+    {
+      "id": "monster004",
+      "name": "ダイミョウザザミ",
+      "star": 1,
+      "dimension": 1
+    },
+    {
+      "id": "monster005",
+      "name": "アオアシラ",
+      "star": 1,
+      "dimension": 1
+    },
+    {
+      "id": "monster006",
+      "name": "ヨツミワドウ",
+      "star": 1,
+      "dimension": 1
+    },
+    {
+      "id": "monster007",
+      "name": "リオレイア",
+      "star": 2,
+      "dimension": 1
+    },
+    {
+      "id": "monster008",
+      "name": "ラングロトラ",
+      "star": 2,
+      "dimension": 1
+    },
+    {
+      "id": "monster009",
+      "name": "ウルクスス",
+      "star": 2,
+      "dimension": 1
+    },
+    {
+      "id": "monster010",
+      "name": "プケプケ",
+      "star": 2,
+      "dimension": 1
+    },
+    {
+      "id": "monster011",
+      "name": "クルルヤック",
+      "star": 2,
+      "dimension": 1
+    },
+    {
+      "id": "monster012",
+      "name": "ロアルドロス",
+      "star": 2,
+      "dimension": 1
+    },
+    {
+      "id": "monster013",
+      "name": "ボルボロス",
+      "star": 2,
+      "dimension": 1
+    },
+    {
+      "id": "monster014",
+      "name": "ビシュテンゴ",
+      "star": 2,
+      "dimension": 1
+    },
+    {
+      "id": "monster015",
+      "name": "イソネミクニ",
+      "star": 2,
+      "dimension": 1
+    },
+    {
+      "id": "monster016",
+      "name": "ショウグンギザミ",
+      "star": 2,
+      "dimension": 1
+    },
+    {
+      "id": "monster017",
+      "name": "フルフル",
+      "star": 3,
+      "dimension": 1
+    },
+    {
+      "id": "monster018",
+      "name": "バサルモス",
+      "star": 3,
+      "dimension": 1
+    },
+    {
+      "id": "monster019",
+      "name": "ジュラトドス",
+      "star": 3,
+      "dimension": 1
+    },
+    {
+      "id": "monster020",
+      "name": "ビシュテンゴ亜種",
+      "star": 3,
+      "dimension": 1
+    },
+    {
+      "id": "monster021",
+      "name": "アンジャナフ",
+      "star": 3,
+      "dimension": 1
+    },
+    {
+      "id": "monster022",
+      "name": "トビカガチ",
+      "star": 3,
+      "dimension": 1
+    },
+    {
+      "id": "monster023",
+      "name": "アケノシルム",
+      "star": 3,
+      "dimension": 1
+    },
+    {
+      "id": "monster024",
+      "name": "ガランゴルム",
+      "star": 4,
+      "dimension": 1
+    },
+    {
+      "id": "monster025",
+      "name": "オロミドロ",
+      "star": 4,
+      "dimension": 1
+    },
+    {
+      "id": "monster026",
+      "name": "ナルガクルガ",
+      "star": 4,
+      "dimension": 1
+    },
+    {
+      "id": "monster027",
+      "name": "ティガレックス",
+      "star": 4,
+      "dimension": 1
+    },
+    {
+      "id": "monster028",
+      "name": "リオレウス",
+      "star": 4,
+      "dimension": 1
+    },
+    {
+      "id": "monster029",
+      "name": "ディアブロス",
+      "star": 4,
+      "dimension": 1
+    },
+    {
+      "id": "monster030",
+      "name": "ゴシャハギ",
+      "star": 4,
+      "dimension": 1
+    },
+    {
+      "id": "monster031",
+      "name": "イソネミクニ亜種",
+      "star": 5,
+      "dimension": 1
+    },
+    {
+      "id": "monster032",
+      "name": "ベリオロス",
+      "star": 5,
+      "dimension": 1
+    },
+    {
+      "id": "monster033",
+      "name": "マガイマガド",
+      "star": 5,
+      "dimension": 1
+    },
+    {
+      "id": "monster034",
+      "name": "ヤツカダキ",
+      "star": 5,
+      "dimension": 1
+    },
+    {
+      "id": "monster035",
+      "name": "セルレギオス",
+      "star": 5,
+      "dimension": 1
+    },
+    {
+      "id": "monster036",
+      "name": "オロミドロ亜種",
+      "star": 5,
+      "dimension": 1
+    },
+    {
+      "id": "monster037",
+      "name": "タマミツネ",
+      "star": 5,
+      "dimension": 1
+    },
+    {
+      "id": "monster038",
+      "name": "ルナガロン",
+      "star": 6,
+      "dimension": 2
+    },
+    {
+      "id": "monster039",
+      "name": "ジンオウガ",
+      "star": 6,
+      "dimension": 2
+    },
+    {
+      "id": "monster040",
+      "name": "ライゼクス",
+      "star": 6,
+      "dimension": 2
+    },
+    {
+      "id": "monster041",
+      "name": "ヤツカダキ亜種",
+      "star": 6,
+      "dimension": 2
+    },
+    {
+      "id": "monster042",
+      "name": "バゼルギウス",
+      "star": 6,
+      "dimension": 2
+    },
+    {
+      "id": "monster043",
+      "name": "エスピナス",
+      "star": 7,
+      "dimension": 2
+    },
+    {
+      "id": "monster044",
+      "name": "ラージャン",
+      "star": 7,
+      "dimension": 2
+    },
+    {
+      "id": "monster045",
+      "name": "メルゼナ",
+      "star": 7,
+      "dimension": 2
+    },
+    {
+      "id": "monster046",
+      "name": "オオナズチ",
+      "star": 7,
+      "dimension": 2
+    },
+    {
+      "id": "monster047",
+      "name": "クシャルダオラ",
+      "star": 8,
+      "dimension": 2
+    },
+    {
+      "id": "monster048",
+      "name": "テオテスカトル",
+      "star": 8,
+      "dimension": 2
+    },
+    {
+      "id": "monster049",
+      "name": "ゴアマガラ",
+      "star": 8,
+      "dimension": 2
+    },
+    {
+      "id": "monster050",
+      "name": "紅蓮滾るバゼルギウス",
+      "star": 8,
+      "dimension": 2
+    },
+    {
+      "id": "monster051",
+      "name": "激昂したラージャン",
+      "star": 8,
+      "dimension": 2
+    },
+    {
+      "id": "monster052",
+      "name": "ガイアデルム",
+      "star": 9,
+      "dimension": 2
+    },
+    {
+      "id": "monster053",
+      "name": "シャガルマガラ",
+      "star": 9,
+      "dimension": 2
+    },
+    {
+      "id": "monster054",
+      "name": "ナルガクルガ希少種",
+      "star": 9,
+      "dimension": 2
+    },
+    {
+      "id": "monster055",
+      "name": "イブシマキヒコ",
+      "star": 9,
+      "dimension": 2
+    },
+    {
+      "id": "monster056",
+      "name": "イヴェルカーナ",
+      "star": 9,
+      "dimension": 2
+    },
+    {
+      "id": "monster057",
+      "name": "リオレウス希少種",
+      "star": 10,
+      "dimension": 3
+    },
+    {
+      "id": "monster058",
+      "name": "リオレイア希少種",
+      "star": 10,
+      "dimension": 3
+    },
+    {
+      "id": "monster059",
+      "name": "混沌に呻くゴアマガラ",
+      "star": 10,
+      "dimension": 3
+    },
+    {
+      "id": "monster060",
+      "name": "バルファルク",
+      "star": 10,
+      "dimension": 3
+    },
+    {
+      "id": "monster061",
+      "name": "淵源ナルハタタヒメ",
+      "star": 10,
+      "dimension": 3
+    },
+    {
+      "id": "monster062",
+      "name": "エスピナス亜種",
+      "star": 10,
+      "dimension": 3
+    },
+    {
+      "id": "monster063",
+      "name": "傀異克服オオナズチ",
+      "star": 11,
+      "dimension": 3
+    },
+    {
+      "id": "monster064",
+      "name": "傀異克服テオテスカトル",
+      "star": 11,
+      "dimension": 3
+    },
+    {
+      "id": "monster065",
+      "name": "タマミツネ希少種",
+      "star": 11,
+      "dimension": 3
+    },
+    {
+      "id": "monster066",
+      "name": "傀異克服クシャルダオラ",
+      "star": 12,
+      "dimension": 3
+    },
+    {
+      "id": "monster067",
+      "name": "傀異克服バルファルク",
+      "star": 12,
+      "dimension": 3
+    },
+    {
+      "id": "monster068",
+      "name": "傀異克服シャガルマガラ",
+      "star": 12,
+      "dimension": 3
+    },
+    {
+      "id": "monster069",
+      "name": "アマツマガツチ",
+      "star": 12,
+      "dimension": 3
+    },
+    {
+      "id": "monster070",
+      "name": "原初を刻むメルゼナ",
+      "star": 12,
+      "dimension": 3
+    }
+  ]
+}
