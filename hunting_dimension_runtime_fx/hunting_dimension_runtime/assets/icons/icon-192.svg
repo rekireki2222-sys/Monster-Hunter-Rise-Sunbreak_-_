@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1c1208"/>
+      <stop offset="55%" stop-color="#26160a"/>
+      <stop offset="100%" stop-color="#090b10"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffe3a0"/>
+      <stop offset="55%" stop-color="#f7b752"/>
+      <stop offset="100%" stop-color="#d06b1f"/>
+    </linearGradient>
+  </defs>
+  <rect width="192" height="192" rx="42" fill="url(#bg)"/>
+  <rect x="16" y="16" width="160" height="160" rx="34" fill="none" stroke="#ffcb75" stroke-opacity="0.26" stroke-width="4"/>
+  <circle cx="96" cy="96" r="58" fill="#0f1016" stroke="#ffbe5e" stroke-opacity="0.28" stroke-width="4"/>
+  <path d="M96 40l12 22 24 3-17 17 4 24-23-12-23 12 4-24-17-17 24-3z" fill="url(#gold)" opacity="0.94"/>
+  <text x="96" y="124" text-anchor="middle" font-family="'Segoe UI', 'Hiragino Sans', sans-serif" font-size="68" font-weight="800" fill="#1a0f05">狩</text>
+</svg>

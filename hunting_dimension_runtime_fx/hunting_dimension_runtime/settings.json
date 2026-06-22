@@ -1,0 +1,43 @@
+{
+  "settings": {
+    "start": {
+      "coins": 0,
+      "weapon_gacha": {
+        "bronze": 2
+      },
+      "armor_gacha": {
+        "bronze": 5
+      }
+    },
+    "gacha_cost": {
+      "weapon": {
+        "bronze": 50,
+        "silver": 100,
+        "gold": 150
+      },
+      "armor": {
+        "bronze": 60,
+        "silver": 180,
+        "gold": 540
+      }
+    },
+    "upgrade": {
+      "weapon": {
+        "duplicate_required": 2,
+        "coin_cost": 200
+      },
+      "armor": {
+        "duplicate_level_up": true,
+        "coin_cost": 20
+      }
+    },
+    "event": {
+      "high_difficulty_reward": {
+        "event_ticket": 1
+      }
+    },
+    "qurio": {
+      "consume_per_use": 1
+    }
+  }
+}

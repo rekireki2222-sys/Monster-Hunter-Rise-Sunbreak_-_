@@ -1,0 +1,24 @@
+{
+  "inventory": {
+    "coins": 0,
+    "weaponTickets": {
+      "bronze": 0,
+      "silver": 0,
+      "gold": 0
+    },
+    "armorTickets": {
+      "bronze": 0,
+      "silver": 0,
+      "gold": 0
+    },
+    "decorationTickets": 0,
+    "eventTickets": 0,
+    "qurioTickets": 0,
+    "weapons": [],
+    "armors": [],
+    "decorations": [],
+    "charms": [],
+    "monsterHistory": [],
+    "eventHistory": []
+  }
+}
