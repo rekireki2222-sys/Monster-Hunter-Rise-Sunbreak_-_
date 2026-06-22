@@ -1,0 +1,3865 @@
+/* =============================================================================
+   狩猟次元 管理ツール - styles.css （レスポンシブ全面改修版）
+   -----------------------------------------------------------------------------
+   方針:
+   - ゲームロジック / JSON / 既存の id・class 名は一切変更しない（CSSのみ刷新）
+   - Monster Hunter 風配色（黒・濃グレー＋金・オレンジ・赤）を変数で体系化
+   - スマホ / タブレット / PC すべてで快適に。PC版デザインは極力維持
+   - 指定ブレークポイント: 1920+ / 1440 / 1024 / 768 / 480 / 390 / 360
+   - アクセシビリティ（文字16px以上・コントラスト・フォーカス・タップ余白）配慮
+   - CSSのみのアニメーション（押下 / ホバー / カード表示 / フェード / スライド）
+   - 将来の PWA 化を妨げない構造（追加 CSS は不要）
+
+   目次:
+     1. デザイントークン（CSS変数）
+     2. リセット / ベース要素
+     3. カード共通スタイル
+     4. レイアウト（app-shell / sidebar / main）
+     5. トップバー / ボタン類
+     6. ページセクション / ヒーロー / 統計カード
+     7. グリッド / フォーム / 各パネル
+     8. テーブル / 一覧 / 履歴
+     9. モーダル（選択ダイアログ）/ トースト
+    10. 下部固定ナビ（スマホ）
+    11. アニメーション（keyframes）
+    12. レスポンシブ（メディアクエリ）
+   ========================================================================== */
+
+/* =============================================================================
+   1. デザイントークン（CSS変数）
+   - --primary / --secondary / --background はスペック要件として用意
+   - 既存の --gold / --orange などはそのまま維持し、保守性を確保
+   ========================================================================== */
+:root {
+  /* --- 背景・面 --- */
+  --background: #08090c;          /* アプリ全体の最暗背景（黒） */
+  --bg: #08090c;                  /* 後方互換エイリアス */
+  --bg-elevated: #0f1116;         /* 一段持ち上げた面（濃グレー） */
+  --panel: rgba(20, 22, 29, 0.94);
+  --panel-strong: rgba(28, 31, 40, 0.96);
+  --panel-soft: rgba(15, 17, 23, 0.9);
+
+  /* --- 罫線 --- */
+  --line: rgba(255, 185, 78, 0.14);
+  --line-strong: rgba(255, 185, 78, 0.3);
+
+  /* --- アクセント（MH風: 金 / オレンジ / 赤） --- */
+  --gold: #dca84b;
+  --gold-strong: #ffd98a;
+  --orange: #ff8e2b;
+  --orange-strong: #ffb55f;
+  --red: #7f2318;
+  --red-strong: #cb5030;
+
+  /* --- 役割ベースのエイリアス（保守用） --- */
+  --primary: var(--orange);        /* 主要アクション（ガチャ等） */
+  --primary-strong: var(--orange-strong);
+  --secondary: var(--gold);        /* 補助アクセント */
+  --secondary-strong: var(--gold-strong);
+  --accent-danger: var(--red-strong);
+
+  /* --- テキスト --- */
+  --text: #f8f2e7;
+  --muted: #c2b8a4;                /* コントラスト改善のため従来より明るめ */
+  --success: #3aa36b;
+  --danger: #e07070;              /* コントラスト改善 */
+
+  /* --- 影・角丸 --- */
+  --shadow: 0 20px 46px rgba(0, 0, 0, 0.34);
+  --shadow-hover: 0 26px 56px rgba(0, 0, 0, 0.45);
+  --radius: 20px;
+  --radius-sm: 14px;
+
+  /* --- レイアウト寸法 --- */
+  --sidebar-width: 320px;
+  --content-max: 1600px;
+  --mobile-bottom-nav-height: 78px;
+
+  /* --- ボタン高さ（48〜56px 要件） --- */
+  --btn-height: 52px;             /* 標準ボタン高さ（48〜56pxの中央値） */
+  --control-height: 50px;         /* 入力欄の最小高さ */
+
+  /* --- アニメーション --- */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --transition: 0.22s var(--ease);
+}
+
+/* =============================================================================
+   2. リセット / ベース要素
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  min-width: 0;            /* グリッド子要素のはみ出し（横スクロール）防止 */
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+  overflow-x: hidden;      /* 横スクロール禁止 */
+  /* 文字サイズ自動調整: 最小16pxを保証（アクセシビリティ要件） */
+  font-size: clamp(16px, 0.4vw + 14.5px, 17px);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;      /* 横スクロール禁止 */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans",
+    "Yu Gothic UI", sans-serif;
+  color: var(--text);
+  /* MH風の暗い背景にオレンジ/金のグロー */
+  background:
+    radial-gradient(circle at top left, rgba(255, 164, 46, 0.12), transparent 28%),
+    radial-gradient(circle at top right, rgba(216, 108, 33, 0.12), transparent 26%),
+    linear-gradient(180deg, #050608 0%, #0d1016 52%, #090b10 100%);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* 画面全体の微妙なビネット（没入感） */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255, 201, 103, 0.03), transparent 18%),
+    radial-gradient(circle at center, transparent 60%, rgba(0, 0, 0, 0.18) 100%);
+}
+
+/* メディアは親幅を超えない（画像サイズ調整 / Lazy Load 構造に配慮） */
+img,
+svg,
+canvas,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul {
+  margin-top: 0;
+}
+
+a {
+  color: inherit;
+}
+
+/* =============================================================================
+   3. カード共通スタイル
+   - 各コンテンツ（武器/防具/イベント/ガチャ/所持コイン等）をカード表示
+   ========================================================================== */
+.card,
+.brand-card,
+.topbar,
+.hero,
+.stat-card,
+.metric-card {
+  background: linear-gradient(180deg, rgba(24, 27, 34, 0.96), rgba(14, 16, 21, 0.94));
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
+}
+
+/* =============================================================================
+   4. レイアウト（app-shell / sidebar / main）
+   ========================================================================== */
+.app-shell {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 20px;
+  border-right: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(12, 14, 18, 0.98), rgba(7, 9, 13, 0.98));
+  z-index: 30;
+}
+
+/* スクロールバー装飾 */
+.sidebar::-webkit-scrollbar,
+.main-area::-webkit-scrollbar {
+  width: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb,
+.main-area::-webkit-scrollbar-thumb {
+  background: rgba(255, 185, 78, 0.18);
+  border-radius: 999px;
+}
+
+/* ブランド（ロゴ）カード */
+.brand-card {
+  display: grid;
+  grid-template-columns: 68px minmax(0, 1fr);
+  gap: 14px;
+  padding: 18px;
+  border-radius: 24px;
+}
+
+.brand-mark {
+  width: 68px;
+  height: 68px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: #130b04;
+  background: linear-gradient(135deg, var(--gold-strong), var(--orange));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    0 10px 24px rgba(255, 142, 43, 0.22);
+}
+
+.brand-card h1 {
+  font-size: clamp(1.2rem, 0.6vw + 1rem, 1.55rem);
+  margin-bottom: 0.35rem;
+}
+
+.eyebrow {
+  font-size: clamp(0.72rem, 0.15vw + 0.66rem, 0.8rem);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.sidebar .card {
+  margin-top: 16px;
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.sidebar-search label,
+.nav-title {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 700;
+  color: var(--gold-strong);
+}
+
+/* 入力欄（タップしやすい高さ・フォーカス改善） */
+input,
+select,
+textarea {
+  width: 100%;
+  min-height: var(--control-height);
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--line-strong);
+  background: rgba(7, 8, 12, 0.9);
+  color: var(--text);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+/* フォーカス表示（アクセシビリティ） */
+input:focus,
+select:focus,
+textarea:focus,
+button:focus-visible,
+.nav-link:focus-visible,
+.bottom-nav-button:focus-visible {
+  outline: none;
+  border-color: rgba(255, 185, 78, 0.6);
+  box-shadow: 0 0 0 3px rgba(255, 185, 78, 0.22);
+}
+
+/* サイト内検索結果 */
+.search-results {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.search-item,
+.search-result-item {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 14px;
+  padding: 12px;
+  animation: fadeIn 0.3s var(--ease) both;
+}
+
+.search-item strong,
+.search-result-item strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--gold-strong);
+}
+
+.search-item span,
+.search-result-item span {
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+/* サイドナビ */
+.sidebar-nav {
+  display: grid;
+  gap: 8px;
+}
+
+.nav-link,
+.bottom-nav-button {
+  width: 100%;
+  min-height: var(--control-height);
+  text-align: left;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text);
+  padding: 12px 14px;
+  border-radius: 14px;
+  transition: background var(--transition), border-color var(--transition),
+    transform 0.12s var(--ease);
+}
+
+.nav-link:hover,
+.nav-link.active,
+.bottom-nav-button:hover,
+.bottom-nav-button.active {
+  border-color: var(--line-strong);
+  background: linear-gradient(90deg, rgba(203, 80, 48, 0.26), rgba(255, 185, 78, 0.14));
+}
+
+/* 押下演出 */
+.nav-link:active,
+.bottom-nav-button:active {
+  transform: scale(0.98);
+}
+
+/* サイドのミニ統計 */
+.mini-stats {
+  display: grid;
+  gap: 10px;
+}
+
+.mini-stats div {
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--line);
+}
+
+.mini-stats span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.82rem;
+  margin-bottom: 6px;
+}
+
+.mini-stats strong {
+  color: var(--gold-strong);
+  font-size: clamp(1.2rem, 0.3vw + 1.05rem, 1.45rem);
+}
+
+/* メイン領域 */
+.main-area {
+  width: min(100%, var(--content-max));
+  padding: 22px;
+}
+
+/* =============================================================================
+   5. トップバー / ボタン類
+   ========================================================================== */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  border-radius: 22px;
+  margin-bottom: 18px;
+  position: sticky;
+  top: 14px;
+  z-index: 20;
+}
+
+.topbar h2 {
+  font-size: clamp(1.2rem, 0.55vw + 1rem, 1.65rem);
+  margin-bottom: 0;
+}
+
+.topbar-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ボタン共通: 高さ48〜56px（要件）。押下/ホバー演出を付与 */
+.menu-button,
+.primary-button,
+.ghost-button,
+.action-button {
+  min-height: var(--btn-height);
+  border-radius: 14px;
+  padding: 12px 16px;
+  border: 1px solid transparent;
+  font-weight: 700;
+  transition: transform 0.12s var(--ease), filter var(--transition),
+    background var(--transition), border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+/* 押下演出（全ボタン共通） */
+.menu-button:active,
+.primary-button:active,
+.ghost-button:active,
+.action-button:active {
+  transform: translateY(1px) scale(0.985);
+}
+
+/* ハンバーガー（スマホ時のみ表示） */
+.menu-button {
+  display: none;
+  background: linear-gradient(135deg, var(--red-strong), #5f140d);
+  color: white;
+}
+
+/* 主要ボタン（ガチャ・実行系）: 目立たせる */
+.primary-button {
+  background: linear-gradient(135deg, var(--gold), var(--orange));
+  color: #160e05;
+  font-weight: 800;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 10px 24px rgba(255, 142, 43, 0.18);
+}
+
+.primary-button:hover {
+  filter: brightness(1.07);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.32),
+    0 14px 30px rgba(255, 142, 43, 0.32);
+}
+
+/* 補助ボタン */
+.ghost-button,
+.action-button {
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+  border-color: var(--line-strong);
+}
+
+.ghost-button:hover,
+.action-button:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 185, 78, 0.45);
+}
+
+.ghost-button.danger {
+  border-color: rgba(216, 74, 83, 0.35);
+  color: #ffd3d3;
+}
+
+.ghost-button.danger:hover {
+  background: rgba(203, 80, 48, 0.18);
+}
+
+/* =============================================================================
+   6. ページセクション / ヒーロー / 統計カード
+   ========================================================================== */
+.page-section {
+  display: none;
+}
+
+/* 表示中ページはフェードイン（CSSアニメーション要件） */
+.page-section.active {
+  display: block;
+  animation: fadeIn 0.35s var(--ease) both;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  gap: 18px;
+  padding: 24px;
+  border-radius: 26px;
+  margin-bottom: 18px;
+  background:
+    linear-gradient(135deg, rgba(203, 80, 48, 0.2), rgba(18, 20, 27, 0.95)),
+    linear-gradient(180deg, rgba(255, 185, 78, 0.08), transparent);
+}
+
+.hero h3 {
+  font-size: clamp(1.55rem, 0.9vw + 1.15rem, 2rem);
+  margin-bottom: 12px;
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.stat-card,
+.metric-card {
+  padding: 18px;
+  border-radius: 18px;
+  /* 出現時のスライドイン */
+  animation: slideInUp 0.4s var(--ease) both;
+}
+
+.stat-card span,
+.metric-card span,
+.metric-inline span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+.stat-card strong,
+.metric-card strong,
+.metric-inline strong {
+  color: var(--gold-strong);
+  font-size: clamp(1.35rem, 0.7vw + 1rem, 1.7rem);
+}
+
+/* =============================================================================
+   7. グリッド / フォーム / 各パネル
+   ========================================================================== */
+.card-grid {
+  display: grid;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.card-grid.one { grid-template-columns: 1fr; }
+.card-grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.card-grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.card {
+  padding: 20px;
+  border-radius: 22px;
+}
+
+/* カードホバー演出（持ち上げ＋発光）。
+   ヒーロー等の大型カードは対象外にして過剰な動きを避ける */
+.card:not(.hero):not(.brand-card):not(.topbar) {
+  transition: transform var(--transition), box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+.card:not(.hero):not(.brand-card):not(.topbar):hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--line-strong);
+}
+
+.section-head {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.section-head.compact {
+  margin-bottom: 14px;
+}
+
+.quick-actions,
+.button-row,
+.filter-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.feature-list {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  display: grid;
+  gap: 8px;
+}
+
+.metric-card p {
+  margin-bottom: 0;
+}
+
+.form-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.form-grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.form-grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.form-grid.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+label {
+  display: grid;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.95rem;       /* 16px相当を確保 */
+}
+
+.metric-inline {
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+  margin-bottom: 14px;
+}
+
+/* 抽選/強化の結果ボックス */
+.result-list,
+.result-box,
+.table-wrap,
+.inventory-list,
+.history-list {
+  margin-top: 14px;
+}
+
+/* ガチャ等の結果カード: 表示時にポップアップ表示（CSSアニメ要件） */
+.result-card,
+.result-item {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.025);
+  border-radius: 16px;
+  padding: 14px;
+  margin-bottom: 10px;
+  overflow-wrap: anywhere;
+  animation: popIn 0.34s var(--ease) both;
+}
+
+.result-card strong,
+.result-item strong {
+  color: var(--gold-strong);
+}
+
+.result-box {
+  min-height: 72px;
+  border-radius: 16px;
+  border: 1px dashed var(--line-strong);
+  padding: 16px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* ガイド / ルールの情報カード */
+.info-card {
+  animation: fadeIn 0.35s var(--ease) both;
+}
+
+.info-card h4 {
+  color: var(--gold-strong);
+  margin-bottom: 8px;
+}
+
+/* =============================================================================
+   8. テーブル / 一覧 / 履歴
+   - スマホでもはみ出さない構造（table-layout: fixed + 折返し）
+   ========================================================================== */
+.table-wrap {
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+.data-table {
+  width: 100%;
+  min-width: 0;
+  border-collapse: collapse;
+  background: rgba(10, 10, 15, 0.6);
+  table-layout: fixed;
+}
+
+.data-table th,
+.data-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: left;
+  vertical-align: top;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.data-table thead th {
+  position: sticky;
+  top: 0;
+  background: linear-gradient(180deg, #36210d, #17120e);
+  color: var(--gold-strong);
+  z-index: 1;
+}
+
+.data-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* 所持一覧 / ログ */
+.inventory-grid,
+.log-sections {
+  display: grid;
+  gap: 16px;
+}
+
+.inventory-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.inventory-list,
+.history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.inventory-list li,
+.history-list li {
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.025);
+  overflow-wrap: anywhere;
+}
+
+.empty-text {
+  color: var(--muted);
+}
+
+/* ステージ攻略ブロック（JSが class="card mb-16" を出力するため margin を定義） */
+.mb-16 {
+  margin-bottom: 16px;
+}
+
+.stage-block + .stage-block {
+  margin-top: 18px;
+}
+
+.stage-block h4 {
+  margin-bottom: 10px;
+  color: var(--gold-strong);
+}
+
+/* =============================================================================
+   9. モーダル（選択ダイアログ）/ トースト
+   ========================================================================== */
+.toast {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 60;
+  max-width: min(92vw, 420px);
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--line-strong);
+  background: rgba(19, 19, 24, 0.95);
+  box-shadow: var(--shadow);
+  animation: slideInUp 0.3s var(--ease) both;
+}
+
+.toast.success {
+  border-color: rgba(58, 163, 107, 0.45);
+}
+
+.toast.error {
+  border-color: rgba(224, 112, 112, 0.5);
+}
+
+/* 武器/防具/イベント選択モーダル */
+.selection-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.72);
+  animation: fadeIn 0.2s var(--ease) both;
+}
+
+.selection-modal {
+  width: min(760px, 100%);
+  max-height: min(82vh, 860px);
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  gap: 12px;
+  padding: 18px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(24, 27, 34, 0.98), rgba(12, 14, 18, 0.98));
+  border: 1px solid var(--line-strong);
+  box-shadow: var(--shadow);
+  animation: popIn 0.26s var(--ease) both;
+}
+
+.selection-modal-header h3 {
+  margin-bottom: 6px;
+}
+
+.selection-modal-list {
+  overflow: auto;
+  display: grid;
+  gap: 10px;
+  padding-right: 4px;
+}
+
+.selection-option {
+  width: 100%;
+  min-height: 56px;
+  text-align: left;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+  transition: background var(--transition), border-color var(--transition),
+    transform 0.12s var(--ease);
+}
+
+.selection-option:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: var(--line-strong);
+}
+
+.selection-option:active {
+  transform: scale(0.99);
+}
+
+.selection-option strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--gold-strong);
+}
+
+.selection-option small {
+  color: var(--muted);
+}
+
+.selection-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* =============================================================================
+   10. 下部固定ナビ（スマホ）
+   - 既定は非表示。タブレット/スマホのメディアクエリで表示
+   ========================================================================== */
+.mobile-bottom-nav {
+  display: none;
+}
+
+/* スクリーンリーダー専用 */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* =============================================================================
+   11. アニメーション（keyframes）
+   - すべて CSS のみ。動きを抑えたいユーザー設定も尊重
+   ========================================================================== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-18px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* ガチャ結果カード等の登場演出 */
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.92) translateY(8px); }
+  60% { opacity: 1; transform: scale(1.02) translateY(0); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* 動きを減らす設定のユーザーにはアニメーションを無効化（アクセシビリティ） */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =============================================================================
+   12. レスポンシブ（メディアクエリ）
+   指定ブレークポイント: 1920+ / 1440 / 1024 / 768 / 480 / 390 / 360
+   - 大きい順に上書きしていく（max-width ベース）
+   ========================================================================== */
+
+/* --- 1920px 以上: 余白とコンテンツ幅を最大化（PCワイド） --- */
+@media (min-width: 1920px) {
+  :root {
+    --content-max: 1760px;
+    --sidebar-width: 340px;
+  }
+
+  .main-area {
+    padding: 28px 32px;
+  }
+}
+
+/* --- 1440px 前後: 標準的なノートPC。PCデザイン維持 --- */
+@media (max-width: 1440px) {
+  :root {
+    --sidebar-width: 300px;
+  }
+}
+
+/* --- 1024px: タブレット横〜小型ノート。3カラムを2カラムへ --- */
+@media (max-width: 1024px) {
+  :root {
+    --sidebar-width: 260px;
+  }
+
+  .card-grid.three,
+  .form-grid.four,
+  .inventory-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .main-area {
+    padding: 20px;
+  }
+}
+
+/* --- 960px 以下: サイドバーをドロワー化し、下部固定ナビを表示 ---
+   （タブレット縦〜スマホ。320pxサイドバーが窮屈になる領域で切替え） */
+@media (max-width: 960px) {
+  body {
+    /* 下部ナビ分の余白を確保（コンテンツが隠れないように） */
+    padding-bottom: calc(var(--mobile-bottom-nav-height) + env(safe-area-inset-bottom, 0px));
+  }
+
+  .app-shell {
+    grid-template-columns: 1fr;   /* 1カラム化 */
+  }
+
+  /* サイドバーはオフキャンバスのドロワー */
+  .sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: min(88vw, 340px);
+    transform: translateX(-105%);
+    transition: transform 0.25s var(--ease);
+    z-index: 50;
+    box-shadow: 18px 0 36px rgba(0, 0, 0, 0.4);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  /* ハンバーガー表示 */
+  .menu-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .main-area {
+    width: 100%;
+  }
+
+  /* 下部固定ナビ（スマホ）: 🏠/⚔/🛡/🎲/📜 相当の5項目 */
+  .mobile-bottom-nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 70;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 8px;
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px));
+    background: linear-gradient(180deg, rgba(10, 12, 16, 0.92), rgba(7, 8, 11, 0.98));
+    border-top: 1px solid var(--line-strong);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 -10px 28px rgba(0, 0, 0, 0.34);
+    animation: slideInUp 0.3s var(--ease) both;
+  }
+
+  .bottom-nav-button {
+    min-height: 56px;          /* 48〜56px要件・タップしやすい */
+    display: grid;
+    place-items: center;
+    gap: 4px;
+    padding: 8px 6px;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 0.8rem;
+  }
+
+  .bottom-nav-button .nav-icon {
+    font-size: 1.12rem;
+    line-height: 1;
+  }
+
+  .bottom-nav-button .nav-label {
+    font-size: 0.72rem;
+    line-height: 1.1;
+  }
+}
+
+/* --- 768px 以下: スマホ基準。全面1カラム・横幅100%ボタン --- */
+@media (max-width: 768px) {
+  /* すべてのグリッドを1カラムに（横スクロール禁止・読みやすさ優先） */
+  .hero,
+  .card-grid.two,
+  .card-grid.three,
+  .form-grid.two,
+  .form-grid.three,
+  .form-grid.four,
+  .inventory-grid,
+  .log-sections,
+  .hero-stats {
+    grid-template-columns: 1fr;
+  }
+
+  /* 行配置のボタン群は縦積み＋全幅 */
+  .quick-actions,
+  .button-row,
+  .filter-row,
+  .topbar-actions {
+    flex-direction: column;
+  }
+
+  /* スマホではボタン横幅100% */
+  .button-row > *,
+  .quick-actions > *,
+  .topbar-actions > *,
+  .filter-row > *,
+  .primary-button,
+  .ghost-button,
+  .action-button {
+    width: 100%;
+  }
+
+  /* トップバーを上端固定の見出しバーに */
+  .topbar {
+    position: sticky;
+    top: 0;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    border-radius: 0 0 20px 20px;
+    margin: -20px -20px 18px;
+    padding: 16px 18px;
+  }
+
+  /* カードホバーの持ち上げはタッチ端末では無効化（誤作動防止） */
+  .card:not(.hero):not(.brand-card):not(.topbar):hover {
+    transform: none;
+    box-shadow: var(--shadow);
+  }
+}
+
+/* --- 480px 以下: 小型スマホ。余白・カード・文字を最適化 --- */
+@media (max-width: 480px) {
+  .main-area {
+    padding: 14px;
+  }
+
+  .topbar {
+    margin: -14px -14px 16px;
+    padding: 14px;
+  }
+
+  .topbar,
+  .card,
+  .hero,
+  .brand-card {
+    padding: 16px;          /* 余白調整 */
+  }
+
+  .brand-card {
+    grid-template-columns: 56px minmax(0, 1fr);
+  }
+
+  .brand-mark {
+    width: 56px;
+    height: 56px;
+    font-size: 1.5rem;
+  }
+
+  .hero h3 {
+    font-size: clamp(1.3rem, 2.6vw + 0.95rem, 1.65rem);
+  }
+
+  .section-head {
+    flex-direction: column;
+  }
+
+  /* テーブルは折返し前提で詰める（横スクロール禁止） */
+  .data-table th,
+  .data-table td {
+    padding: 10px 10px;
+    font-size: 0.86rem;
+  }
+
+  .table-wrap {
+    overflow-x: hidden;
+  }
+
+  .filter-row > *,
+  .form-grid > * {
+    width: 100%;
+  }
+}
+
+/* --- 390px（iPhone）: 文字・下部ナビの微調整 --- */
+@media (max-width: 390px) {
+  :root {
+    --mobile-bottom-nav-height: 82px;
+  }
+
+  .bottom-nav-button {
+    min-height: 58px;
+    padding-inline: 4px;
+  }
+
+  .bottom-nav-button .nav-label {
+    font-size: 0.7rem;
+  }
+}
+
+/* --- 360px（Android）: 最小幅。はみ出し完全防止 --- */
+@media (max-width: 360px) {
+  :root {
+    --mobile-bottom-nav-height: 84px;
+  }
+
+  .main-area {
+    padding: 12px;
+  }
+
+  .topbar {
+    margin: -12px -12px 14px;
+    padding: 12px;
+  }
+
+  .card,
+  .hero,
+  .brand-card {
+    padding: 14px;
+  }
+
+  .bottom-nav-button {
+    min-height: 56px;
+    padding: 6px 3px;
+  }
+
+  .bottom-nav-button .nav-icon {
+    font-size: 1.05rem;
+  }
+
+  .bottom-nav-button .nav-label {
+    font-size: 0.66rem;
+  }
+}
+
+/* モーダルのスマホ最適化（小幅で全画面に近づける） */
+@media (max-width: 480px) {
+  .selection-modal-backdrop {
+    padding: 10px;
+  }
+
+  .selection-modal {
+    width: 100%;
+    max-height: calc(100vh - 24px);
+    border-radius: 18px;
+    padding: 14px;
+  }
+}
+
+/* =============================================================================
+   付録: アプリ用フッター（index.html に追加した <footer class="app-footer">）
+   ========================================================================== */
+.app-footer {
+  margin-top: 8px;
+  padding: 18px 4px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.82rem;
+  border-top: 1px solid var(--line);
+}
+
+.app-footer a {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+/* =============================================================================
+   13. ガチャ演出（UI のみ / CSS animation）
+   -----------------------------------------------------------------------------
+   - ゲームロジック・確率・JSON・武器/防具データには一切関与しない純粋な見た目
+   - 「ガチャ中...」ローディング、結果カードの登場、レア度別背景、光エフェクト
+   - JavaScript は最小限（クラス付与と1秒の遅延のみ）
+   - スマホでも崩れないよう、box-shadow とグラデーションのみで表現
+   ========================================================================== */
+
+/* --- ローディング表示「ガチャ中...」 --- */
+.gacha-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 84px;
+  padding: 20px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--gold-strong);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  animation: gachaLoadingPulse 1s ease-in-out infinite;
+}
+
+/* くるくる回るスピナー */
+.gacha-loading::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 185, 78, 0.25);
+  border-top-color: var(--orange);
+  animation: gachaSpin 0.8s linear infinite;
+}
+
+@keyframes gachaSpin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes gachaLoadingPulse {
+  0%, 100% { opacity: 0.72; }
+  50% { opacity: 1; }
+}
+
+/* --- 結果カードの登場演出（フェードイン＋少し拡大＋ゆっくり表示） ---
+   .gacha-card は基底の .result-card の popIn を上書きする（後勝ち） */
+.gacha-card {
+  position: relative;
+  animation: gachaReveal 0.6s var(--ease) both;
+}
+
+@keyframes gachaReveal {
+  0% { opacity: 0; transform: scale(0.8) translateY(12px); }
+  60% { opacity: 1; transform: scale(1.03) translateY(0); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* 10連などの複数結果は順番にゆっくり表示（スタッガー） */
+.gacha-card:nth-child(1) { animation-delay: 0s; }
+.gacha-card:nth-child(2) { animation-delay: 0.07s; }
+.gacha-card:nth-child(3) { animation-delay: 0.14s; }
+.gacha-card:nth-child(4) { animation-delay: 0.21s; }
+.gacha-card:nth-child(5) { animation-delay: 0.28s; }
+.gacha-card:nth-child(6) { animation-delay: 0.35s; }
+.gacha-card:nth-child(7) { animation-delay: 0.42s; }
+.gacha-card:nth-child(8) { animation-delay: 0.49s; }
+.gacha-card:nth-child(9) { animation-delay: 0.56s; }
+.gacha-card:nth-child(10) { animation-delay: 0.63s; }
+
+/* --- レア度別の背景（武器 ★1〜★5SP / 防具 RARE8〜RARE10） --- */
+
+/* ★1: 白 */
+.rarity-1 {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: linear-gradient(180deg, rgba(238, 240, 245, 0.12), rgba(255, 255, 255, 0.02));
+}
+
+/* ★2 / RARE8: 青 */
+.rarity-2,
+.rarity-r8 {
+  border-color: rgba(96, 162, 255, 0.55);
+  background: linear-gradient(180deg, rgba(58, 120, 230, 0.2), rgba(255, 255, 255, 0.02));
+}
+
+/* ★3: 緑 */
+.rarity-3 {
+  border-color: rgba(84, 206, 128, 0.55);
+  background: linear-gradient(180deg, rgba(46, 180, 100, 0.2), rgba(255, 255, 255, 0.02));
+}
+
+/* ★4 / RARE9: 紫 */
+.rarity-4,
+.rarity-r9 {
+  border-color: rgba(184, 116, 244, 0.6);
+  background: linear-gradient(180deg, rgba(150, 80, 230, 0.22), rgba(255, 255, 255, 0.02));
+}
+
+/* ★5 / RARE10: 金（＋金色の光エフェクト） */
+.rarity-5,
+.rarity-r10 {
+  border-color: rgba(255, 202, 92, 0.75);
+  background: linear-gradient(180deg, rgba(255, 180, 60, 0.24), rgba(255, 255, 255, 0.02));
+  /* 登場演出のあと、金色の光をゆっくり明滅させる */
+  animation: gachaReveal 0.6s var(--ease) both,
+    goldGlow 1.9s ease-in-out 0.6s infinite;
+}
+
+.rarity-5 strong,
+.rarity-r10 strong {
+  color: #ffe6a6;
+}
+
+/* 金色の光（★5以上 / RARE10） */
+@keyframes goldGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 1px rgba(255, 200, 90, 0.35),
+      0 0 18px rgba(255, 180, 60, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 1px rgba(255, 214, 120, 0.65),
+      0 0 34px rgba(255, 190, 70, 0.7);
+  }
+}
+
+/* ★5SP: 虹（虹色グラデーション枠＋虹色発光） */
+.rarity-5sp {
+  border: 2px solid transparent;
+  /* 内側は通常面、外周を虹グラデーションの枠に */
+  background:
+    linear-gradient(180deg, rgba(22, 24, 31, 0.92), rgba(14, 16, 21, 0.92)) padding-box,
+    linear-gradient(120deg, #ff5d5d, #ffb23e, #ffe14a, #5dff8f, #4ad0ff, #9a6bff, #ff5db4) border-box;
+  animation: gachaReveal 0.6s var(--ease) both,
+    rainbowGlow 3s linear 0.6s infinite;
+}
+
+.rarity-5sp strong {
+  /* 虹色のテキスト（対応ブラウザ）。非対応でも金色で読める */
+  color: var(--gold-strong);
+  background: linear-gradient(120deg, #ff8a8a, #ffd14a, #7dffa6, #6cc8ff, #b48aff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 虹色の発光（★5SP） */
+@keyframes rainbowGlow {
+  0% { box-shadow: 0 0 22px rgba(255, 93, 93, 0.55); }
+  20% { box-shadow: 0 0 26px rgba(255, 178, 62, 0.6); }
+  40% { box-shadow: 0 0 26px rgba(93, 255, 143, 0.6); }
+  60% { box-shadow: 0 0 26px rgba(74, 208, 255, 0.6); }
+  80% { box-shadow: 0 0 26px rgba(154, 107, 255, 0.6); }
+  100% { box-shadow: 0 0 22px rgba(255, 93, 180, 0.55); }
+}
+
+/* レア度未設定（装飾品など）は通常のカード見た目のまま */
+.rarity-none {
+  border-color: var(--line);
+}
+
+/* --- ガチャボタンの押下演出（押した瞬間に少し縮小、離すと戻る） ---
+   対象は3種のガチャ実行ボタン。CSSのみで実現 */
+#drawWeaponButton:active,
+#drawArmorButton:active,
+#drawDecorationButton:active {
+  transform: scale(0.95);
+}
+
+/* ガチャ実行中（JSが disabled にする）はうっすら待機表示 */
+#drawWeaponButton:disabled,
+#drawArmorButton:disabled,
+#drawDecorationButton:disabled {
+  filter: saturate(0.85) brightness(0.95);
+}
+
+/* スマホでの崩れ防止: 光は box-shadow のみなのでレイアウトに影響しない。
+   念のためカードがはみ出さないようにする */
+@media (max-width: 480px) {
+  .gacha-card {
+    overflow: hidden;
+  }
+}
+
+/* 動きを抑えたいユーザーには明滅・回転を停止（登場のみ即時表示） */
+@media (prefers-reduced-motion: reduce) {
+  .gacha-loading,
+  .gacha-loading::before,
+  .gacha-card,
+  .rarity-5,
+  .rarity-r10,
+  .rarity-5sp {
+    animation: none !important;
+  }
+}
+
+/* =============================================================================
+   14. ガチャ基本演出（モーダル風ローディング / 結果カード / NEW / 進化）
+   -----------------------------------------------------------------------------
+   - スマホ最優先・320px でも崩れない
+   - すべて CSS animation。JS は表示/非表示の制御のみ
+   - ゲームロジック・確率・データには一切関与しない
+   ========================================================================== */
+
+/* --- ガチャ中のモーダル風オーバーレイ（背景を少し暗く） --- */
+.gacha-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(4, 5, 8, 0.66);
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.2s var(--ease) both;
+}
+
+.gacha-overlay.is-closing {
+  animation: fadeOut 0.22s var(--ease) both;
+}
+
+.gacha-overlay-inner {
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+  text-align: center;
+}
+
+.gacha-overlay-text {
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--gold-strong);
+  font-size: clamp(1.05rem, 3.4vw, 1.35rem);
+  animation: gachaLoadingPulse 1s ease-in-out infinite;
+}
+
+/* 回転する光のリング（conic-gradient + mask でドーナツ状に） */
+.gacha-ring {
+  width: clamp(64px, 18vw, 96px);
+  height: clamp(64px, 18vw, 96px);
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0 18%,
+    var(--orange) 48%,
+    var(--gold-strong) 70%,
+    transparent 92% 100%
+  );
+  /* 中央をくり抜いてリング化（非対応環境では円盤として回転） */
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 10px), #000 calc(100% - 9px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 10px), #000 calc(100% - 9px));
+  animation: gachaSpin 0.9s linear infinite;
+  filter: drop-shadow(0 0 10px rgba(255, 150, 50, 0.55));
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* --- 結果カードの立体感（角丸・影・少しの厚み） --- */
+.gacha-card {
+  position: relative;
+  border-radius: 18px;
+  padding: 16px 16px 14px;
+  /* 多層シャドウで立体感を演出 */
+  box-shadow:
+    0 10px 22px rgba(0, 0, 0, 0.45),
+    0 2px 4px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.gacha-card-name {
+  display: block;
+  font-size: 1.05rem;
+  line-height: 1.3;
+  margin-bottom: 6px;
+  /* 長い名前（例: 冥淵纏鎧・真【神凪】・淵）でも改行してはみ出さない */
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* NEWリボン/DUPLICATEが付くカードだけ、アイテム名をバッジの下（カード中央寄り）まで下げる。
+   相対兄弟セレクタなので :has() 非対応ブラウザでも確実に効き、
+   バッジが無いカードには余白を足さない。 */
+.gacha-new-badge + .gacha-card-name,
+.gacha-new-ribbon + .gacha-card-name,
+.gacha-dup-badge + .gacha-card-name {
+  margin-top: 30px;
+}
+
+.gacha-card-rarity {
+  margin: 0 0 4px;
+  color: var(--gold-strong);
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.gacha-card-method {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  overflow-wrap: anywhere;
+}
+
+/* --- NEW バッジ（初入手のみ）。カード左上の角に固定し、余白内に収める --- */
+.gacha-new-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  /* 少し小さめ。アイテム名と重ならないよう左上コーナーに固定 */
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 0.64rem;
+  line-height: 1.5;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #fff;
+  background: linear-gradient(135deg, #ff5d5d, #e51f1f);
+  box-shadow: 0 4px 10px rgba(229, 31, 31, 0.45); /* 影付き */
+  pointer-events: none;
+  animation: newPop 0.5s var(--ease) 0.15s both;
+}
+
+@keyframes newPop {
+  0% { opacity: 0; transform: scale(0.4); }
+  70% { opacity: 1; transform: scale(1.18); }
+  100% { transform: scale(1); }
+}
+
+/* --- カード内 進化ライン（任意。進化が発生した結果に付与） --- */
+.evo-inline {
+  margin-top: 10px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: rgba(255, 142, 43, 0.16);
+  border: 1px solid var(--line-strong);
+  color: var(--gold-strong);
+  font-weight: 700;
+  font-size: 0.85rem;
+  animation: slideInUp 0.4s var(--ease) both;
+}
+
+.evo-inline span {
+  display: block;
+  color: var(--text);
+  font-weight: 800;
+}
+
+/* --- 進化フラッシュ（画面中央・進化発生時にアニメ表示） --- */
+.evo-flash {
+  position: fixed;
+  left: 50%;
+  top: 38%;
+  transform: translate(-50%, -50%);
+  z-index: 210;
+  pointer-events: none;
+}
+
+.evo-flash-card {
+  display: grid;
+  gap: 6px;
+  justify-items: center;
+  padding: 16px 26px;
+  border-radius: 18px;
+  text-align: center;
+  color: #1a0f02;
+  background: linear-gradient(135deg, rgba(255, 142, 43, 0.96), rgba(255, 214, 120, 0.96));
+  box-shadow: 0 16px 40px rgba(255, 140, 40, 0.5);
+  animation: evoPop 1.8s var(--ease) both;
+}
+
+.evo-flash-title {
+  font-weight: 900;
+  font-size: clamp(1.2rem, 5vw, 1.5rem);
+  letter-spacing: 0.06em;
+}
+
+.evo-flash-names {
+  font-weight: 800;
+  font-size: clamp(0.85rem, 3.4vw, 1rem);
+  overflow-wrap: anywhere;
+}
+
+@keyframes evoPop {
+  0% { opacity: 0; transform: scale(0.6) translateY(8px); }
+  14% { opacity: 1; transform: scale(1.08) translateY(0); }
+  26% { transform: scale(1); }
+  82% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.96) translateY(-6px); }
+}
+
+/* --- スマホ最優先の微調整（320px でも崩れない） --- */
+@media (max-width: 360px) {
+  .gacha-overlay {
+    padding: 16px;
+  }
+
+  .gacha-card {
+    padding: 14px 12px 12px;
+  }
+
+  .gacha-card-name {
+    font-size: 1rem;
+  }
+
+  .gacha-new-badge {
+    top: 8px;
+    left: 8px;
+    padding: 2px 8px;
+    font-size: 0.62rem;
+  }
+
+  /* 小画面では詰めたぶん、名前の下げ幅も少し小さく（重なり防止は維持） */
+  .gacha-new-badge + .gacha-card-name,
+  .gacha-new-ribbon + .gacha-card-name,
+  .gacha-dup-badge + .gacha-card-name {
+    margin-top: 26px;
+  }
+
+  .evo-flash-card {
+    padding: 14px 18px;
+  }
+}
+
+/* 動きを抑えたい設定では回転・明滅・登場演出を停止（読みやすさ優先） */
+@media (prefers-reduced-motion: reduce) {
+  .gacha-overlay,
+  .gacha-overlay-text,
+  .gacha-ring,
+  .gacha-new-badge,
+  .evo-inline,
+  .evo-flash-card {
+    animation: none !important;
+  }
+}
+
+/* =============================================================================
+   15. モンスターハンター風シネマティック演出（CSSのみ / 表示専用）
+   -----------------------------------------------------------------------------
+   ① 翔蟲（青白い光） ② 鍛冶（火花・金属光） ③ 武器出現（回転→中央→拡大→停止）
+   ④ QUEST CLEAR バナー ⑤ 超レア閃光（暗転→金/虹） ⑥ 咆哮（画面揺れ）
+   ⑦ パーティクル（火花・光の粒） ⑧ 属性背景（データに属性が無いためフック用意のみ）
+   - アニメーションは 0.5〜1.2 秒中心。transform/opacity 主体でスマホでも軽量
+   ========================================================================== */
+
+/* ---- ① 翔蟲演出: 青白い光が画面を横切る／弧を描いて飛ぶ ---- */
+.wirebug {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #eaffff 0%, #7fd4ff 45%, rgba(80, 180, 255, 0) 72%);
+  box-shadow: 0 0 16px 6px rgba(120, 200, 255, 0.65);
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* 左から右へ直線的に飛ぶ翔蟲 */
+.wirebug--1 {
+  top: 30%;
+  left: -8%;
+  animation: wirebugDash 1.1s var(--ease) 0.05s 1;
+}
+
+/* 弧を描いて飛ぶ翔蟲（楕円軌道） */
+.wirebug--2 {
+  top: 62%;
+  left: -8%;
+  animation: wirebugArc 1.2s ease-in-out 0.2s 1;
+}
+
+@keyframes wirebugDash {
+  0% { opacity: 0; transform: translateX(0) translateY(0) scale(0.7); }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(116vw) translateY(-40px) scale(1.05); }
+}
+
+@keyframes wirebugArc {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.7); }
+  20% { opacity: 1; transform: translate(28vw, -22vh) scale(1); }
+  55% { opacity: 1; transform: translate(60vw, 6vh) scale(1.05); }
+  100% { opacity: 0; transform: translate(116vw, -16vh) scale(0.9); }
+}
+
+/* ---- ② 鍛冶演出: 中央の金属光＋火花 ---- */
+.forge-fx {
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+/* 金属が光る中央のグロー（オレンジ→白の脈動） */
+.forge-glow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 120px;
+  height: 120px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 226, 160, 0.55) 0%, rgba(255, 150, 50, 0.28) 38%, rgba(255, 120, 40, 0) 70%);
+  animation: forgeGlow 0.7s ease-in-out infinite;
+}
+
+/* 火花（中央から飛び散る小さな粒）。6個を角度違いで配置 */
+.forge-spark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #ffd98a;
+  box-shadow: 0 0 6px 1px rgba(255, 180, 80, 0.9);
+  opacity: 0;
+  animation: forgeSpark 0.9s linear infinite;
+}
+
+.forge-spark:nth-child(2) { --a: 0deg; animation-delay: 0s; }
+.forge-spark:nth-child(3) { --a: 60deg; animation-delay: 0.12s; }
+.forge-spark:nth-child(4) { --a: 120deg; animation-delay: 0.24s; }
+.forge-spark:nth-child(5) { --a: 180deg; animation-delay: 0.36s; }
+.forge-spark:nth-child(6) { --a: 240deg; animation-delay: 0.48s; }
+.forge-spark:nth-child(7) { --a: 300deg; animation-delay: 0.6s; }
+
+@keyframes forgeGlow {
+  0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(0.92); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.12); }
+}
+
+/* 火花が中心から外側へ飛んで消える（--a の角度方向へ放射） */
+@keyframes forgeSpark {
+  0% { opacity: 0; transform: rotate(var(--a, 0deg)) translateY(0) scale(1); }
+  12% { opacity: 1; }
+  100% { opacity: 0; transform: rotate(var(--a, 0deg)) translateY(-54px) scale(0.4); }
+}
+
+/* ---- ③ 武器出現演出: 回転 → 中央へ → 拡大 → 停止 ---- */
+/* .gacha-card の登場アニメを weaponAppear に置き換え（後勝ち） */
+.gacha-card {
+  animation: weaponAppear 0.7s var(--ease) both;
+}
+
+.rarity-5,
+.rarity-r10 {
+  animation: weaponAppear 0.7s var(--ease) both,
+    goldGlow 1.9s ease-in-out 0.8s infinite;
+}
+
+.rarity-5sp {
+  animation: weaponAppear 0.7s var(--ease) both,
+    rainbowGlow 3s linear 0.8s infinite;
+}
+
+@keyframes weaponAppear {
+  0% { opacity: 0; transform: rotate(-14deg) scale(0.55) translateY(22px); }
+  55% { opacity: 1; transform: rotate(5deg) scale(1.07) translateY(0); }
+  78% { transform: rotate(-1.5deg) scale(0.98); }
+  100% { opacity: 1; transform: rotate(0deg) scale(1); }
+}
+
+/* ---- ④ QUEST CLEAR 風バナー（モンハン風の金色＋罫線） ---- */
+.quest-clear {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 18%;
+  z-index: 215;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  animation: questClear 1.3s var(--ease) both;
+}
+
+.quest-clear-inner {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  padding: 0 16px;
+}
+
+.quest-clear-rule {
+  width: min(78vw, 520px);
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold-strong), var(--orange), var(--gold-strong), transparent);
+  box-shadow: 0 0 10px rgba(255, 180, 70, 0.6);
+}
+
+.quest-clear-text {
+  font-family: "Times New Roman", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-size: clamp(1.5rem, 7vw, 3rem);
+  color: #fff3d6;
+  background: linear-gradient(180deg, #fff3d0 0%, #ffd98a 45%, #e7a23a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 14px rgba(255, 160, 50, 0.45);
+  filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.4));
+}
+
+@keyframes questClear {
+  0% { opacity: 0; transform: translateY(-14px) scale(0.96); }
+  16% { opacity: 1; transform: translateY(0) scale(1); }
+  72% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-8px) scale(1.02); }
+}
+
+/* ---- ⑤ 超レア演出: 暗転 → 金/虹の閃光 ---- */
+.rare-flash {
+  position: fixed;
+  inset: 0;
+  z-index: 205;
+  pointer-events: none;
+}
+
+.rare-flash--gold {
+  background: radial-gradient(circle at center, rgba(255, 214, 120, 0.95), rgba(255, 150, 40, 0.65) 40%, rgba(0, 0, 0, 0.92) 78%);
+  animation: rareFlash 0.85s ease-out both;
+}
+
+.rare-flash--rainbow {
+  background:
+    conic-gradient(from 0deg, #ff5d5d, #ffb23e, #ffe14a, #5dff8f, #4ad0ff, #9a6bff, #ff5db4, #ff5d5d);
+  animation: rareFlash 0.85s ease-out both, rareHue 0.85s linear both;
+}
+
+/* 暗転（黒）→ 一瞬の強い閃光 → フェードアウト */
+@keyframes rareFlash {
+  0% { opacity: 0; }
+  12% { opacity: 1; filter: brightness(0.25); }   /* 暗転 */
+  30% { opacity: 1; filter: brightness(2.2); }     /* 閃光 */
+  55% { opacity: 0.85; filter: brightness(1.2); }
+  100% { opacity: 0; filter: brightness(1); }
+}
+
+@keyframes rareHue {
+  from { filter: hue-rotate(0deg) brightness(1.4); }
+  to { filter: hue-rotate(120deg) brightness(1.1); }
+}
+
+/* ---- ⑥ 咆哮演出: 画面を約0.3秒揺らす ---- */
+.screen-shake {
+  animation: screenShake 0.34s ease-in-out both;
+}
+
+@keyframes screenShake {
+  0% { transform: translate(0, 0); }
+  15% { transform: translate(-6px, 3px); }
+  30% { transform: translate(6px, -3px); }
+  45% { transform: translate(-5px, -3px); }
+  60% { transform: translate(5px, 2px); }
+  75% { transform: translate(-3px, 2px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* ---- ⑦ パーティクル: 超レアカード周囲に光の粒／火花が漂う ---- */
+/* 負荷を抑えるため高レアカードのみ。::after に多重 box-shadow の粒を浮遊させる */
+.rarity-5,
+.rarity-r10,
+.rarity-5sp {
+  overflow: visible; /* 粒がカード外にも漂えるように */
+}
+
+.rarity-5::after,
+.rarity-r10::after,
+.rarity-5sp::after {
+  content: "";
+  position: absolute;
+  left: 12%;
+  bottom: 10px;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #ffe6a6;
+  /* 複数の粒を box-shadow で表現（DOM要素を増やさず軽量） */
+  box-shadow:
+    18px -8px 0 0 rgba(255, 220, 150, 0.9),
+    44px 4px 0 -1px rgba(255, 200, 120, 0.8),
+    72px -14px 0 0 rgba(255, 235, 180, 0.85),
+    104px -2px 0 -1px rgba(255, 210, 140, 0.75),
+    136px -18px 0 0 rgba(255, 240, 200, 0.8);
+  opacity: 0.85;
+  pointer-events: none;
+  animation: particleFloat 2.4s ease-in-out infinite;
+}
+
+.rarity-5sp::after {
+  background: #d9e6ff;
+  box-shadow:
+    18px -8px 0 0 rgba(180, 220, 255, 0.9),
+    44px 4px 0 -1px rgba(220, 190, 255, 0.85),
+    72px -14px 0 0 rgba(255, 200, 230, 0.85),
+    104px -2px 0 -1px rgba(190, 255, 220, 0.8),
+    136px -18px 0 0 rgba(210, 220, 255, 0.85);
+}
+
+@keyframes particleFloat {
+  0% { transform: translateY(0); opacity: 0.2; }
+  35% { opacity: 0.9; }
+  100% { transform: translateY(-26px); opacity: 0; }
+}
+
+/* ---- ⑧ 属性背景フック（現状データに属性が無いので未使用） ----
+   将来 weapons.json に element/属性が追加された場合に備えてクラスだけ用意。
+   例: <div class="gacha-card attr-fire"> のように付与すれば有効化できる。 */
+.attr-fire { box-shadow: inset 0 0 30px rgba(255, 80, 30, 0.25), 0 10px 22px rgba(0,0,0,.45); }
+.attr-water { box-shadow: inset 0 0 30px rgba(40, 130, 255, 0.25), 0 10px 22px rgba(0,0,0,.45); }
+.attr-thunder { box-shadow: inset 0 0 30px rgba(255, 220, 60, 0.25), 0 10px 22px rgba(0,0,0,.45); }
+.attr-ice { box-shadow: inset 0 0 30px rgba(120, 220, 255, 0.25), 0 10px 22px rgba(0,0,0,.45); }
+.attr-dragon { box-shadow: inset 0 0 30px rgba(150, 70, 200, 0.3), 0 10px 22px rgba(0,0,0,.45); }
+
+/* ---- ⑩ スマホ最適化（演出を軽く・短く） ---- */
+@media (max-width: 480px) {
+  /* 中央火花のグローを小さめに */
+  .forge-glow { width: 92px; height: 92px; }
+  /* パーティクルは粒数を減らして負荷軽減 */
+  .rarity-5::after,
+  .rarity-r10::after,
+  .rarity-5sp::after {
+    box-shadow:
+      18px -8px 0 0 rgba(255, 220, 150, 0.9),
+      48px 2px 0 -1px rgba(255, 200, 120, 0.8),
+      82px -14px 0 0 rgba(255, 235, 180, 0.85);
+  }
+  .quest-clear-text { letter-spacing: 0.2em; }
+}
+
+/* 動きを抑えたい設定では、これらの強い演出をすべて無効化 */
+@media (prefers-reduced-motion: reduce) {
+  .wirebug,
+  .forge-glow,
+  .forge-spark,
+  .quest-clear,
+  .rare-flash,
+  .screen-shake,
+  .rarity-5::after,
+  .rarity-r10::after,
+  .rarity-5sp::after {
+    animation: none !important;
+  }
+  /* 閃光は暗転で固まらないよう非表示に */
+  .rare-flash { display: none !important; }
+}
+
+/* =============================================================================
+   16. 第1章：次元の裂け目演出（ガチャ開始時 / CSSのみ / 表示専用）
+   -----------------------------------------------------------------------------
+   別次元から武器・防具が召喚される世界観を「空間が割れる」表現で演出する。
+   流れ: 暗転(オーバーレイ) → 中央に細い亀裂 → 左右へ広がる →
+         紫＋青白オーラが漏れる → 中が光る → 完全に開く → 結果演出へ
+   色: 紫 / 黒 / 青白い光（炎は使わない）。全体で約1秒、テンポ良く終了。
+   ========================================================================== */
+
+/* 裂け目の親（画面中央。スマホでも常に中央） */
+.dim-rift {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(60vw, 380px);
+  height: min(42vh, 300px);
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  /* 発光色は変数化し、レアリティ別バリアントで差し替える（第2章） */
+  --glow-a: rgba(150, 90, 255, 0.45);
+  --glow-b: rgba(90, 150, 255, 0.25);
+  --glow-a2: rgba(170, 110, 255, 0.70);
+  --glow-b2: rgba(110, 170, 255, 0.40);
+}
+
+/* ③④⑥⑦ 裂け目の本体（亀裂→拡大→発光）。
+   レンズ（眼）状に、中心は青白、外へ紫→黒。 */
+.rift-core {
+  width: 100%;
+  height: 78%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse 42% 60% at 50% 50%,
+    #f2f7ff 0%,
+    #cdd9ff 12%,
+    #8e6cff 34%,
+    #4a248f 56%,
+    #1a0d33 74%,
+    #05030a 90%
+  );
+  box-shadow:
+    0 0 30px 6px var(--glow-a),
+    0 0 60px 14px var(--glow-b);
+  opacity: 0;
+  /* まず細い縦線として出現 → 左右に拡大 → 中が脈動して光る */
+  transform: scaleX(0.04) scaleY(0.2);
+  animation:
+    crackAppear 0.28s ease-out 0.30s both,
+    crackExpand 0.5s cubic-bezier(0.6, 0, 0.3, 1) 0.58s both,
+    glowPulse 1.1s ease-in-out 0.62s infinite;
+}
+
+/* ⑤ 紫＋青白のオーラが裂け目から漏れる */
+.rift-aura {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 130%;
+  height: 130%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(140, 90, 255, 0.38) 0%,
+    rgba(80, 140, 255, 0.20) 40%,
+    rgba(60, 40, 120, 0) 70%
+  );
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.4);
+  animation:
+    auraBloom 0.7s ease-out 0.55s both,
+    glowPulse 1.2s ease-in-out 0.7s infinite;
+}
+
+/* ③ 中央から走る細い枝分かれ亀裂（現れて、開くと同時に消える） */
+.rift-crack {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 3px;
+  height: 0;
+  background: linear-gradient(180deg, transparent, #cdd9ff, #8e6cff, transparent);
+  box-shadow: 0 0 8px rgba(150, 100, 255, 0.85);
+  opacity: 0;
+}
+
+.rift-crack--b1 {
+  transform: translate(-50%, -50%) rotate(28deg);
+  animation: crackBranch 0.5s ease-out 0.34s both;
+}
+
+.rift-crack--b2 {
+  transform: translate(-50%, -50%) rotate(-34deg);
+  animation: crackBranch 0.5s ease-out 0.42s both;
+}
+
+/* 裂け目の下に出るテキスト（紫がかった青白） */
+.dim-rift-text {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 16%;
+  margin: 0;
+  text-align: center;
+  color: #d3c2ff;
+  text-shadow: 0 0 12px rgba(140, 90, 255, 0.6);
+}
+
+/* ---- キーフレーム ---- */
+
+/* 細い亀裂が現れる（縦線が立ち上がる） */
+@keyframes crackAppear {
+  0% { opacity: 0; transform: scaleX(0.02) scaleY(0.12); }
+  60% { opacity: 1; }
+  100% { opacity: 1; transform: scaleX(0.05) scaleY(1); }
+}
+
+/* 亀裂が左右へ広がって完全に開く */
+@keyframes crackExpand {
+  0% { opacity: 1; transform: scaleX(0.05) scaleY(1); }
+  100% { opacity: 1; transform: scaleX(1) scaleY(1); }
+}
+
+/* 裂け目の中が光る（脈動）。色は変数でレアリティ別に切替え。transform/opacityには触れない */
+@keyframes glowPulse {
+  0%, 100% {
+    filter: brightness(0.92);
+    box-shadow:
+      0 0 30px 6px var(--glow-a),
+      0 0 60px 14px var(--glow-b);
+  }
+  50% {
+    filter: brightness(1.28);
+    box-shadow:
+      0 0 48px 12px var(--glow-a2),
+      0 0 96px 26px var(--glow-b2);
+  }
+}
+
+/* オーラが咲くように広がる */
+@keyframes auraBloom {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
+}
+
+/* 枝分かれ亀裂が伸びて消える（heightで伸長、transformは固定） */
+@keyframes crackBranch {
+  0% { opacity: 0; height: 0; }
+  45% { opacity: 1; height: 38%; }
+  100% { opacity: 0; height: 46%; }
+}
+
+/* ---- スマホ最適化（中央維持・少し小さく・軽量に） ---- */
+@media (max-width: 480px) {
+  .dim-rift {
+    width: min(80vw, 320px);
+    height: min(40vh, 260px);
+  }
+}
+
+/* ---- 動きを抑えたい設定: 開いた裂け目を静止表示（点滅させない） ---- */
+@media (prefers-reduced-motion: reduce) {
+  .rift-core {
+    opacity: 1;
+    transform: scaleX(1) scaleY(1);
+    animation: none !important;
+  }
+  .rift-aura {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    animation: none !important;
+  }
+  .rift-crack {
+    display: none !important;
+  }
+}
+
+/* =============================================================================
+   17. 第2章：レアリティ別「次元の裂け目」演出（CSSのみ / 表示専用）
+   -----------------------------------------------------------------------------
+   結果カードの rarity クラスを JS が読み、オーバーレイに以下のクラスを付与する:
+     .crack-rank1 (★1/RARE8) … 白・弱い・粒子小・揺れ無し
+     .crack-rank2 (★2)        … 青白・少し強い・軽い発光
+     .crack-rank3 (★3)        … 紫・脈打つ・粒子増・少し広く開く
+     .crack-rank4 (★4/RARE9)  … 赤紫・漏出・軽い揺れ・高速粒子
+     .crack-rank5 (★5/RARE10) … 黄金・強光・暗転→発光（閃光は結果側で）
+     .crack-sp    (★5SP)      … 宇宙暗転＋星＋虹の巨大裂け目＋稲妻＋粒子噴出
+   ※ レアリティ判定・確率・抽選には一切関与しない（クラスを読むだけ）。
+   ========================================================================== */
+
+/* 結果カードは裂け目が開くまで隠す（演出中は出現アニメも止める） */
+.gacha-pending .gacha-card {
+  opacity: 0 !important;
+  animation: none !important;
+}
+
+/* ---- 追加レイヤー（既定は非表示。バリアントで有効化） ---- */
+.rift-particles,
+.rift-stars,
+.rift-lightning {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* 粒子（中心付近から立ち上る光の粒。box-shadowの集合で軽量に表現） */
+.rift-particles {
+  left: 50%;
+  top: 58%;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #fff;
+  will-change: transform, opacity;
+}
+
+/* 星（SPの宇宙空間。ゆっくり流れる） */
+.rift-stars {
+  inset: -60%;
+  background:
+    radial-gradient(1.5px 1.5px at 20% 30%, rgba(255,255,255,0.9), transparent),
+    radial-gradient(1.5px 1.5px at 70% 20%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 40% 70%, rgba(255,255,255,0.85), transparent),
+    radial-gradient(1.5px 1.5px at 85% 60%, rgba(220,230,255,0.85), transparent),
+    radial-gradient(1px 1px at 55% 45%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1.2px 1.2px at 10% 80%, rgba(255,255,255,0.75), transparent),
+    radial-gradient(1.4px 1.4px at 90% 35%, rgba(255,255,255,0.8), transparent);
+}
+
+/* 稲妻（SP。数回フラッシュする斜めの光） */
+.rift-lightning {
+  inset: 0;
+  background:
+    linear-gradient(115deg, transparent 46%, rgba(200,225,255,0.9) 49%, transparent 52%),
+    linear-gradient(72deg, transparent 60%, rgba(220,200,255,0.85) 63%, transparent 66%);
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 0 8px rgba(180,210,255,0.9));
+}
+
+/* ---- 共通キーフレーム（粒子・星・稲妻・揺れ） ---- */
+
+/* 粒子が立ち上って消える（速度はバリアントの duration で変える） */
+@keyframes riftParticleRise {
+  0% { transform: translateY(10px) scale(1); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(-130px) scale(0.35); opacity: 0; }
+}
+
+/* 星がゆっくり流れる */
+@keyframes riftStars {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-6%, 4%, 0); }
+}
+
+/* 稲妻が数回走る */
+@keyframes riftLightning {
+  0%, 100% { opacity: 0; }
+  8% { opacity: 0.95; }
+  12% { opacity: 0.1; }
+  20% { opacity: 0.85; }
+  24% { opacity: 0; }
+  60% { opacity: 0; }
+  66% { opacity: 0.8; }
+  70% { opacity: 0; }
+}
+
+/* 裂け目の軽い揺れ（中央寄せを保ったまま小さく振動） */
+@keyframes riftShake {
+  0%, 100% { transform: translate(-50%, -50%); }
+  25% { transform: translate(calc(-50% - 4px), calc(-50% + 2px)); }
+  50% { transform: translate(calc(-50% + 4px), calc(-50% - 2px)); }
+  75% { transform: translate(calc(-50% - 2px), -50%); }
+}
+
+/* オーバーレイ全体の暗転（rank5/SP用） */
+@keyframes overlayBlackout {
+  0% { background: rgba(4, 5, 8, 0.66); }
+  30% { background: rgba(0, 0, 0, 0.95); }
+  100% { background: rgba(2, 2, 6, 0.85); }
+}
+
+/* =========================== ★1 / RARE8（白・弱） =========================== */
+.crack-rank1 .dim-rift {
+  --glow-a: rgba(220, 228, 245, 0.30);
+  --glow-b: rgba(180, 195, 225, 0.16);
+  --glow-a2: rgba(235, 240, 255, 0.45);
+  --glow-b2: rgba(200, 215, 240, 0.22);
+}
+.crack-rank1 .rift-core {
+  background: radial-gradient(ellipse 42% 60% at 50% 50%, #ffffff 0%, #e7edf6 14%, #aeb8c8 38%, #3a4150 64%, #05060a 90%);
+}
+.crack-rank1 .rift-aura {
+  background: radial-gradient(ellipse at center, rgba(220,228,245,0.22) 0%, rgba(180,195,225,0.10) 45%, transparent 70%);
+}
+.crack-rank1 .rift-particles {
+  opacity: 1;
+  background: #eef3ff;
+  /* 小さな粒・少なめ */
+  box-shadow: -26px 6px 0 rgba(235,240,255,0.6), 24px -2px 0 rgba(220,230,250,0.5), 0 -16px 0 rgba(230,238,255,0.55);
+  animation: riftParticleRise 1.5s ease-in 0.5s infinite;
+}
+
+/* =========================== ★2（青白・少し強） =========================== */
+.crack-rank2 .dim-rift {
+  --glow-a: rgba(90, 150, 255, 0.40);
+  --glow-b: rgba(70, 130, 230, 0.22);
+  --glow-a2: rgba(120, 180, 255, 0.65);
+  --glow-b2: rgba(90, 150, 245, 0.34);
+}
+.crack-rank2 .rift-core {
+  background: radial-gradient(ellipse 44% 62% at 50% 50%, #eaf6ff 0%, #bcdcff 16%, #6f9fe0 40%, #1a2c4e 66%, #05060c 90%);
+}
+.crack-rank2 .rift-aura {
+  background: radial-gradient(ellipse at center, rgba(90,150,255,0.30) 0%, rgba(70,130,230,0.14) 45%, transparent 72%);
+}
+.crack-rank2 .rift-particles {
+  opacity: 1;
+  background: #dff0ff;
+  box-shadow: -30px 8px 0 rgba(210,235,255,0.8), 28px -4px 0 rgba(180,220,255,0.7), 0 -20px 0 rgba(220,240,255,0.75), 14px 12px 0 rgba(200,230,255,0.6);
+  animation: riftParticleRise 1.3s ease-in 0.5s infinite;
+}
+
+/* =========================== ★3（紫・脈動・粒子増・広め） =========================== */
+.crack-rank3 .dim-rift {
+  --glow-a: rgba(150, 90, 255, 0.50);
+  --glow-b: rgba(110, 80, 230, 0.28);
+  --glow-a2: rgba(185, 120, 255, 0.80);
+  --glow-b2: rgba(140, 110, 255, 0.45);
+  /* 少し広く開く */
+  width: min(66vw, 430px);
+}
+.crack-rank3 .rift-core {
+  background: radial-gradient(ellipse 44% 62% at 50% 50%, #f3e9ff 0%, #cba8ff 16%, #8e6cff 40%, #3a1f6e 66%, #05030a 90%);
+}
+.crack-rank3 .rift-aura {
+  background: radial-gradient(ellipse at center, rgba(150,90,255,0.34) 0%, rgba(110,70,220,0.16) 45%, transparent 72%);
+}
+.crack-rank3 .rift-particles {
+  opacity: 1;
+  background: #e7d6ff;
+  box-shadow:
+    -34px 6px 0 rgba(220,200,255,0.85), 30px -6px 0 rgba(200,170,255,0.8),
+    0 -22px 0 rgba(230,210,255,0.85), 16px 14px 0 rgba(210,185,255,0.7),
+    -18px -14px 0 rgba(225,205,255,0.7), 44px 4px 0 rgba(205,175,255,0.65);
+  animation: riftParticleRise 1.1s ease-in 0.45s infinite;
+}
+
+/* =========================== ★4 / RARE9（赤紫・漏出・軽い揺れ・高速粒子） =========================== */
+.crack-rank4 .dim-rift {
+  --glow-a: rgba(220, 70, 160, 0.50);
+  --glow-b: rgba(150, 50, 200, 0.30);
+  --glow-a2: rgba(255, 110, 190, 0.80);
+  --glow-b2: rgba(190, 80, 230, 0.46);
+  width: min(66vw, 430px);
+  /* 軽い画面揺れ（中央維持）。開いてから2回だけ振動 */
+  animation: riftShake 0.32s ease-in-out 0.62s 2;
+}
+.crack-rank4 .rift-core {
+  background: radial-gradient(ellipse 44% 62% at 50% 50%, #ffe6f2 0%, #ff9ccf 16%, #c94f8f 40%, #5a1f4a 66%, #1a0a14 90%);
+}
+.crack-rank4 .rift-aura {
+  /* エネルギーが漏れ出す: 少し大きめのオーラ */
+  width: 145%;
+  height: 145%;
+  background: radial-gradient(ellipse at center, rgba(225,70,165,0.40) 0%, rgba(150,50,200,0.18) 45%, transparent 74%);
+}
+.crack-rank4 .rift-particles {
+  opacity: 1;
+  background: #ffd9ee;
+  box-shadow:
+    -34px 6px 0 rgba(255,180,225,0.9), 30px -6px 0 rgba(255,150,210,0.85),
+    0 -22px 0 rgba(255,200,235,0.9), 16px 14px 0 rgba(255,170,220,0.8),
+    -18px -14px 0 rgba(255,190,230,0.8), 44px 4px 0 rgba(255,160,215,0.75);
+  /* 高速で流れる */
+  animation: riftParticleRise 0.75s linear 0.4s infinite;
+}
+
+/* =========================== ★5 / RARE10（黄金・強光・暗転→発光） =========================== */
+.gacha-overlay.crack-rank5 {
+  /* 一瞬暗転してから発光 */
+  animation: fadeIn 0.2s var(--ease) both, overlayBlackout 1s ease-out both;
+}
+.crack-rank5 .dim-rift {
+  --glow-a: rgba(255, 190, 70, 0.55);
+  --glow-b: rgba(255, 140, 40, 0.32);
+  --glow-a2: rgba(255, 220, 120, 0.90);
+  --glow-b2: rgba(255, 170, 60, 0.55);
+  width: min(68vw, 450px);
+}
+.crack-rank5 .rift-core {
+  background: radial-gradient(ellipse 44% 62% at 50% 50%, #fffaf0 0%, #ffe9a8 16%, #ffc24d 38%, #a9701a 64%, #1a0f02 90%);
+}
+.crack-rank5 .rift-aura {
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(ellipse at center, rgba(255,200,90,0.45) 0%, rgba(255,150,40,0.20) 45%, transparent 74%);
+}
+.crack-rank5 .rift-particles {
+  opacity: 1;
+  background: #ffe9b0;
+  /* 金色の粒・多め */
+  box-shadow:
+    -36px 6px 0 rgba(255,225,150,0.95), 32px -6px 0 rgba(255,205,110,0.9),
+    0 -24px 0 rgba(255,235,180,0.95), 18px 16px 0 rgba(255,215,130,0.85),
+    -20px -16px 0 rgba(255,230,160,0.85), 48px 4px 0 rgba(255,200,100,0.8),
+    -50px -4px 0 rgba(255,220,140,0.8);
+  animation: riftParticleRise 0.85s ease-in 0.4s infinite;
+}
+
+/* =========================== ★5SP（特別演出・宇宙＋虹＋稲妻） =========================== */
+/* 背景を完全暗転（宇宙空間） */
+.gacha-overlay.crack-sp {
+  background: #02030a !important;
+  animation: fadeIn 0.25s var(--ease) both;
+}
+.crack-sp .dim-rift {
+  /* 巨大な裂け目 */
+  width: min(82vw, 560px);
+  height: min(52vh, 380px);
+  --glow-a: rgba(120, 180, 255, 0.55);
+  --glow-b: rgba(200, 110, 255, 0.40);
+  --glow-a2: rgba(180, 230, 255, 0.90);
+  --glow-b2: rgba(255, 150, 230, 0.55);
+}
+/* 星がゆっくり流れる宇宙 */
+.crack-sp .rift-stars {
+  opacity: 1;
+  animation: riftStars 6s linear infinite alternate;
+}
+/* 虹色に光る裂け目 */
+.crack-sp .rift-core {
+  background:
+    radial-gradient(ellipse 46% 64% at 50% 50%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.2) 26%, transparent 60%),
+    conic-gradient(from 0deg, #ff5d5d, #ffb23e, #ffe14a, #5dff8f, #4ad0ff, #9a6bff, #ff5db4, #ff5d5d);
+  filter: saturate(1.2);
+}
+.crack-sp .rift-aura {
+  width: 160%;
+  height: 160%;
+  background: radial-gradient(ellipse at center, rgba(150,120,255,0.40) 0%, rgba(90,200,255,0.20) 42%, transparent 74%);
+}
+/* 稲妻が数回走る */
+.crack-sp .rift-lightning {
+  opacity: 1;
+  animation: riftLightning 1.6s ease-out 0.5s 2;
+}
+/* 大量の虹色粒子が噴き出す */
+.crack-sp .rift-particles {
+  opacity: 1;
+  width: 4px;
+  height: 4px;
+  background: #fff;
+  box-shadow:
+    -40px 6px 0 rgba(255,160,160,0.95), 36px -6px 0 rgba(255,210,120,0.9),
+    0 -26px 0 rgba(160,255,190,0.95), 20px 18px 0 rgba(140,210,255,0.9),
+    -22px -18px 0 rgba(200,160,255,0.9), 52px 4px 0 rgba(255,150,220,0.85),
+    -54px -4px 0 rgba(180,230,255,0.85), 8px -30px 0 rgba(255,235,150,0.9),
+    -12px 24px 0 rgba(170,255,210,0.85), 64px -10px 0 rgba(220,180,255,0.85);
+  animation: riftParticleRise 0.9s ease-out 0.5s infinite;
+}
+/* SPは咆哮イメージで軽く揺らす（中央維持） */
+.crack-sp .dim-rift {
+  animation: riftShake 0.4s ease-in-out 0.9s 2;
+}
+
+/* ---- スマホ最適化（粒子を少し減らし、巨大裂け目も画面内に） ---- */
+@media (max-width: 480px) {
+  .crack-rank3 .dim-rift,
+  .crack-rank4 .dim-rift,
+  .crack-rank5 .dim-rift {
+    width: min(84vw, 340px);
+  }
+  .crack-sp .dim-rift {
+    width: min(92vw, 360px);
+    height: min(50vh, 320px);
+  }
+  /* 粒子の重複を軽量化（影の数を抑える） */
+  .crack-sp .rift-particles {
+    box-shadow:
+      -36px 6px 0 rgba(255,160,160,0.95), 32px -6px 0 rgba(255,210,120,0.9),
+      0 -24px 0 rgba(160,255,190,0.95), 18px 16px 0 rgba(140,210,255,0.9),
+      -20px -16px 0 rgba(200,160,255,0.9);
+  }
+}
+
+/* ---- 動きを抑えたい設定: バリアントの強い演出を停止 ---- */
+@media (prefers-reduced-motion: reduce) {
+  .rift-particles,
+  .rift-stars,
+  .rift-lightning,
+  .crack-rank4 .dim-rift,
+  .crack-rank5 .dim-rift,
+  .crack-sp .dim-rift,
+  .gacha-overlay.crack-rank5 {
+    animation: none !important;
+  }
+}
+
+/* =============================================================================
+   18. 第3章：アイテム種別ごとの登場演出（CSSのみ / 表示専用）
+   -----------------------------------------------------------------------------
+   裂け目が開いた後（gacha-pending 解除時）に、種別クラスごとの登場アニメを再生:
+     .gacha-card--weapon … 勢いよく飛び出す→1回転→拡大→停止
+     .gacha-card--armor  … 光が現れ、組み上がるように完成
+     .gacha-card--deco   … 宝石の光→小回転→キラキラ
+   イベントは .dim-scroll（次元の巻物）として開く。
+   さらに NEWリボン / DUPLICATE / レア度別追加演出 / 進化演出 / パーティクル。
+   ゲームロジック・確率・判定・イベント処理には一切関与しない。
+   ========================================================================== */
+
+/* ---- ① 武器: 飛び出し＋1回転＋拡大＋停止 ---- */
+.gacha-card--weapon {
+  animation: weaponFly 1.2s var(--ease) both;
+}
+@keyframes weaponFly {
+  0% { opacity: 0; transform: translateY(46px) scale(0.3) rotate(-210deg); }
+  45% { opacity: 1; transform: translateY(-10px) scale(1.12) rotate(40deg); }
+  70% { transform: translateY(0) scale(1.12) rotate(0deg); }
+  85% { transform: scale(0.97); }
+  100% { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
+}
+
+/* ---- ② 防具: 光が現れ、組み上がるように完成 ---- */
+.gacha-card--armor {
+  animation: armorAssemble 1.4s var(--ease) both;
+}
+@keyframes armorAssemble {
+  0% { opacity: 0; transform: scaleY(0.18) scale(0.82); filter: brightness(2.4) blur(3px); }
+  35% { opacity: 1; filter: brightness(1.5) blur(1.5px); }
+  60% { transform: scaleY(1) scale(1.1); filter: brightness(1.2) blur(0.4px); }
+  80% { transform: scale(0.98); }
+  100% { opacity: 1; transform: scale(1); filter: brightness(1) blur(0); }
+}
+/* 防具: 組み上がりの光スイープ */
+.gacha-card--armor::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 240, 200, 0.35) 50%, transparent 70%);
+  background-size: 220% 100%;
+  pointer-events: none;
+  animation: armorSweep 1.4s ease-out both;
+}
+@keyframes armorSweep {
+  0% { background-position: 180% 0; opacity: 0; }
+  30% { opacity: 1; }
+  100% { background-position: -80% 0; opacity: 0; }
+}
+
+/* ---- ③ 装飾品: 宝石の光→小回転→キラキラ ---- */
+.gacha-card--deco {
+  animation: decoGem 1.2s var(--ease) both;
+}
+@keyframes decoGem {
+  0% { opacity: 0; transform: scale(0.2) rotate(-40deg); filter: brightness(2.4); }
+  45% { opacity: 1; transform: scale(1.12) rotate(12deg); filter: brightness(1.5); }
+  70% { transform: scale(1.04) rotate(-4deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); filter: brightness(1); }
+}
+/* 装飾品: キラキラ（スパークル） */
+.gacha-card--deco::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+  background:
+    radial-gradient(circle, rgba(255,255,255,0.95) 0%, transparent 60%);
+  box-shadow:
+    -24px 30px 0 -3px rgba(255,255,255,0.85),
+    -60px 12px 0 -4px rgba(210,235,255,0.8);
+  animation: decoSparkle 1.6s ease-in-out 0.6s infinite;
+}
+@keyframes decoSparkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.7); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* ---- ⑤ 共通: フェードイン→110%→100% は各登場アニメに内包済み ---- */
+
+/* ---- レア度別の発光（登場アニメと両立させるため種別×レア度で指定） ---- */
+/* ★5 武器: 金色発光 */
+.gacha-card--weapon.rarity-5 {
+  animation: weaponFly 1.2s var(--ease) both, goldGlow 1.9s ease-in-out 1.2s infinite;
+}
+/* RARE10 防具: 金色発光 */
+.gacha-card--armor.rarity-r10 {
+  animation: armorAssemble 1.4s var(--ease) both, goldGlow 1.9s ease-in-out 1.4s infinite;
+}
+/* ★5SP 武器: 虹色発光 */
+.gacha-card--weapon.rarity-5sp {
+  animation: weaponFly 1.2s var(--ease) both, rainbowGlow 3s linear 1.2s infinite;
+}
+
+/* ---- ⑥ ★4以上のパーティクル（★4/RARE9 を追加。★5系は第15章で付与済み） ---- */
+.rarity-4,
+.rarity-r9 {
+  overflow: visible;
+}
+.rarity-4::after,
+.rarity-r9::after {
+  content: "";
+  position: absolute;
+  left: 12%;
+  bottom: 10px;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #ffd9ee;
+  box-shadow:
+    20px -8px 0 0 rgba(255, 190, 230, 0.85),
+    48px 2px 0 -1px rgba(255, 160, 215, 0.8),
+    84px -14px 0 0 rgba(255, 200, 235, 0.8);
+  opacity: 0.85;
+  pointer-events: none;
+  animation: particleFloat 2.2s ease-in-out infinite;
+}
+
+/* ---- ★5SP専用: 虹色オーラ＋光の柱＋大量パーティクル ---- */
+.sp-fx {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  /* カードのテキストより背面に置く（文字が隠れないように） */
+  z-index: -1;
+}
+/* 光の柱（カード背後から立ち上る縦ビーム） */
+.sp-pillar {
+  position: absolute;
+  left: 50%;
+  top: -60%;
+  width: 60%;
+  height: 220%;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, transparent, rgba(180, 220, 255, 0.5) 40%, rgba(255, 200, 240, 0.5) 60%, transparent);
+  filter: blur(6px);
+  opacity: 0;
+  animation: spPillar 3s ease-out 0.2s both;
+}
+@keyframes spPillar {
+  0% { opacity: 0; transform: translateX(-50%) scaleY(0.3); }
+  30% { opacity: 0.9; transform: translateX(-50%) scaleY(1); }
+  100% { opacity: 0.5; transform: translateX(-50%) scaleY(1); }
+}
+/* 虹色オーラ（カード周囲を回る彩り） */
+.sp-aura {
+  position: absolute;
+  inset: -8px;
+  border-radius: 20px;
+  background: conic-gradient(from 0deg, #ff5d5d, #ffb23e, #ffe14a, #5dff8f, #4ad0ff, #9a6bff, #ff5db4, #ff5d5d);
+  filter: blur(9px);
+  opacity: 0;
+  z-index: -1;
+  animation: spAura 3s linear 0.2s infinite;
+}
+@keyframes spAura {
+  0% { opacity: 0; transform: rotate(0deg); }
+  25% { opacity: 0.8; }
+  100% { opacity: 0.7; transform: rotate(360deg); }
+}
+
+/* ---- ⑦ NEWリボン（カード完成後に左上へスッと出る） ---- */
+.gacha-new-ribbon {
+  position: absolute;
+  top: 10px;
+  left: -6px;
+  z-index: 3;
+  padding: 3px 12px 3px 10px;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #fff;
+  background: linear-gradient(135deg, #ff5d5d, #d6181f);
+  box-shadow: 0 4px 10px rgba(214, 24, 31, 0.5);
+  /* リボンの切り欠き */
+  clip-path: polygon(0 0, 100% 0, 88% 50%, 100% 100%, 0 100%);
+  transform: translateX(-130%);
+  opacity: 0;
+  /* カード完成後（登場アニメ後）に出現 */
+  animation: ribbonSlideIn 0.5s var(--ease) 1.1s both;
+}
+.gacha-new-ribbon::after {
+  /* リボンの折り返し（左の影） */
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  border: 3px solid #8d1014;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+}
+@keyframes ribbonSlideIn {
+  0% { opacity: 0; transform: translateX(-130%); }
+  60% { opacity: 1; transform: translateX(6px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+/* ---- ⑧ DUPLICATE バッジ（重複時・カード右上） ---- */
+.gacha-dup-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 3;
+  padding: 2px 9px;
+  border-radius: 8px;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #d8dee8;
+  background: rgba(40, 44, 54, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  animation: dupFadeIn 0.4s var(--ease) 1.1s both;
+}
+@keyframes dupFadeIn {
+  0% { opacity: 0; transform: translateY(-6px) scale(0.85); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ---- ⑨ 進化演出: 光る→旧武器が砕けて消える→新武器→「進化！」 ---- */
+.evo-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 34px;
+  margin-bottom: 6px;
+}
+.evo-old,
+.evo-new {
+  grid-area: 1 / 1;
+  font-weight: 800;
+  font-size: clamp(0.9rem, 3.4vw, 1.05rem);
+  color: #1a0f02;
+}
+/* 旧武器: 光ってから砕けて消える */
+.evo-old {
+  animation: evoOld 1.2s ease-in both;
+}
+@keyframes evoOld {
+  0% { opacity: 1; filter: brightness(1); transform: scale(1); }
+  30% { filter: brightness(2.2); }
+  55% { opacity: 1; transform: scale(1.05); }
+  75% { opacity: 0; transform: scale(0.6) rotate(8deg); filter: blur(2px); }
+  100% { opacity: 0; }
+}
+/* 新武器: 旧武器が砕けた後に出現 */
+.evo-new {
+  opacity: 0;
+  animation: evoNew 1s ease-out 1.1s both;
+}
+@keyframes evoNew {
+  0% { opacity: 0; transform: scale(0.4); filter: brightness(2.4); }
+  60% { opacity: 1; transform: scale(1.12); }
+  100% { opacity: 1; transform: scale(1); filter: brightness(1); }
+}
+/* 砕け散る破片 */
+.evo-shards {
+  position: absolute;
+  inset: 0;
+  display: block;
+  pointer-events: none;
+}
+.evo-shards i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  background: #fff3d0;
+  box-shadow: 0 0 6px rgba(255, 200, 90, 0.9);
+  opacity: 0;
+  animation: evoShard 0.7s ease-out 0.7s both;
+}
+.evo-shards i:nth-child(1) { --sx: -60px; --sy: -28px; }
+.evo-shards i:nth-child(2) { --sx: 60px; --sy: -24px; }
+.evo-shards i:nth-child(3) { --sx: -78px; --sy: 14px; }
+.evo-shards i:nth-child(4) { --sx: 78px; --sy: 18px; }
+.evo-shards i:nth-child(5) { --sx: -30px; --sy: 34px; }
+.evo-shards i:nth-child(6) { --sx: 34px; --sy: 36px; }
+@keyframes evoShard {
+  0% { opacity: 0; transform: translate(0, 0) scale(1); }
+  15% { opacity: 1; }
+  100% { opacity: 0; transform: translate(var(--sx, 0), var(--sy, 0)) scale(0.3); }
+}
+
+/* ---- ④ 次元の巻物（イベント専用） ---- */
+.dim-scroll {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 0;
+  margin: 6px auto 14px;
+  width: min(100%, 560px);
+}
+/* 上下の巻き棒 */
+.dim-scroll-rod {
+  width: min(92%, 480px);
+  height: 14px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #6b4a1e, #3a2710);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 220, 160, 0.3);
+  z-index: 2;
+}
+.dim-scroll-rod--top { animation: scrollRodIn 0.3s var(--ease) both; }
+.dim-scroll-rod--bottom { animation: scrollRodIn 0.3s var(--ease) both; }
+@keyframes scrollRodIn {
+  0% { opacity: 0; transform: translateY(-6px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+/* 巻物の紙: 閉じた状態(高さ0)から開く */
+.dim-scroll-body {
+  width: min(88%, 460px);
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(245, 232, 200, 0.96), rgba(228, 210, 168, 0.96));
+  border-left: 1px solid rgba(120, 90, 40, 0.4);
+  border-right: 1px solid rgba(120, 90, 40, 0.4);
+  box-shadow: inset 0 0 24px rgba(120, 90, 40, 0.25);
+  /* 開く演出: 縦に伸びる */
+  transform-origin: top center;
+  animation: scrollOpen 0.7s cubic-bezier(0.6, 0, 0.3, 1) 0.25s both;
+}
+@keyframes scrollOpen {
+  0% { max-height: 0; opacity: 0.6; transform: scaleY(0.02); }
+  100% { max-height: 420px; opacity: 1; transform: scaleY(1); }
+}
+.dim-scroll-inner {
+  padding: 16px 18px;
+  color: #2a1c08;
+  text-align: center;
+}
+.dim-scroll-label {
+  margin: 0 0 6px;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #7a5a22;
+  opacity: 0;
+  animation: scrollText 0.4s ease-out 0.7s both;
+}
+.dim-scroll-title {
+  margin: 0 0 8px;
+  font-family: "Times New Roman", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-size: clamp(1.1rem, 4.5vw, 1.4rem);
+  color: #3a2408;
+  opacity: 0;
+  animation: scrollText 0.5s ease-out 0.85s both;
+}
+.dim-scroll-desc {
+  margin: 0 0 8px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: #4a3410;
+  opacity: 0;
+  animation: scrollText 0.5s ease-out 1.05s both;
+}
+.dim-scroll-meta {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #7a5a22;
+  opacity: 0;
+  animation: scrollText 0.5s ease-out 1.2s both;
+}
+@keyframes scrollText {
+  0% { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- スマホ優先の最適化 ---- */
+@media (max-width: 480px) {
+  /* 登場アニメは据え置き（0.5〜1.5s）。巻物の棒を少し細く */
+  .dim-scroll-rod { height: 12px; }
+  .sp-pillar { width: 72%; }
+}
+
+/* ---- 動きを抑えたい設定: 第3章の演出を簡略化 ---- */
+@media (prefers-reduced-motion: reduce) {
+  .gacha-card--weapon,
+  .gacha-card--armor,
+  .gacha-card--deco,
+  .gacha-card--armor::before,
+  .gacha-card--deco::before,
+  .sp-pillar,
+  .sp-aura,
+  .gacha-new-ribbon,
+  .gacha-dup-badge,
+  .rarity-4::after,
+  .rarity-r9::after,
+  .evo-old,
+  .evo-new,
+  .evo-shards i,
+  .dim-scroll-body,
+  .dim-scroll-rod,
+  .dim-scroll-label,
+  .dim-scroll-title,
+  .dim-scroll-desc,
+  .dim-scroll-meta {
+    animation: none !important;
+  }
+  /* 静止表示でも見えるように最終状態へ */
+  .gacha-new-ribbon { opacity: 1; transform: none; }
+  .gacha-dup-badge { opacity: 1; }
+  .dim-scroll-body { max-height: 420px; transform: none; }
+  .dim-scroll-label,
+  .dim-scroll-title,
+  .dim-scroll-desc,
+  .dim-scroll-meta { opacity: 1; }
+  .evo-old { opacity: 0; }
+  .evo-new { opacity: 1; }
+}
+
+/* =============================================================================
+   19. 「次元の裂け目」演出の強化（画像の修正案に準拠 / CSSのみ / 表示専用）
+   -----------------------------------------------------------------------------
+   ・四角い柱の回転は廃止済み。中央の裂け目を主役に、迫力を追加:
+       - rift-burst       : 放射状の次元エネルギー噴出
+       - rift-debris      : 裂け目から飛び散る瓦礫（次元の破片）
+       - rift-magic-circle: 地面に展開する魔法陣
+   ・色はレア度連動（--rift-accent）。★1白〜★5SP虹まで段階変化。
+   ・ロジック・確率・JSON・判定には一切関与しない。
+   ========================================================================== */
+
+/* レア度別アクセント（オーバーレイ配下の新エフェクトが継承して色を変える） */
+.gacha-overlay {
+  --rift-accent: rgba(150, 90, 255, 0.60);
+  --rift-accent-soft: rgba(150, 90, 255, 0.32);
+}
+.gacha-overlay.crack-rank1 { --rift-accent: rgba(225, 230, 245, 0.55); --rift-accent-soft: rgba(225, 230, 245, 0.28); }
+.gacha-overlay.crack-rank2 { --rift-accent: rgba(110, 170, 255, 0.62); --rift-accent-soft: rgba(110, 170, 255, 0.34); }
+.gacha-overlay.crack-rank3 { --rift-accent: rgba(170, 110, 255, 0.64); --rift-accent-soft: rgba(170, 110, 255, 0.36); }
+.gacha-overlay.crack-rank4 { --rift-accent: rgba(255, 110, 190, 0.64); --rift-accent-soft: rgba(210, 80, 230, 0.36); }
+.gacha-overlay.crack-rank5 { --rift-accent: rgba(255, 200, 90, 0.68); --rift-accent-soft: rgba(255, 170, 60, 0.40); }
+.gacha-overlay.crack-sp    { --rift-accent: rgba(180, 150, 255, 0.72); --rift-accent-soft: rgba(120, 200, 255, 0.42); }
+
+/* ---- ③ 次元エネルギーの噴出（放射状の光線が中心から広がる） ---- */
+.rift-burst {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 170%;
+  height: 170%;
+  transform: translate(-50%, -50%) scale(0);
+  background: repeating-conic-gradient(
+    from 0deg,
+    var(--rift-accent) 0deg 2.5deg,
+    transparent 2.5deg 13deg
+  );
+  -webkit-mask: radial-gradient(circle, #000 0, transparent 68%);
+  mask: radial-gradient(circle, #000 0, transparent 68%);
+  opacity: 0;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: riftBurst 1.1s ease-out 0.5s both;
+}
+@keyframes riftBurst {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0) rotate(0deg); }
+  40% { opacity: 0.85; }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.25) rotate(26deg); }
+}
+
+/* ---- ④ 裂け目から飛び散る瓦礫（次元の破片） ---- */
+.rift-debris {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+.rift-debris i {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 12px;
+  background: linear-gradient(135deg, #3a2f44 0%, #0c0a12 100%);
+  border: 1px solid var(--rift-accent-soft);
+  /* 角ばった岩片の形 */
+  clip-path: polygon(0 32%, 58% 0, 100% 46%, 72% 100%, 16% 84%);
+  box-shadow: 0 0 10px var(--rift-accent-soft);
+  opacity: 0;
+  animation: debrisFly 1.5s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+/* 8片を別方向・別速度で飛ばす（--tx/--ty/--rot/--delay/--scale） */
+.rift-debris i:nth-child(1) { --tx: -200px; --ty: -120px; --rot: -160deg; --scale: 1.1; animation-delay: 0.55s; }
+.rift-debris i:nth-child(2) { --tx: 220px; --ty: -90px; --rot: 140deg; --scale: 0.9; animation-delay: 0.6s; }
+.rift-debris i:nth-child(3) { --tx: -260px; --ty: 60px; --rot: -120deg; --scale: 1.2; animation-delay: 0.62s; }
+.rift-debris i:nth-child(4) { --tx: 250px; --ty: 110px; --rot: 200deg; --scale: 0.8; animation-delay: 0.66s; }
+.rift-debris i:nth-child(5) { --tx: -120px; --ty: 180px; --rot: -80deg; --scale: 1; animation-delay: 0.7s; }
+.rift-debris i:nth-child(6) { --tx: 150px; --ty: 190px; --rot: 110deg; --scale: 1.05; animation-delay: 0.72s; }
+.rift-debris i:nth-child(7) { --tx: -300px; --ty: -40px; --rot: -190deg; --scale: 0.85; animation-delay: 0.6s; }
+.rift-debris i:nth-child(8) { --tx: 310px; --ty: 10px; --rot: 170deg; --scale: 1.15; animation-delay: 0.64s; }
+@keyframes debrisFly {
+  0% { opacity: 0; transform: translate(-50%, -50%) rotate(0deg) scale(0.3); }
+  18% { opacity: 1; }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--tx, 0px)), calc(-50% + var(--ty, 0px))) rotate(var(--rot, 90deg)) scale(var(--scale, 1));
+  }
+}
+
+/* ---- 地面に展開する魔法陣（次元召喚陣） ---- */
+.rift-magic-circle {
+  position: absolute;
+  left: 50%;
+  bottom: 7%;
+  width: min(72vw, 540px);
+  height: min(22vh, 170px);
+  transform: translateX(-50%) perspective(420px) rotateX(64deg);
+  border-radius: 50%;
+  border: 2px solid var(--rift-accent);
+  box-shadow:
+    0 0 30px var(--rift-accent-soft),
+    inset 0 0 46px var(--rift-accent-soft);
+  opacity: 0;
+  pointer-events: none;
+  /* 出現フェードは opacity のみ、回転は transform のみで競合回避 */
+  animation: magicIn 0.5s ease-out 0.3s forwards, magicSpin 9s linear 0.3s infinite;
+}
+/* 内側の破線リング */
+.rift-magic-circle::before {
+  content: "";
+  position: absolute;
+  inset: 16%;
+  border-radius: 50%;
+  border: 1px dashed var(--rift-accent);
+  opacity: 0.7;
+}
+/* 中心の小円 */
+.rift-magic-circle::after {
+  content: "";
+  position: absolute;
+  inset: 36%;
+  border-radius: 50%;
+  border: 1px solid var(--rift-accent-soft);
+  box-shadow: 0 0 20px var(--rift-accent-soft);
+}
+@keyframes magicIn {
+  to { opacity: 0.85; }
+}
+@keyframes magicSpin {
+  from { transform: translateX(-50%) perspective(420px) rotateX(64deg) rotate(0deg); }
+  to { transform: translateX(-50%) perspective(420px) rotateX(64deg) rotate(360deg); }
+}
+
+/* SPは魔法陣をより大きく・宇宙色に */
+.crack-sp .rift-magic-circle,
+.gacha-overlay.crack-sp .rift-magic-circle {
+  width: min(86vw, 640px);
+  height: min(26vh, 200px);
+}
+
+/* ---- スマホ最適化（破片の距離と魔法陣サイズを抑える） ---- */
+@media (max-width: 480px) {
+  .rift-debris i { width: 16px; height: 10px; }
+  .rift-debris i:nth-child(1) { --tx: -120px; --ty: -80px; }
+  .rift-debris i:nth-child(2) { --tx: 130px; --ty: -64px; }
+  .rift-debris i:nth-child(3) { --tx: -150px; --ty: 44px; }
+  .rift-debris i:nth-child(4) { --tx: 150px; --ty: 78px; }
+  .rift-debris i:nth-child(5) { --tx: -80px; --ty: 120px; }
+  .rift-debris i:nth-child(6) { --tx: 96px; --ty: 128px; }
+  .rift-debris i:nth-child(7) { --tx: -170px; --ty: -24px; }
+  .rift-debris i:nth-child(8) { --tx: 180px; --ty: 6px; }
+  .rift-magic-circle { width: min(88vw, 360px); height: min(20vh, 140px); }
+}
+
+/* ---- 動きを抑えたい設定: 強い追加演出を停止 ---- */
+@media (prefers-reduced-motion: reduce) {
+  .rift-burst,
+  .rift-debris i,
+  .rift-magic-circle {
+    animation: none !important;
+  }
+  .rift-burst { display: none !important; }
+  .rift-debris { display: none !important; }
+  .rift-magic-circle { opacity: 0.6; }
+}
+
+/* =============================================================================
+   20. ガチャ演出 改修 Step1：静かな粒子のみ（CSSのみ / 表示専用）
+   -----------------------------------------------------------------------------
+   ・中央の回転オブジェクト（四角い柱・リング等）は描画しない（JSで非生成）。
+   ・中央は黒背景のまま、紫/青の小さな粒子がゆっくり漂うだけの静かな演出。
+   ・派手な光・爆発は無し。ロジック・確率・判定には一切関与しない。
+   ※ 旧「次元の裂け目」関連CSS（16〜19章）は残置しているが、Step1では
+     オーバーレイに該当要素を生成しないため描画されない（後続Stepで再利用予定）。
+   ========================================================================== */
+
+/* 黒背景のまま、中央にほんのり奥行きを感じる程度（派手にしない） */
+.gacha-overlay--calm {
+  background:
+    radial-gradient(circle at center, rgba(10, 8, 18, 0.78) 0%, rgba(0, 0, 0, 0.92) 70%),
+    rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(2px);
+}
+
+/* 粒子の場（画面全体に薄く漂う） */
+.quiet-field {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* 小さな粒子（紫 / 青）。位置・サイズ・速度はJSのinline styleで個別指定 */
+.qparticle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0;
+  filter: blur(0.4px);
+  pointer-events: none;
+  animation-name: qDrift;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+}
+
+.qparticle--p {
+  background: radial-gradient(circle, #cdb6ff 0%, #7b5bff 75%);
+  box-shadow: 0 0 8px rgba(150, 110, 255, 0.65);
+}
+
+.qparticle--b {
+  background: radial-gradient(circle, #bcd9ff 0%, #5b8bff 75%);
+  box-shadow: 0 0 8px rgba(110, 160, 255, 0.65);
+}
+
+/* ゆっくり上へ漂いながら、横に少し揺れて消える */
+@keyframes qDrift {
+  0% { opacity: 0; transform: translate(0, 10px) scale(0.7); }
+  20% { opacity: 0.85; }
+  50% { transform: translate(var(--drift, 0px), -28px) scale(1); }
+  80% { opacity: 0.55; }
+  100% { opacity: 0; transform: translate(0, -60px) scale(0.6); }
+}
+
+/* 静かな雰囲気に合わせ、テキストの点滅も控えめに */
+.gacha-overlay--calm .gacha-overlay-text {
+  color: #cdbcf2;
+  opacity: 0.85;
+  text-shadow: 0 0 10px rgba(130, 100, 220, 0.45);
+  animation: gachaLoadingPulse 2.4s ease-in-out infinite;
+}
+
+/* 動きを抑えたい設定: 粒子の移動を止め、静止表示 */
+@media (prefers-reduced-motion: reduce) {
+  .qparticle {
+    animation: none !important;
+    opacity: 0.5;
+  }
+}
+
+/* =============================================================================
+   21. ガチャ演出 改修 Step2：中央の「次元の裂け目」（CSSのみ / 表示専用）
+   -----------------------------------------------------------------------------
+   流れ: 画面が少し暗くなる(Step1のcalm背景) → 中央に細い紫の縦線が現れる(0.8s)
+        → ゆっくり開いて縦長の裂け目になる(1.2s) → 開いた後も僅かに脈打つ
+        → 縁が紫/青に発光、内部は黒く吸い込まれる、左右にゆっくり揺れる、煙が漂う
+   ・まだカード/アイテムは出さない（runGachaWithEffect の遅延後に結果表示）。
+   ・光りすぎない神秘的な雰囲気。ロジック・確率・判定には一切関与しない。
+   ========================================================================== */
+
+/* 裂け目の入れ物（中央固定）。左右の揺れはここで担当（中央寄せは維持） */
+.rift2 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  /* 開ききった後にゆっくり左右へ揺れる */
+  animation: rift2Sway 6s ease-in-out 2.3s infinite;
+}
+
+/* 裂け目本体: 縦長・黒い内部・縁が紫/青に発光 */
+.rift2-core {
+  position: relative;
+  width: min(20vw, 140px);
+  height: min(58vh, 440px);
+  border-radius: 50%;
+  /* 内部は黒く吸い込まれ、縁にかけて紫へ */
+  background: radial-gradient(
+    ellipse 56% 60% at 50% 50%,
+    #000 0%,
+    #04030a 50%,
+    #1a0d33 72%,
+    rgba(26, 13, 51, 0) 86%
+  );
+  /* 縁の発光（紫・青）と内部の吸い込み（inset） */
+  box-shadow:
+    0 0 22px 2px rgba(150, 90, 255, 0.45),
+    0 0 50px 8px rgba(90, 150, 255, 0.22),
+    inset 0 0 34px 8px rgba(6, 4, 12, 0.95);
+  opacity: 0;
+  /* 細い縦線として出現 */
+  transform: scaleX(0.02) scaleY(0.2);
+  animation:
+    rift2Line 0.8s ease-out 0.3s both,
+    rift2Open 1.2s cubic-bezier(0.6, 0, 0.3, 1) 1.1s both,
+    rift2Pulse 3.6s ease-in-out 2.4s infinite;
+}
+
+/* 縁だけが光る細いリング（光りすぎないよう内側に限定） */
+.rift2-core::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  box-shadow:
+    inset 0 0 12px 1px rgba(175, 115, 255, 0.55),
+    inset 0 0 26px 2px rgba(90, 150, 255, 0.28);
+  pointer-events: none;
+}
+
+/* 周囲のエネルギー（紫・青・黒）がゆらぐ */
+.rift2-aura {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(40vw, 300px);
+  height: min(66vh, 500px);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(120, 80, 220, 0.28) 0%,
+    rgba(60, 110, 220, 0.15) 44%,
+    rgba(10, 6, 20, 0) 72%
+  );
+  opacity: 0;
+  animation:
+    rift2AuraIn 1s ease-out 1.4s both,
+    rift2AuraPulse 4.2s ease-in-out 2.4s infinite;
+}
+
+/* 煙・オーラがゆっくり漂う */
+.rift2-smoke {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(34vw, 250px);
+  height: min(62vh, 460px);
+  transform: translate(-50%, -50%);
+  background:
+    radial-gradient(44px 64px at 42% 62%, rgba(120, 90, 200, 0.14), transparent 70%),
+    radial-gradient(52px 72px at 60% 40%, rgba(70, 120, 200, 0.12), transparent 70%),
+    radial-gradient(40px 56px at 52% 78%, rgba(90, 70, 160, 0.10), transparent 72%);
+  filter: blur(7px);
+  mix-blend-mode: screen;
+  opacity: 0;
+  animation:
+    rift2SmokeIn 1.2s ease-out 1.6s both,
+    rift2Smoke 8s ease-in-out 2s infinite;
+}
+
+/* ---- キーフレーム ---- */
+
+/* ① 細い縦線が現れる（0.8s） */
+@keyframes rift2Line {
+  0% { opacity: 0; transform: scaleX(0.02) scaleY(0.14); }
+  55% { opacity: 1; }
+  100% { opacity: 1; transform: scaleX(0.05) scaleY(1); }
+}
+
+/* ② 裂け目がゆっくり開く（1.2s） */
+@keyframes rift2Open {
+  0% { transform: scaleX(0.05) scaleY(1); }
+  100% { transform: scaleX(1) scaleY(1); }
+}
+
+/* ③ 開いた後の僅かな脈動（縦長を保つ・横にわずかに伸縮） */
+@keyframes rift2Pulse {
+  0%, 100% { transform: scaleX(1) scaleY(1); filter: brightness(0.96); }
+  50% { transform: scaleX(1.03) scaleY(1.01); filter: brightness(1.08); }
+}
+
+/* 左右へのゆっくりした揺れ（中央寄せを保持） */
+@keyframes rift2Sway {
+  0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+  25% { transform: translate(calc(-50% - 5px), -50%) rotate(-0.6deg); }
+  75% { transform: translate(calc(-50% + 5px), -50%) rotate(0.6deg); }
+}
+
+@keyframes rift2AuraIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes rift2AuraPulse {
+  0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(0.98); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.04); }
+}
+
+@keyframes rift2SmokeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes rift2Smoke {
+  0% { transform: translate(-50%, -48%) scale(1); opacity: 0.5; }
+  50% { transform: translate(-50%, -52%) scale(1.05); opacity: 0.85; }
+  100% { transform: translate(-50%, -48%) scale(1); opacity: 0.5; }
+}
+
+/* ---- スマホ最適化（縦長を保ちつつ画面内に収める） ---- */
+@media (max-width: 480px) {
+  .rift2-core { width: min(30vw, 110px); height: min(54vh, 380px); }
+  .rift2-aura { width: min(60vw, 260px); height: min(60vh, 420px); }
+  .rift2-smoke { width: min(54vw, 220px); height: min(58vh, 400px); }
+}
+
+/* ---- 動きを抑えたい設定: 開いた裂け目を静止表示（脈動・揺れ・煙は停止） ---- */
+@media (prefers-reduced-motion: reduce) {
+  .rift2,
+  .rift2-core,
+  .rift2-aura,
+  .rift2-smoke {
+    animation: none !important;
+  }
+  .rift2-core { opacity: 1; transform: scaleX(1) scaleY(1); }
+  .rift2-aura,
+  .rift2-smoke { opacity: 1; }
+}
+
+/* =============================================================================
+   22. ガチャ演出 改修 Step3：裂け目周囲の龍属性エネルギー（CSSのみ / 表示専用）
+   -----------------------------------------------------------------------------
+   裂け目が開いた後: 黒紫/青のエネルギーが漏れ出す → 細い黒紫の稲妻が周囲を走る
+   → 空間が歪み空気が揺れる → 画面全体を1〜2pxだけゆっくり揺らす → 約1秒維持。
+   ・爆発/強いフラッシュ/派手な光は無し。カード/アイテムも出さない。
+   ・ロジック・確率・判定・UIには一切関与しない。
+   ========================================================================== */
+
+/* 画面全体の微振動（1〜2px）。裂け目が開いた後から約1秒だけ */
+.gacha-stage {
+  position: absolute;
+  inset: 0;
+  animation: screenMicroShake 1s ease-in-out 2.5s 1;
+}
+@keyframes screenMicroShake {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-1px, 1px); }
+  40% { transform: translate(1.5px, -1px); }
+  60% { transform: translate(-1.5px, -1px); }
+  80% { transform: translate(1px, 1.5px); }
+}
+
+/* ---- 淡い紫色の外周オーラ（ゆっくり脈動） ---- */
+.rift2-aura2 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(54vw, 420px);
+  height: min(78vh, 600px);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(140, 90, 220, 0.16) 0%,
+    rgba(90, 70, 180, 0.08) 46%,
+    rgba(10, 6, 20, 0) 72%
+  );
+  opacity: 0;
+  animation:
+    rift2AuraIn 1.1s ease-out 1.8s both,
+    rift2Aura2Pulse 5s ease-in-out 2.4s infinite;
+}
+@keyframes rift2Aura2Pulse {
+  0%, 100% { opacity: 0.55; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.9; transform: translate(-50%, -50%) scale(1.05); }
+}
+
+/* ---- 黒い煙（暗い塊がゆっくり立ち上る） ---- */
+.rift2-smoke2 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(40vw, 300px);
+  height: min(70vh, 520px);
+  transform: translate(-50%, -50%);
+  background:
+    radial-gradient(60px 90px at 44% 64%, rgba(10, 6, 18, 0.55), transparent 70%),
+    radial-gradient(70px 100px at 58% 42%, rgba(18, 10, 28, 0.45), transparent 72%),
+    radial-gradient(50px 80px at 50% 80%, rgba(8, 5, 16, 0.5), transparent 72%);
+  filter: blur(9px);
+  opacity: 0;
+  animation:
+    rift2SmokeIn 1.4s ease-out 1.7s both,
+    rift2BlackSmoke 9s ease-in-out 2s infinite;
+}
+@keyframes rift2BlackSmoke {
+  0% { transform: translate(-50%, -46%) scale(1); opacity: 0.5; }
+  50% { transform: translate(-50%, -54%) scale(1.08); opacity: 0.8; }
+  100% { transform: translate(-50%, -46%) scale(1); opacity: 0.5; }
+}
+
+/* ---- 空間のゆらぎ / 歪みエフェクト（背後をわずかにぼかして揺らす） ---- */
+.rift2-warp {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(34vw, 250px);
+  height: min(66vh, 500px);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  /* 背後の粒子・オーラをわずかに屈折させる（強くしない） */
+  backdrop-filter: blur(1.6px);
+  -webkit-backdrop-filter: blur(1.6px);
+  -webkit-mask: radial-gradient(ellipse 60% 60% at 50% 50%, #000 30%, transparent 78%);
+  mask: radial-gradient(ellipse 60% 60% at 50% 50%, #000 30%, transparent 78%);
+  opacity: 0;
+  animation:
+    rift2WarpIn 0.8s ease-out 1.8s both,
+    rift2Warp 3.2s ease-in-out 2.2s infinite;
+}
+@keyframes rift2WarpIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+/* 空気が揺れているような微妙な伸縮・歪み */
+@keyframes rift2Warp {
+  0%, 100% { transform: translate(-50%, -50%) scale(1) skewX(0deg); }
+  33% { transform: translate(-50%, -50%) scale(1.03, 0.99) skewX(0.8deg); }
+  66% { transform: translate(-50%, -50%) scale(0.98, 1.02) skewX(-0.8deg); }
+}
+
+/* ---- 龍属性の青紫エネルギー粒子（裂け目から漏れ出す） ---- */
+.rift2-energy {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+}
+.rift2-energy i {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 50%;
+  /* 青紫 */
+  background: radial-gradient(circle, #d6c4ff 0%, #7c5bff 60%, rgba(80, 70, 200, 0) 100%);
+  box-shadow: 0 0 7px rgba(130, 100, 240, 0.7);
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  animation-name: rift2EnergyEmit;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+}
+/* 中心から --ex/--ey 方向へゆっくり漏れ出して消える */
+@keyframes rift2EnergyEmit {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
+  25% { opacity: 0.9; }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--ex, 0px)), calc(-50% + var(--ey, 0px))) scale(0.5); }
+}
+
+/* ---- 龍属性をイメージした黒紫の細い稲妻（裂け目の周囲を走る） ---- */
+.rift2-bolts {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+.rift2-bolts i {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: min(40vh, 280px);
+  /* 黒紫グラデーション（強い白光にしない） */
+  background: linear-gradient(180deg, transparent, #2a1340 18%, #6a3bbf 50%, #2a1340 82%, transparent);
+  box-shadow: 0 0 6px rgba(120, 70, 220, 0.5);
+  /* 稲妻のジグザグ */
+  clip-path: polygon(40% 0, 60% 12%, 42% 26%, 64% 40%, 44% 56%, 62% 70%, 46% 84%, 58% 100%, 36% 86%, 52% 70%, 34% 54%, 54% 40%, 36% 26%, 56% 12%);
+  opacity: 0;
+}
+.rift2-bolts i:nth-child(1) { transform: translate(-50%, -50%) translateX(-46px) rotate(-6deg); animation: boltRun 2.4s steps(1, end) 2.0s infinite; }
+.rift2-bolts i:nth-child(2) { transform: translate(-50%, -50%) translateX(46px) rotate(6deg); animation: boltRun 2.4s steps(1, end) 2.3s infinite; }
+.rift2-bolts i:nth-child(3) { transform: translate(-50%, -50%) translateX(-30px) rotate(-3deg) scale(0.8); animation: boltRun 2.4s steps(1, end) 2.6s infinite; }
+.rift2-bolts i:nth-child(4) { transform: translate(-50%, -50%) translateX(34px) rotate(4deg) scale(0.85); animation: boltRun 2.4s steps(1, end) 2.15s infinite; }
+/* 一瞬だけ走る稲妻の明滅（強すぎないフリッカー） */
+@keyframes boltRun {
+  0% { opacity: 0; }
+  3% { opacity: 0.85; }
+  6% { opacity: 0.15; }
+  9% { opacity: 0.7; }
+  13% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* ---- スマホ最適化（エネルギーの広がりと稲妻の高さを抑える） ---- */
+@media (max-width: 480px) {
+  .rift2-bolts i { height: min(36vh, 220px); }
+  .rift2-aura2 { width: min(72vw, 320px); height: min(74vh, 500px); }
+  .rift2-smoke2 { width: min(60vw, 260px); height: min(66vh, 460px); }
+  .rift2-warp { width: min(52vw, 220px); height: min(62vh, 440px); }
+}
+
+/* ---- 動きを抑えたい設定: 強い揺れ・歪み・稲妻を停止 ---- */
+@media (prefers-reduced-motion: reduce) {
+  .gacha-stage,
+  .rift2-aura2,
+  .rift2-smoke2,
+  .rift2-warp,
+  .rift2-energy i,
+  .rift2-bolts i {
+    animation: none !important;
+  }
+  .gacha-stage { transform: none; }
+  .rift2-aura2 { opacity: 0.5; }
+  .rift2-warp { display: none; }
+  .rift2-bolts i { opacity: 0; }
+}
+
+/* =============================================================================
+   23. ガチャ演出 改修 Step4：裂け目からの「装備召喚」（CSSのみ / 表示専用）
+   -----------------------------------------------------------------------------
+   裂け目が完全に開く → 奥に小さな光 → 近付いて大きくなる → カードが飛び出す
+   → 中央付近で減速 → 110%まで拡大 → 100%へ戻って停止（0.2sバウンス）。
+   武器=回転して勢いよく / 防具=粒子をまとい静かに組み上がる / 装飾品=宝石光で回転。
+   停止時は軽い発光＋柔らかい影。JSは複製表示の制御のみ（結果・確率には不関与）。
+   ========================================================================== */
+
+/* ① 裂け目の奥から近付く小さな光 */
+.summon-light {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(30vw, 200px);
+  height: min(30vw, 200px);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(235, 226, 255, 0.95) 0%, rgba(150, 110, 255, 0.45) 42%, rgba(120, 90, 220, 0) 72%);
+  transform: translate(-50%, -50%) scale(0.08);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 4;
+  /* 奥から近付いて大きくなり、カード出現とともに消える */
+  animation: summonLight 1.1s ease-in both;
+}
+@keyframes summonLight {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.08); }
+  30% { opacity: 0.7; }
+  70% { opacity: 1; transform: translate(-50%, -50%) scale(0.9); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.35); }
+}
+
+/* ② 召喚されるカード（裂け目中央から飛び出す複製） */
+.summon-hero {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(74vw, 300px);
+  transform: translate(-50%, -50%);
+  z-index: 6;
+  pointer-events: none;
+}
+.summon-hero .gacha-card {
+  margin: 0;
+  transform-origin: center;
+}
+/* 停止時の共通演出：軽い発光＋柔らかい影 */
+.summon-card {
+  box-shadow:
+    0 18px 44px rgba(0, 0, 0, 0.5),
+    0 0 26px rgba(150, 110, 255, 0.40);
+}
+
+/* 武器：回転しながら勢いよく飛び出し、中央で停止（110%→100%＋バウンス） */
+.summon-hero .gacha-card--weapon {
+  animation: summonWeapon 1s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+@keyframes summonWeapon {
+  0% { opacity: 0; transform: translateY(64px) scale(0.18) rotate(-220deg); }
+  45% { opacity: 1; transform: translateY(-14px) scale(1.14) rotate(28deg); }
+  68% { transform: translateY(0) scale(1.12) rotate(0deg); }
+  82% { transform: scale(0.97); }
+  92% { transform: scale(1.03); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* 防具：粒子をまといながら静かに、組み上がるように出現 */
+.summon-hero .gacha-card--armor {
+  animation: summonArmor 1.1s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+@keyframes summonArmor {
+  0% { opacity: 0; transform: translateY(40px) scale(0.4); filter: brightness(2) blur(3px); }
+  40% { opacity: 1; filter: brightness(1.4) blur(1px); }
+  65% { transform: translateY(0) scale(1.12); filter: brightness(1.1) blur(0); }
+  82% { transform: scale(0.98); }
+  92% { transform: scale(1.02); }
+  100% { opacity: 1; transform: scale(1); filter: brightness(1); }
+}
+/* 防具の粒子のまとい（柔らかな光の粒） */
+.summon-hero .gacha-card--armor::after {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(2px 2px at 12% 30%, rgba(220, 235, 255, 0.9), transparent 60%),
+    radial-gradient(2px 2px at 84% 24%, rgba(200, 220, 255, 0.85), transparent 60%),
+    radial-gradient(2px 2px at 30% 84%, rgba(210, 230, 255, 0.85), transparent 60%),
+    radial-gradient(2px 2px at 70% 78%, rgba(230, 240, 255, 0.8), transparent 60%);
+  animation: summonArmorParticles 1.1s ease-out both;
+}
+@keyframes summonArmorParticles {
+  0% { opacity: 0; transform: scale(1.3); }
+  40% { opacity: 1; }
+  100% { opacity: 0; transform: scale(0.9); }
+}
+
+/* 装飾品：宝石の光をまとい、少し回転しながら停止 */
+.summon-hero .gacha-card--deco {
+  animation: summonDeco 1s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+@keyframes summonDeco {
+  0% { opacity: 0; transform: scale(0.22) rotate(-44deg); filter: brightness(2.3); }
+  45% { opacity: 1; transform: scale(1.12) rotate(16deg); filter: brightness(1.5); }
+  70% { transform: scale(1.05) rotate(-5deg); }
+  85% { transform: scale(0.99) rotate(0deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); filter: brightness(1); }
+}
+
+/* ---- スマホ最適化 ---- */
+@media (max-width: 480px) {
+  .summon-hero { width: min(82vw, 280px); }
+  .summon-light { width: min(46vw, 200px); height: min(46vw, 200px); }
+}
+
+/* ---- 動きを抑えたい設定: 召喚カードは静止表示 ---- */
+@media (prefers-reduced-motion: reduce) {
+  .summon-light { display: none !important; }
+  .summon-hero .gacha-card--weapon,
+  .summon-hero .gacha-card--armor,
+  .summon-hero .gacha-card--deco,
+  .summon-hero .gacha-card--armor::after {
+    animation: none !important;
+  }
+  .summon-hero .gacha-card { opacity: 1; transform: none; filter: none; }
+}
+
+/* =============================================================================
+   24. ガチャ演出 改修 Step5-1：レアリティ別の「裂け目」＆召喚光の色（色のみ）
+   -----------------------------------------------------------------------------
+   ・対象は「裂け目本体(rift2-core/縁/aura)」と「カード出現時の光(summon-light)」だけ。
+   ・内部の黒さ（吸い込まれる見た目）や演出の動き・タイミングは変えない（色のみ上書き）。
+   ・稲妻/粒子追加/カメラ/フラッシュ/宇宙背景などは追加しない。
+   ・トーンクラスは結果の最高レアリティに応じてJSがオーバーレイへ付与。
+     ★3(rift-tone-3)は従来の紫＝既定色のまま。
+   ========================================================================== */
+
+/* ===== ★1：白い光・控えめな発光 ===== */
+.rift-tone-1 .rift2-core {
+  background: radial-gradient(ellipse 56% 60% at 50% 50%, #000 0%, #04030a 50%, #2b2e38 72%, rgba(43, 46, 56, 0) 86%);
+  box-shadow:
+    0 0 16px 2px rgba(232, 236, 248, 0.32),
+    0 0 36px 6px rgba(208, 216, 235, 0.16),
+    inset 0 0 34px 8px rgba(6, 4, 12, 0.95);
+}
+.rift-tone-1 .rift2-core::before {
+  box-shadow:
+    inset 0 0 12px 1px rgba(238, 242, 252, 0.5),
+    inset 0 0 24px 2px rgba(205, 215, 235, 0.22);
+}
+.rift-tone-1 .rift2-aura {
+  background: radial-gradient(ellipse at center, rgba(225, 230, 245, 0.22) 0%, rgba(195, 205, 230, 0.10) 44%, rgba(10, 10, 14, 0) 72%);
+}
+.rift-tone-1 .rift2-aura2 {
+  background: radial-gradient(ellipse at center, rgba(225, 230, 245, 0.13) 0%, rgba(190, 200, 225, 0.06) 46%, rgba(10, 10, 14, 0) 72%);
+}
+.rift-tone-1 .summon-light {
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(225, 230, 245, 0.4) 42%, rgba(210, 218, 235, 0) 72%);
+}
+
+/* ===== ★2：青白い光 ===== */
+.rift-tone-2 .rift2-core {
+  background: radial-gradient(ellipse 56% 60% at 50% 50%, #000 0%, #04030a 50%, #163052 72%, rgba(22, 48, 82, 0) 86%);
+  box-shadow:
+    0 0 22px 2px rgba(120, 180, 255, 0.45),
+    0 0 50px 8px rgba(150, 200, 255, 0.24),
+    inset 0 0 34px 8px rgba(6, 4, 12, 0.95);
+}
+.rift-tone-2 .rift2-core::before {
+  box-shadow:
+    inset 0 0 12px 1px rgba(160, 205, 255, 0.55),
+    inset 0 0 26px 2px rgba(120, 175, 255, 0.30);
+}
+.rift-tone-2 .rift2-aura {
+  background: radial-gradient(ellipse at center, rgba(110, 165, 255, 0.26) 0%, rgba(80, 140, 230, 0.14) 44%, rgba(8, 10, 20, 0) 72%);
+}
+.rift-tone-2 .rift2-aura2 {
+  background: radial-gradient(ellipse at center, rgba(120, 175, 245, 0.15) 0%, rgba(80, 130, 220, 0.07) 46%, rgba(8, 10, 20, 0) 72%);
+}
+.rift-tone-2 .summon-light {
+  background: radial-gradient(circle, rgba(235, 245, 255, 0.95) 0%, rgba(120, 180, 255, 0.45) 42%, rgba(90, 150, 240, 0) 72%);
+}
+
+/* ===== ★3：紫色（従来の既定色を明示）===== */
+.rift-tone-3 .rift2-core {
+  background: radial-gradient(ellipse 56% 60% at 50% 50%, #000 0%, #04030a 50%, #1a0d33 72%, rgba(26, 13, 51, 0) 86%);
+  box-shadow:
+    0 0 22px 2px rgba(150, 90, 255, 0.45),
+    0 0 50px 8px rgba(120, 90, 230, 0.22),
+    inset 0 0 34px 8px rgba(6, 4, 12, 0.95);
+}
+.rift-tone-3 .summon-light {
+  background: radial-gradient(circle, rgba(235, 226, 255, 0.95) 0%, rgba(150, 110, 255, 0.45) 42%, rgba(120, 90, 220, 0) 72%);
+}
+
+/* ===== ★4：赤紫色 ===== */
+.rift-tone-4 .rift2-core {
+  background: radial-gradient(ellipse 56% 60% at 50% 50%, #000 0%, #0a040a 50%, #3a0f33 72%, rgba(58, 15, 51, 0) 86%);
+  box-shadow:
+    0 0 22px 2px rgba(225, 80, 175, 0.46),
+    0 0 50px 8px rgba(175, 60, 210, 0.24),
+    inset 0 0 34px 8px rgba(8, 4, 10, 0.95);
+}
+.rift-tone-4 .rift2-core::before {
+  box-shadow:
+    inset 0 0 12px 1px rgba(255, 120, 200, 0.55),
+    inset 0 0 26px 2px rgba(190, 80, 225, 0.30);
+}
+.rift-tone-4 .rift2-aura {
+  background: radial-gradient(ellipse at center, rgba(225, 80, 175, 0.26) 0%, rgba(170, 60, 210, 0.14) 44%, rgba(18, 6, 18, 0) 72%);
+}
+.rift-tone-4 .rift2-aura2 {
+  background: radial-gradient(ellipse at center, rgba(225, 90, 180, 0.14) 0%, rgba(165, 70, 200, 0.07) 46%, rgba(18, 6, 18, 0) 72%);
+}
+.rift-tone-4 .summon-light {
+  background: radial-gradient(circle, rgba(255, 235, 248, 0.95) 0%, rgba(235, 90, 180, 0.45) 42%, rgba(190, 70, 215, 0) 72%);
+}
+
+/* ===== ★5：黄金色 ===== */
+.rift-tone-5 .rift2-core {
+  background: radial-gradient(ellipse 56% 60% at 50% 50%, #000 0%, #0a0702 50%, #3a2606 72%, rgba(58, 38, 6, 0) 86%);
+  box-shadow:
+    0 0 24px 2px rgba(255, 200, 90, 0.50),
+    0 0 54px 8px rgba(255, 165, 55, 0.26),
+    inset 0 0 34px 8px rgba(10, 7, 2, 0.95);
+}
+.rift-tone-5 .rift2-core::before {
+  box-shadow:
+    inset 0 0 12px 1px rgba(255, 225, 150, 0.6),
+    inset 0 0 26px 2px rgba(255, 185, 80, 0.32);
+}
+.rift-tone-5 .rift2-aura {
+  background: radial-gradient(ellipse at center, rgba(255, 195, 85, 0.26) 0%, rgba(255, 150, 45, 0.14) 44%, rgba(18, 12, 4, 0) 72%);
+}
+.rift-tone-5 .rift2-aura2 {
+  background: radial-gradient(ellipse at center, rgba(255, 200, 95, 0.14) 0%, rgba(255, 160, 55, 0.07) 46%, rgba(18, 12, 4, 0) 72%);
+}
+.rift-tone-5 .summon-light {
+  background: radial-gradient(circle, rgba(255, 248, 225, 0.95) 0%, rgba(255, 200, 90, 0.5) 42%, rgba(255, 165, 55, 0) 72%);
+}
+
+/* ===== ★5SP：虹色グラデーション・白い中心光 ===== */
+.rift-tone-sp .rift2-core {
+  /* 中心は白く光り、縁は虹色グラデーション（内部の黒は残す） */
+  background:
+    radial-gradient(ellipse 30% 36% at 50% 50%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.18) 30%, transparent 52%),
+    radial-gradient(ellipse 56% 60% at 50% 50%, #000 0%, #05030a 46%, rgba(5, 3, 10, 0) 86%),
+    conic-gradient(from 0deg, #ff6d6d, #ffb23e, #ffe14a, #5dff8f, #4ad0ff, #9a6bff, #ff5db4, #ff6d6d);
+  box-shadow:
+    0 0 26px 2px rgba(180, 160, 255, 0.45),
+    0 0 56px 10px rgba(120, 200, 255, 0.26),
+    inset 0 0 30px 8px rgba(6, 4, 12, 0.7);
+}
+.rift-tone-sp .rift2-core::before {
+  box-shadow:
+    inset 0 0 14px 1px rgba(255, 255, 255, 0.5),
+    inset 0 0 28px 3px rgba(170, 200, 255, 0.3);
+}
+.rift-tone-sp .rift2-aura {
+  background: radial-gradient(ellipse at center, rgba(160, 130, 255, 0.24) 0%, rgba(90, 200, 255, 0.16) 42%, rgba(10, 8, 20, 0) 74%);
+}
+.rift-tone-sp .rift2-aura2 {
+  background: radial-gradient(ellipse at center, rgba(200, 150, 255, 0.14) 0%, rgba(120, 210, 255, 0.08) 46%, rgba(10, 8, 20, 0) 74%);
+}
+.rift-tone-sp .summon-light {
+  /* 白い中心光＋虹色のにじみ */
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.5) 26%, transparent 50%),
+    conic-gradient(from 0deg, #ff6d6d, #ffb23e, #ffe14a, #5dff8f, #4ad0ff, #9a6bff, #ff5db4, #ff6d6d);
+}
+
+/* =============================================================================
+   25. スマホUI最適化 Step2（CSSのみ / レイアウト・見やすさ・Safe Area）
+   -----------------------------------------------------------------------------
+   ・768px以下のスマホ表示をさらに見やすく・押しやすく・操作しやすく調整。
+   ・iPhoneのノッチ/ホームバー/横向き切り欠きにUIが重ならないよう Safe Area 対応。
+   ・PCデザイン・ゲームロジック・演出・JSONには一切関与しない（CSSのみ）。
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  /* --- ① Safe Area：ノッチ・ホームバー・横向き切り欠きを避ける --- */
+
+  /* 上端固定の見出しバーはノッチ分だけ内容を下げる（バー自体は背面を埋める） */
+  .topbar {
+    padding-top: calc(16px + env(safe-area-inset-top, 0px));
+  }
+
+  /* メイン領域の左右にも切り欠き分の余白（縦向きでは0で影響なし） */
+  .main-area {
+    padding-left: max(14px, env(safe-area-inset-left, 0px));
+    padding-right: max(14px, env(safe-area-inset-right, 0px));
+  }
+
+  /* ドロワー化したサイドバーもノッチを避ける */
+  .sidebar {
+    padding-top: calc(20px + env(safe-area-inset-top, 0px));
+    padding-left: max(20px, env(safe-area-inset-left, 0px));
+  }
+
+  /* 下部固定ナビは左右の切り欠きも考慮（下端はバー側で対応済み） */
+  .mobile-bottom-nav {
+    padding-left: calc(12px + env(safe-area-inset-left, 0px));
+    padding-right: calc(12px + env(safe-area-inset-right, 0px));
+  }
+
+  /* --- ② ボタン：縦積み時の間隔を十分に確保 ---
+     （高さは既定で 52px / ナビ50〜56px と既に48px以上あるため変更しない） */
+  .quick-actions,
+  .button-row,
+  .filter-row,
+  .topbar-actions {
+    gap: 12px;
+  }
+
+  /* --- ③ 横スクロール完全防止（はみ出し対策の二重化） --- */
+  html,
+  body {
+    overflow-x: hidden;
+  }
+  .main-area,
+  .card,
+  .hero,
+  .result-card,
+  .result-item,
+  .gacha-card {
+    max-width: 100%;
+  }
+
+  /* --- ④ ガチャ結果：長い名称も折り返して文字が切れないように --- */
+  .result-card,
+  .result-item,
+  .gacha-card-name,
+  .gacha-card-rarity,
+  .gacha-card-method,
+  .dim-scroll-title,
+  .dim-scroll-desc,
+  .inventory-list li,
+  .history-list li {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  /* --- ⑤ フォント：小さすぎる文字を避ける（最低限の可読サイズを確保） --- */
+  .gacha-card-method,
+  .stat-card span,
+  .metric-card span,
+  .metric-inline span,
+  .mini-stats span {
+    font-size: 0.86rem; /* スマホで小さくなりすぎないよう下限を引き上げ */
+  }
+}
+
+/* 端末がノッチ等を持つ場合の追加余白（縦向き固定運用でも安全側に倒す） */
+@supports (padding: max(0px)) {
+  @media (max-width: 768px) {
+    body {
+      padding-bottom: calc(var(--mobile-bottom-nav-height) + env(safe-area-inset-bottom, 0px));
+    }
+  }
+}
