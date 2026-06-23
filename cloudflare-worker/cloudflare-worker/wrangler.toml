@@ -1,0 +1,13 @@
+# Cloudflare Workers 設定（狩猟次元 クラウドセーブ API）
+# デプロイ手順は README.md を参照。
+
+name = "hd-save-api"
+main = "worker.js"
+compatibility_date = "2024-11-01"
+
+# KV ネームスペースのバインド。
+#   1) `wrangler kv namespace create SAVES` を実行
+#   2) 出力された id を下の "ここにKVネームスペースID" に貼り付ける
+[[kv_namespaces]]
+binding = "SAVES"
+id = "ここにKVネームスペースID"
