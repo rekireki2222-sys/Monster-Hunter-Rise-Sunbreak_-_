@@ -1,0 +1,132 @@
+/* =============================================================================
+ * save-manager.css ― セーブデータ管理（バックアップ/復元/危険操作/トースト）
+ * -----------------------------------------------------------------------------
+ *  既存のダークテーマ変数（styles.css の :root）をそのまま流用して配色を合わせる。
+ * ========================================================================== */
+
+/* --- バックアップ用テキストエリア（セーブコード表示/貼り付け） --- */
+#backupPanel .hd-code {
+  width: 100%;
+  box-sizing: border-box;
+  resize: vertical;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--panel-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  margin: 8px 0;
+  word-break: break-all;
+}
+#backupPanel .hd-sep {
+  border: 0;
+  border-top: 1px dashed var(--line);
+  margin: 16px 0;
+}
+/* hidden な file input をボタン見た目のラベルで包む */
+.hd-file-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* --- 危険ゾーン（赤系で「保存」と明確に分離） --- */
+.danger-zone {
+  border: 1px solid rgba(203, 80, 48, 0.5);
+  background: linear-gradient(180deg, rgba(127, 35, 24, 0.16), rgba(127, 35, 24, 0.05));
+}
+.danger-zone h3 { color: var(--danger); }
+.hd-danger-note { color: var(--muted); font-size: 13px; margin: 6px 0 10px; }
+
+/* 危険操作ボタン（はっきりした赤） */
+.danger-button {
+  min-height: var(--btn-height);
+  padding: 0 18px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--red-strong);
+  background: linear-gradient(180deg, #b5402a, #8c2a1c);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter var(--transition);
+}
+.danger-button:hover { filter: brightness(1.08); }
+.danger-button:disabled { opacity: 0.5; cursor: not-allowed; filter: none; }
+#undoResetArea { margin-top: 12px; }
+
+/* --- 確認モーダル（既存 .selection-modal を流用しつつ入力欄を追加） --- */
+.hd-danger-modal .hd-danger-input {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 4px 0 14px;
+  padding: 11px 12px;
+  font-size: 15px;
+  color: var(--text);
+  background: var(--panel-soft);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+}
+.hd-danger-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+/* --- トースト通知（画面下中央に控えめに表示） --- */
+.hd-toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(var(--mobile-bottom-nav-height, 0px) + 18px);
+  transform: translateX(-50%) translateY(20px);
+  max-width: min(92vw, 460px);
+  padding: 12px 18px;
+  background: var(--panel-strong);
+  color: var(--text);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+  font-size: 13px;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 10000;
+}
+.hd-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hd-toast { transition: opacity 0.12s ease; }
+}
+
+/* --- クラウド保存カード --- */
+.hd-cloud-status {
+  margin: 4px 0 12px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text);
+}
+.hd-inline-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  color: var(--gold-strong);
+  background: var(--panel-soft);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 2px 6px;
+  word-break: break-all;
+}
+.hd-cloud-setup { margin-top: 6px; }
+.hd-cloud-setup > summary {
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+#cloudPanel input[type="text"] { width: 100%; box-sizing: border-box; }

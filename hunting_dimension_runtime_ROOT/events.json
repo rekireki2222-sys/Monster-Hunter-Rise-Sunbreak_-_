@@ -1,0 +1,643 @@
+{
+  "events": [
+    {
+      "id": "event001",
+      "name": "埋蔵金発見",
+      "description": "500コインを獲得する。",
+      "category": "coin",
+      "effect_type": "coin",
+      "effect_value": 500,
+      "rarity": "common",
+      "usable": true
+    },
+    {
+      "id": "event002",
+      "name": "落とし物",
+      "description": "300コインとブロンズ武器ガチャ1回を獲得する。",
+      "category": "coin",
+      "effect_type": "coin_and_weapon_gacha",
+      "effect_value": {
+        "coin": 300,
+        "bronze_weapon_gacha": 1
+      },
+      "rarity": "common",
+      "usable": true
+    },
+    {
+      "id": "event003",
+      "name": "特別報酬",
+      "description": "800コインを獲得する。",
+      "category": "coin",
+      "effect_type": "coin",
+      "effect_value": 800,
+      "rarity": "rare",
+      "usable": true
+    },
+    {
+      "id": "event004",
+      "name": "武器補給",
+      "description": "ブロンズ武器ガチャを5回引ける。",
+      "category": "weapon",
+      "effect_type": "free_bronze_weapon_gacha",
+      "effect_value": 5,
+      "rarity": "common",
+      "usable": true
+    },
+    {
+      "id": "event005",
+      "name": "高級武器補給",
+      "description": "シルバー武器ガチャを3回引ける。",
+      "category": "weapon",
+      "effect_type": "free_silver_weapon_gacha",
+      "effect_value": 3,
+      "rarity": "rare",
+      "usable": true
+    },
+    {
+      "id": "event006",
+      "name": "黄金武器補給",
+      "description": "ゴールド武器ガチャを1回引ける。",
+      "category": "weapon",
+      "effect_type": "free_gold_weapon_gacha",
+      "effect_value": 1,
+      "rarity": "epic",
+      "usable": true
+    },
+    {
+      "id": "event007",
+      "name": "防具補給",
+      "description": "ブロンズ防具ガチャを5回引ける。",
+      "category": "armor",
+      "effect_type": "free_bronze_armor_gacha",
+      "effect_value": 5,
+      "rarity": "common",
+      "usable": true
+    },
+    {
+      "id": "event008",
+      "name": "高級防具補給",
+      "description": "シルバー防具ガチャを3回引ける。",
+      "category": "armor",
+      "effect_type": "free_silver_armor_gacha",
+      "effect_value": 3,
+      "rarity": "rare",
+      "usable": true
+    },
+    {
+      "id": "event009",
+      "name": "黄金防具補給",
+      "description": "ゴールド防具ガチャを1回引ける。",
+      "category": "armor",
+      "effect_type": "free_gold_armor_gacha",
+      "effect_value": 1,
+      "rarity": "epic",
+      "usable": true
+    },
+    {
+      "id": "event010",
+      "name": "嵐に舞う黒い双刃",
+      "description": "ルプス＝ダオラ改を獲得する。",
+      "category": "weapon",
+      "effect_type": "grant_specific_weapon",
+      "effect_value": "ルプス＝ダオラ改",
+      "rarity": "legend",
+      "usable": true
+    },
+    {
+      "id": "event011",
+      "name": "武器鍛冶師",
+      "description": "好きな武器を1段階進化させる。",
+      "category": "weapon",
+      "effect_type": "weapon_evolution",
+      "effect_value": 1,
+      "rarity": "rare",
+      "usable": true
+    },
+    {
+      "id": "event012",
+      "name": "熟練鍛冶師",
+      "description": "好きな武器を2段階進化させる。",
+      "category": "weapon",
+      "effect_type": "weapon_evolution",
+      "effect_value": 2,
+      "rarity": "epic",
+      "usable": true
+    },
+    {
+      "id": "event013",
+      "name": "防具職人",
+      "description": "好きな防具1部位を1段階強化する。",
+      "category": "armor",
+      "effect_type": "armor_upgrade",
+      "effect_value": 1,
+      "rarity": "common",
+      "usable": true
+    },
+    {
+      "id": "event014",
+      "name": "名人の防具工房",
+      "description": "好きな防具2部位を1段階強化する。",
+      "category": "armor",
+      "effect_type": "armor_upgrade",
+      "effect_value": 2,
+      "rarity": "rare",
+      "usable": true
+    },
+    {
+      "id": "event015",
+      "name": "発掘された装飾品",
+      "description": "装飾品ガチャを5回引ける。",
+      "category": "decoration",
+      "effect_type": "free_decoration_gacha",
+      "effect_value": 5,
+      "rarity": "common",
+      "usable": true
+    },
+    {
+      "id": "event016",
+      "name": "古龍の秘宝",
+      "description": "装飾品ガチャを15回引ける。",
+      "category": "decoration",
+      "effect_type": "free_decoration_gacha",
+      "effect_value": 15,
+      "rarity": "epic",
+      "usable": true
+    },
+    {
+      "id": "event017",
+      "name": "傀異研究所",
+      "description": "傀異錬成権を1回獲得する。",
+      "category": "qurio",
+      "effect_type": "qurio_ticket",
+      "effect_value": 1,
+      "rarity": "rare",
+      "usable": true
+    },
+    {
+      "id": "event018",
+      "name": "禁断の研究資料",
+      "description": "傀異錬成権を3回獲得する。",
+      "category": "qurio",
+      "effect_type": "qurio_ticket",
+      "effect_value": 3,
+      "rarity": "epic",
+      "usable": true
+    },
+    {
+      "id": "event019",
+      "name": "お得セット1",
+      "description": "武器進化+1、防具強化+1、傀異錬成権+1。",
+      "category": "special",
+      "effect_type": "package_reward",
+      "effect_value": {
+        "weapon_evolution": 1,
+        "armor_upgrade": 1,
+        "qurio_ticket": 1
+      },
+      "rarity": "legend",
+      "usable": true
+    },
+    {
+      "id": "event020",
+      "name": "オロミドロはクソモンスじゃない！！",
+      "description": "D＝スライサーを獲得する。",
+      "category": "weapon",
+      "effect_type": "grant_specific_weapon",
+      "effect_value": "D＝スライサー",
+      "rarity": "legend",
+      "usable": true
+    },
+    {
+      "id": "event021",
+      "name": "黄金の軍資金",
+      "description": "2000コイン獲得。",
+      "category": "coin",
+      "effect_type": "coin",
+      "effect_value": 2000,
+      "rarity": "rare",
+      "usable": true
+    },
+    {
+      "id": "event022",
+      "name": "秘密の貯蔵庫",
+      "description": "4000コイン獲得。",
+      "category": "coin",
+      "effect_type": "coin",
+      "effect_value": 4000,
+      "rarity": "epic",
+      "usable": true
+    },
+    {
+      "id": "event023",
+      "name": "王国からの支援物資",
+      "description": "ゴールド武器ガチャ1回とシルバー防具ガチャ1回を獲得。",
+      "category": "special",
+      "effect_type": "package_reward",
+      "effect_value": {
+        "gold_weapon_gacha": 1,
+        "silver_armor_gacha": 1
+      },
+      "rarity": "epic",
+      "usable": true
+    },
+    {
+      "id": "event024",
+      "name": "双剣収集家",
+      "description": "ブロンズ武器ガチャ10回を獲得。",
+      "category": "weapon",
+      "effect_type": "free_bronze_weapon_gacha",
+      "effect_value": 10,
+      "rarity": "rare",
+      "usable": true
+    },
+    {
+      "id": "event025",
+      "name": "防具収集家",
+      "description": "ブロンズ防具ガチャ10回を獲得。",
+      "category": "armor",
+      "effect_type": "free_bronze_armor_gacha",
+      "effect_value": 10,
+      "rarity": "rare",
+      "usable": true
+    },
+    {
+      "id": "event026",
+      "name": "臨時ボーナス",
+      "description": "1000コインと装飾品ガチャ5回を獲得。",
+      "category": "special",
+      "effect_type": "package_reward",
+      "effect_value": {
+        "coin": 1000,
+        "free_decoration_gacha": 5
+      },
+      "rarity": "rare",
+      "usable": true
+    },
+    {
+      "id": "event027",
+      "name": "熟練ハンターの遺産",
+      "description": "好きな防具2部位を強化する。",
+      "category": "armor",
+      "effect_type": "armor_upgrade",
+      "effect_value": 2,
+      "rarity": "epic",
+      "usable": true
+    },
+    {
+      "id": "event028",
+      "name": "幸運の探索隊",
+      "description": "追加イベント1回発動。",
+      "category": "special",
+      "effect_type": "extra_event",
+      "effect_value": 1,
+      "rarity": "rare",
+      "usable": true
+    },
+    {
+      "id": "event029",
+      "name": "連鎖する幸運",
+      "description": "追加イベント2回発動。",
+      "category": "special",
+      "effect_type": "extra_event",
+      "effect_value": 2,
+      "rarity": "legend",
+      "usable": true
+    },
+    {
+      "id": "event030",
+      "name": "そうだ、オオナズチを狩りにいこう",
+      "description": "リ＝Yを獲得する。",
+      "category": "weapon",
+      "effect_type": "grant_specific_weapon",
+      "effect_value": "リ＝Y",
+      "rarity": "legend",
+      "usable": true
+    },
+    {
+      "id": "event031",
+      "name": "会心の一撃！！",
+      "description": "カイザーXヘルムを獲得する。",
+      "category": "armor",
+      "effect_type": "grant_specific_armor",
+      "effect_value": "カイザーXヘルム",
+      "rarity": "epic",
+      "usable": true
+    },
+    {
+      "id": "event032",
+      "name": "やーいお前の頭、蛮顎竜！！",
+      "description": "ジャナフXコイルを獲得する。",
+      "category": "armor",
+      "effect_type": "grant_specific_armor",
+      "effect_value": "ジャナフXコイル",
+      "rarity": "rare",
+      "usable": true
+    },
+    {
+      "id": "event033",
+      "name": "欲しがりさん",
+      "description": "インゴットXグリーヴを獲得する。",
+      "category": "armor",
+      "effect_type": "grant_specific_armor",
+      "effect_value": "インゴットXグリーヴ",
+      "rarity": "rare",
+      "usable": true
+    },
+    {
+      "id": "event034",
+      "name": "彗星の衝撃",
+      "description": "赫絶の対翼カトルクスを獲得する。",
+      "category": "weapon",
+      "effect_type": "grant_specific_weapon",
+      "effect_value": "赫絶の対翼カトルクス",
+      "rarity": "legend",
+      "usable": true
+    },
+    {
+      "id": "event035",
+      "name": "嵐ト炎ヲ司ル剣",
+      "description": "氷炎剣ヴィルマフレア改を獲得する。",
+      "category": "weapon",
+      "effect_type": "grant_specific_weapon",
+      "effect_value": "氷炎剣ヴィルマフレア改",
+      "rarity": "legend",
+      "usable": true
+    },
+    {
+      "id": "event036",
+      "name": "肉食うさぎ",
+      "description": "スノウジェミニ改を獲得する。",
+      "category": "weapon",
+      "effect_type": "grant_specific_weapon",
+      "effect_value": "スノウジェミニ改",
+      "rarity": "rare",
+      "usable": true
+    },
+    {
+      "id": "event037",
+      "name": "弱特は強い。",
+      "description": "痛撃珠【2】を獲得する。",
+      "category": "decoration",
+      "effect_type": "grant_specific_decoration",
+      "effect_value": "痛撃珠【2】",
+      "rarity": "epic",
+      "usable": true
+    },
+    {
+      "id": "event038",
+      "name": "連撃連撃連撃連撃連撃連撃",
+      "description": "連撃珠【2】を獲得する。",
+      "category": "decoration",
+      "effect_type": "grant_specific_decoration",
+      "effect_value": "連撃珠【2】",
+      "rarity": "epic",
+      "usable": true
+    },
+    {
+      "id": "event039",
+      "name": "五心合一",
+      "description": "属撃珠【2】を獲得する。",
+      "category": "decoration",
+      "effect_type": "grant_specific_decoration",
+      "effect_value": "属撃珠【2】",
+      "rarity": "epic",
+      "usable": true
+    },
+    {
+      "id": "event040",
+      "name": "金○狩りでお守り集め！！",
+      "description": "神閃・雷禍一双を獲得する。",
+      "category": "weapon",
+      "effect_type": "grant_specific_weapon",
+      "effect_value": "神閃・雷禍一双",
+      "rarity": "legend",
+      "usable": true
+    },
+    {
+      "id": "event041",
+      "name": "風を纏うは玉鋼",
+      "description": "リバルクシャナヘルムを獲得する。",
+      "category": "armor",
+      "effect_type": "grant_specific_armor",
+      "effect_value": "リバルクシャナヘルム",
+      "rarity": "legend",
+      "usable": true
+    },
+    {
+      "id": "event042",
+      "name": "牙を持つ太陽",
+      "description": "リバルカイザーコイルを獲得する。",
+      "category": "armor",
+      "effect_type": "grant_specific_armor",
+      "effect_value": "リバルカイザーコイル",
+      "rarity": "legend",
+      "usable": true
+    },
+    {
+      "id": "event043",
+      "name": "令和の我慢比べ",
+      "description": "ヴァチスメイルまたはプラグマメイルを獲得する。",
+      "category": "armor",
+      "effect_type": "grant_specific_armor",
+      "effect_value": [
+        "ヴァチスメイル",
+        "プラグマメイル"
+      ],
+      "rarity": "epic",
+      "usable": true
+    },
+    {
+      "id": "event044",
+      "name": "風邪でも出勤します",
+      "description": "ケイオスアーム、ケイオスグリーヴ、ネフィリムアーム、ネフィリムグリーヴのいずれかを獲得する。",
+      "category": "armor",
+      "effect_type": "grant_specific_armor",
+      "effect_value": [
+        "ケイオスアーム",
+        "ケイオスグリーヴ",
+        "ネフィリムアーム",
+        "ネフィリムグリーヴ"
+      ],
+      "rarity": "epic",
+      "usable": true
+    },
+    {
+      "id": "event045",
+      "name": "戦わなければ生き残れない！！",
+      "description": "赫濯・暦メイルを獲得する。",
+      "category": "armor",
+      "effect_type": "grant_specific_armor",
+      "effect_value": "赫濯・暦メイル",
+      "rarity": "legend",
+      "usable": true
+    },
+    {
+      "id": "event046",
+      "name": "誉たる騎士道",
+      "description": "プライマルメイルを獲得する。",
+      "category": "armor",
+      "effect_type": "grant_specific_armor",
+      "effect_value": "プライマルメイル",
+      "rarity": "legend",
+      "usable": true
+    },
+    {
+      "id": "event047",
+      "name": "ハンターの強さ見せましょう！！",
+      "description": "連撃珠【4】、属会珠【4】、属撃珠【4】を各1個獲得する。",
+      "category": "decoration",
+      "effect_type": "grant_specific_decoration_set",
+      "effect_value": [
+        "連撃珠【4】",
+        "属会珠【4】",
+        "属撃珠【4】"
+      ],
+      "rarity": "legend",
+      "usable": true
+    },
+    {
+      "id": "event048",
+      "name": "ハンター所属オーディション",
+      "description": "ゴールド武器ガチャ10回、ゴールド防具ガチャ10回を獲得する。",
+      "category": "special",
+      "effect_type": "package_reward",
+      "effect_value": {
+        "gold_weapon_gacha": 10,
+        "gold_armor_gacha": 10
+      },
+      "rarity": "legend",
+      "usable": true
+    },
+    {
+      "id": "event049",
+      "name": "装飾品の宝石箱や！！",
+      "description": "装飾品ガチャ30回を獲得する。",
+      "category": "decoration",
+      "effect_type": "free_decoration_gacha",
+      "effect_value": 30,
+      "rarity": "legend",
+      "usable": true
+    },
+    {
+      "id": "event050",
+      "name": "キュララララ！！",
+      "description": "刻銀の滅刃を獲得する。",
+      "category": "weapon",
+      "effect_type": "grant_specific_weapon",
+      "effect_value": "刻銀の滅刃",
+      "rarity": "legend",
+      "usable": true
+    },
+    {
+      "id": "event051",
+      "name": "たこシあ",
+      "description": "好きな防具を1部位獲得し、さらにイベントを3件抽選して1件選択する。",
+      "category": "special",
+      "effect_type": "armor_pick_and_event_choice",
+      "effect_value": {
+        "armor_choice": 1,
+        "extra_event_choices": 3
+      },
+      "rarity": "legend",
+      "usable": true
+    },
+    {
+      "id": "event052",
+      "name": "Modで作ったお守り",
+      "description": "現実で所持しているお守りをこのゲーム中のみ使用可能にする。",
+      "category": "special",
+      "effect_type": "unlock_real_charm",
+      "effect_value": 1,
+      "rarity": "legend",
+      "usable": true
+    },
+    {
+      "id": "event053",
+      "name": "モンスターハンターライズハンドブレイク",
+      "description": "傀異錬成権を100回獲得する。",
+      "category": "qurio",
+      "effect_type": "qurio_ticket",
+      "effect_value": 100,
+      "rarity": "legend",
+      "usable": true
+    },
+    {
+      "id": "event054",
+      "name": "ハチミツください",
+      "description": "ゴアマガラ防具一式を獲得する。",
+      "category": "armor",
+      "effect_type": "grant_armor_set",
+      "effect_value": "ゴアマガラ一式",
+      "rarity": "epic",
+      "usable": true
+    },
+    {
+      "id": "event055",
+      "name": "チートで作った錬成",
+      "description": "現実で所持している錬成防具をこのゲーム中のみ使用可能にする。",
+      "category": "special",
+      "effect_type": "unlock_real_qurio_armor",
+      "effect_value": 1,
+      "rarity": "legend",
+      "usable": true
+    },
+    {
+      "id": "event056",
+      "name": "悪魔からの贈り物",
+      "description": "10000コイン獲得する。",
+      "category": "coin",
+      "effect_type": "coin",
+      "effect_value": 10000,
+      "rarity": "legend",
+      "usable": true
+    },
+    {
+      "id": "event057",
+      "name": "狩猟次元は遊び方にコツを要求されますからね",
+      "description": "2000コイン獲得し、イベントを追加で1回発動する。",
+      "category": "special",
+      "effect_type": "coin_and_event",
+      "effect_value": {
+        "coin": 2000,
+        "extra_event": 1
+      },
+      "rarity": "epic",
+      "usable": true
+    },
+    {
+      "id": "event058",
+      "name": "もう双剣とかいなくなればいいのに！！",
+      "description": "好きな武器を1つ獲得する。",
+      "category": "weapon",
+      "effect_type": "choose_any_weapon",
+      "effect_value": 1,
+      "rarity": "legend",
+      "usable": true
+    },
+    {
+      "id": "event059",
+      "name": "揺らいでますねこれは",
+      "description": "好きな防具を1部位獲得する。",
+      "category": "armor",
+      "effect_type": "choose_any_armor",
+      "effect_value": 1,
+      "rarity": "legend",
+      "usable": true
+    },
+    {
+      "id": "event060",
+      "name": "狩猟次元の支配者",
+      "description": "5000コイン、ゴールド武器ガチャ10回、ゴールド防具ガチャ10回、傀異錬成権50回を獲得する。",
+      "category": "special",
+      "effect_type": "package_reward",
+      "effect_value": {
+        "coin": 5000,
+        "gold_weapon_gacha": 10,
+        "gold_armor_gacha": 10,
+        "qurio_ticket": 50
+      },
+      "rarity": "legend",
+      "usable": true
+    }
+  ]
+}
